@@ -1,0 +1,18 @@
+
+> cuc_tmdt@0.1.0 build
+> next build
+
+  ▲ Next.js 14.2.22
+  - Environments: .env.production
+
+   Creating an optimized production build ...
+uncaughtException Error: kill EPERM
+    at ChildProcess.kill (node:internal/child_process:511:26)
+    at ChildProcessWorker.forceExit (D:\CT_Hinet\CucTMDT\TMDT_Client\node_modules\next\dist\compiled\jest-worker\index.js:1:12879)
+    at Timeout._onTimeout (D:\CT_Hinet\CucTMDT\TMDT_Client\node_modules\next\dist\compiled\jest-worker\index.js:1:8684)
+    at listOnTimeout (node:internal/timers:594:17)
+    at process.processTimers (node:internal/timers:529:7) {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'kill'
+}
