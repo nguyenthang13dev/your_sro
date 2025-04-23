@@ -25,7 +25,7 @@ const initialState: StateType = {
   borderRadius: 7,
   isMobile: false,
   navType: NAV_TYPE_SIDE,
-  topNavColor: '#3e82f7',
+  topNavColor: '#0e7a39',
 };
 
 export const CustomizerSlice = createSlice({
@@ -50,6 +50,9 @@ export const CustomizerSlice = createSlice({
     setIsMobile: (state: StateType, action) => {
       state.isMobile = action.payload;
     },
+     setTopNavColor: (state: StateType, action) => {
+      state.topNavColor = action.payload;
+    },
   },
 });
 
@@ -59,7 +62,8 @@ export const {
   toggleMobileSidebar,
   setBorderRadius,
   toggleHorizontal,
-  setIsMobile
+  setIsMobile,
+  setTopNavColor
 } = CustomizerSlice.actions;
 
 export default CustomizerSlice.reducer;

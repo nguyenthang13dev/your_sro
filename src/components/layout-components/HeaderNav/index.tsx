@@ -48,6 +48,8 @@ export const HeaderNav = () => {
             dispatch(toggleMobileSidebar());
         }
     };
+
+    console.log(navBgColor)
     return (
         <Header headerNavColor={headerNavColor || navBgColor}>
             <HeaderWrapper>

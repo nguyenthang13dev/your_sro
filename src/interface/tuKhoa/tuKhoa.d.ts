@@ -7,7 +7,6 @@ export interface tuKhoaType {
     ghiChu?: string | null;
     nhomTieuChiId?: string | null;
 }
-
 export interface searchTuKhoaData extends SearchBase {
     tenTuKhoa?: string | null;
     loaiTuKhoa?: string | null;

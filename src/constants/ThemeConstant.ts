@@ -69,11 +69,11 @@ export const GRAY_SCALE = {
 
 export const baseTheme = {
   borderRadius: 10,
-  colorPrimary: BLUE_BASE,
+  colorPrimary: GREEN_BASE,
   colorSuccess: CYAN_BASE,
   colorWarning: GOLD_BASE,
   colorError: VOLCANO_BASE,
-  colorInfo: BLUE_BASE,
+  colorInfo: GREEN_BASE,
   colorText: GRAY_SCALE.GRAY,
   colorBorder: '#e6ebf1',
   colorBgBody: BODY_BACKGROUND,

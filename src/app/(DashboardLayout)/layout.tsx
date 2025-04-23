@@ -1,42 +1,41 @@
 "use client";
 import { HeaderNav } from "@/components/layout-components/HeaderNav";
 import { SideNav } from "@/components/layout-components/SideNav";
-import { ConfigProvider, Layout, Grid } from "antd";
 import { MEDIA_QUERIES, TEMPLATE } from "@/constants/ThemeConstant";
-import utils from "@/utils";
 import { useSelector } from "@/store/hooks";
+import utils from "@/utils";
 import styled from "@emotion/styled";
-import PageHeader from "@/components/layout-components/PageHeader";
+import { ConfigProvider, Grid, Layout } from "antd";
 
-import "@/app/assets/css/global.css";
-import "@/app/assets/css/font.css";
-import "./layout.css";
 import "@/app/assets/css/ant-button.css";
+import "@/app/assets/css/font.css";
+import "@/app/assets/css/global.css";
 import "react-toastify/dist/ReactToastify.css";
+import "./layout.css";
 
+import Loading from "@/components/shared-components/Loading";
+import { UserType } from "@/interface/auth/User";
+import { MenuDataType } from "@/interface/menu/menu";
 import { authService } from "@/services/auth/auth.service";
-import { Suspense, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/store/store";
 import { setUserInfo } from "@/store/auth/AuthSlice";
 import { setMenuData } from "@/store/menu/MenuSlice";
-import { UserType } from "@/interface/auth/User";
-import Loading from "@/components/shared-components/Loading";
-import { MenuDataType } from "@/interface/menu/menu";
-import { ToastContainer } from "react-toastify";
+import { AppDispatch } from "@/store/store";
 import { usePathname } from "next/navigation";
+import { Suspense, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { ToastContainer } from "react-toastify";
 //chuyển khu vực của antd về việt nam
 import locale from "antd/locale/vi_VN";
 import dayjs from "dayjs";
 import "dayjs/locale/vi";
 
 import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/effect-cube";
+import "swiper/css/effect-fade";
+import "swiper/css/effect-flip";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "swiper/css/effect-fade";
-import "swiper/css/effect-cube";
-import "swiper/css/effect-coverflow";
-import "swiper/css/effect-flip";
 
 dayjs.locale("vi");
 
@@ -103,7 +102,7 @@ export default function RootLayout({
         <ConfigProvider locale={locale}>
             <Layout>
                 <ToastContainer />
-                <HeaderNav></HeaderNav>
+                <HeaderNav />
                 <SideNav />
                 <Layout style={getLayoutDirectionGutter()}>
                     <AppContent>
