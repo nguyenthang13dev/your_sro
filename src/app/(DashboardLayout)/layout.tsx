@@ -8,7 +8,6 @@ import styled from "@emotion/styled";
 import { ConfigProvider, Grid, Layout } from "antd";
 
 import "@/app/assets/css/ant-button.css";
-import "@/app/assets/css/font.css";
 import "@/app/assets/css/global.css";
 import "react-toastify/dist/ReactToastify.css";
 import "./layout.css";

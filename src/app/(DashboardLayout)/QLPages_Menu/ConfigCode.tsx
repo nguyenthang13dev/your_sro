@@ -1,23 +1,25 @@
-import {
-  createEditType,
-  tableQLPages_MenuDataType,
-} from '@/interface/QLPages_Menu/QLPages_Menu'
+import
+  {
+    createEditType,
+    tableQLPages_MenuDataType,
+  } from '@/interface/QLPages_Menu/QLPages_Menu'
 import { QLPageMenuService } from '@/services/QLPages_Menu/QLPages_Menu.service'
 import { StringBuilder } from '@/utils/string'
-import {
-  Button,
-  Col,
-  Flex,
-  Form,
-  FormProps,
-  Modal,
-  Row,
-  Typography,
-} from 'antd'
+import { css } from '@codemirror/lang-css'
+import CodeMirror from '@uiw/react-codemirror'
+import
+  {
+    Button,
+    Col,
+    Flex,
+    Form,
+    FormProps,
+    Modal,
+    Row,
+    Typography,
+  } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
-import CodeMirror from '@uiw/react-codemirror'
-import { css } from '@codemirror/lang-css'
 interface Props {
   isOpen: boolean
   data: tableQLPages_MenuDataType
@@ -27,7 +29,7 @@ interface Props {
 
 const defaultCssCode = ` 
     body {
-        font-family: Open Sans, sans-serif;
+        font-family: Quick Sans, sans-serif;
         margin: 0;
         padding: 0;
       }

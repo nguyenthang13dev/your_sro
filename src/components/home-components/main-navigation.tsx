@@ -1,25 +1,44 @@
-import Link from "next/link"
+import Image from "next/image";
+import Link from "next/link";
 
 export function MainNavigation() {
   const navItems = [
     { name: "TRANG CHỦ", href: "/" },
-    { name: "NẠP THẺ", href: "/nap-the" },
+    { name: "NẠP tiền", href: "/nap-the" },
     { name: "FANPAGE", href: "/fanpage" },
     { name: "MINIGAME", href: "/minigame" },
     { name: "ZALO", href: "/zalo" },
     { name: "NHÓM FB", href: "/nhom-fb" },
     { name: "THÔNG TIN", href: "/thong-tin" },
-  ]
+    { name: "Đăng ký", href: "/auth/register" },
+    { name: "Đăng nhập", href: "/thong-tin" },
+  ];
 
   return (
-    <nav className="bg-black/60 border-b border-amber-900/50 py-4">
+    <nav className="py-4 px-4 container">
       <div className="container mx-auto px-4">
-        <ul className="flex flex-wrap justify-center gap-2 md:gap-8">
-          {navItems.map((item) => (
-            <li key={item.name}>
+        {/* Icon  */}
+        <ul className="flex flex-wrap justify-between md:justify-around items-center navbar align-items-center">
+         
+          <li>
+             <Image 
+              src="/img/avatars/sroiconpng.png"
+              alt="SRO Icon"
+              width={120}
+              height={80}
+              className="object-contain"
+            />
+           </li>
+         
+          {navItems.map( ( item ) => (
+            <li  key={item.name}>
               <Link
                 href={item.href}
-                className="text-amber-500 hover:text-amber-300 transition-colors px-3 py-2 text-sm md:text-base font-medium relative group"
+                className="text-amber-500 hover:text-amber-300 transition-colors  py-2 text-sm md:text-base font-medium relative
+                 group
+                 nav-link
+                  uppercase
+                 "
               >
                 {item.name}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-500 transition-all duration-300 group-hover:w-full"></span>
@@ -29,5 +48,5 @@ export function MainNavigation() {
         </ul>
       </div>
     </nav>
-  )
+  );
 }

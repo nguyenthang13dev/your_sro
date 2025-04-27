@@ -1,43 +1,64 @@
-import Image from "next/image"
-import Link from "next/link"
+"use client";
+
+import Link from "next/link";
+import styles from "./ranking.module.css"; // ✨ Import CSS module
 
 export function Rankings() {
   const topPlayers = [
-    { rank: 1, name: "DragonSlayer", level: 120, class: "Warrior" },
-    { rank: 2, name: "ShadowMage", level: 119, class: "Mage" },
-    { rank: 3, name: "PhoenixArcher", level: 118, class: "Archer" },
-    { rank: 4, name: "ImmortalKnight", level: 117, class: "Knight" },
-    { rank: 5, name: "DarkAssassin", level: 116, class: "Assassin" },
-  ]
+    { rank: 1, name: "Jasmine", guild: "500_Thieves", level: 90 },
+    { rank: 2, name: "TieuSiro", guild: "500_Thieves", level: 90 },
+    { rank: 3, name: "ThangStar", guild: "God_Bot", level: 90 },
+    { rank: 4, name: "SatThuTuoi20", guild: "God_Bot", level: 90 },
+    { rank: 5, name: "MinhPhuong", guild: "500_Thieves", level: 90 },
+    { rank: 6, name: "HoangLan", guild: "God_Bot", level: 90 },
+    { rank: 7, name: "Kien", guild: "_TinhAnhEm._", level: 90 },
+    { rank: 8, name: "AnhDungStore", guild: "500_Thieves", level: 90 },
+    { rank: 9, name: "EoChangHy", guild: "500_Thieves", level: 90 },
+    { rank: 10, name: "BoGiai", guild: "_TinhAnhEm._", level: 85 },
+  ];
 
   return (
-    <div className="game-panel">
-      <div className="game-panel-header">
-        <h2 className="text-center text-amber-300 font-bold text-lg">BẢNG XẾP HẠNG</h2>
+    <div className="card-items">
+      {/* Header */}
+      <div className="header-card">
+        <h3 className="font-bold text-lg uppercase">
+          Bảng xếp hạng
+        </h3>
       </div>
-      <div className="game-panel-content p-4">
-        <div className="space-y-2">
-          {topPlayers.map((player) => (
-            <div key={player.rank} className="flex items-center gap-2 py-2 border-b border-amber-900/30 last:border-0">
-              <span className="text-amber-500 font-bold w-6">{player.rank}</span>
-              <div className="flex-1">
-                <p className="text-amber-200 font-medium">{player.name}</p>
-                <p className="text-amber-100/70 text-xs">
-                  Level {player.level} {player.class}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div className="mt-4 flex justify-center">
-          <Link href="/rankings" className="relative game-button">
-            <Image src="/images/button-bg.png" alt="View all rankings" width={150} height={40} />
-            <span className="absolute inset-0 flex items-center justify-center text-amber-300 font-medium text-sm">
-              XEM THÊM
-            </span>
+
+      {/* Body */}
+      <div className="body-card">
+        <table className={styles.rankTable}>
+          <thead>
+            <tr className="bg-amber-900/20 text-sm">
+              <th className="px-4 py-2 text-left">#</th>
+              <th className="px-4 py-2 text-left">Nhân Vật</th>
+              <th className="px-4 py-2 text-left">Guild</th>
+              <th className="px-4 py-2 text-left">Cấp</th>
+            </tr>
+          </thead>
+          <tbody>
+            {topPlayers.map((player) => (
+              <tr
+                key={player.rank}
+                className={`${styles.rankRow} `}
+              >
+                <td className="px-4 py-3  font-bold">{player.rank}</td>
+                <td className="px-4 py-3  font-medium">{player.name}</td>
+                <td className="px-4 py-3 ">{player.guild}</td>
+                <td className="px-4 py-3 ">{player.level}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+
+        {/* See more */}
+        <div className="p-4 flex justify-center bg-gray-800/50">
+          <Link href="/rankings" className={styles.seeMoreBtn}>
+            XEM THÊM
           </Link>
         </div>
       </div>
     </div>
-  )
+  );
 }

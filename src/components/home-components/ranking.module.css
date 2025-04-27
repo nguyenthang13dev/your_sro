@@ -1,0 +1,43 @@
+.panelWrapper {
+    background: linear-gradient(to bottom right, #1f2937, #111827);
+    overflow: hidden;
+    border: 1px solid rgba(253, 186, 116, 0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.panelHeader {
+    background: rgba(120, 53, 15, 0.5);
+    padding: 1rem;
+    text-align: center;
+}
+
+.panelContent {
+    padding: 0;
+    overflow-x: auto;
+}
+
+.rankTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.rankRow:hover {
+    background: rgba(120, 53, 15, 0.1);
+    transition: background 0.3s;
+}
+
+.seeMoreBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1.5rem;
+    background-color: rgba(202, 138, 4, 0.5);
+    border-radius: 0.5rem;
+    color: #fcd34d;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.seeMoreBtn:hover {
+    background-color: rgba(202, 138, 4, 0.7);
+}

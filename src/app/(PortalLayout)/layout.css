@@ -56,14 +56,12 @@
     -webkit-box-flex: 1;
     -ms-flex: auto;
     flex: auto;
-    /* fix firefox can't set height smaller than content on flex item */
     min-height: 0;
     background-color: #f9fafb;
 }
 
 .ant-layout-sider {
     position: relative;
-    /* fix firefox can't set width smaller than content on flex item */
     min-width: 0;
     background: #001529;
     -webkit-transition: all 0.2s;

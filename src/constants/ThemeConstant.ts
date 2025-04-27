@@ -12,7 +12,7 @@ export const CONTENT_MAX_WIDTH = 1400
 export const CONTENT_HEIGHT_OFFSET = HEADER_HEIGHT + FOOTER_HEIGHT
 export const HEADER_BG_DEFAULT_COLOR_LIGHT = '#ffffff'
 export const LAYOUT_CONTENT_GUTTER = 12
-export const LAYOUT_CONTENT_GUTTER_SM = 12
+export const LAYOUT_CONTENT_GUTTER_SM = 12                                                                                                                                                                                                              
 export const SIDE_NAV_DARK_BG_COLOR = '#001529'
 
 export const BLUE_BASE = '#3e79f7'
@@ -80,7 +80,7 @@ export const baseTheme = {
   controlHeight: 40,
   controlHeightLG: 48,
   controlHeightSM: 36,
-  fontFamily: `Open Sans`,
+  fontFamily: `Quick Sans medium`,
   fontSizeHeading2: 22,
   fontSizeHeading4: 17,
 }

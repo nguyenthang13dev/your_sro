@@ -1,13 +1,14 @@
 "use client";
-import { ConfigProvider, Layout } from "antd";
-import "@/app/assets/css/global.css";
-import "@/app/assets/css/font.css";
 import "@/app/assets/css/ant-button.css";
-import "react-toastify/dist/ReactToastify.css";
+import "@/app/assets/css/global.css";
+import { ConfigProvider, Layout } from "antd";
+import 'react-toastify/dist/ReactToastify.css';
 import "./custom.css";
 
-import { Suspense } from "react";
+import Footer from "@/components/home-components/footer";
+import { MainNavigation } from "@/components/home-components/main-navigation";
 import Loading from "@/components/shared-components/Loading";
+import { Suspense } from "react";
 import { ToastContainer } from "react-toastify";
 
 const { Content } = Layout;
@@ -24,8 +25,12 @@ export default function RootLayout({
         <ToastContainer />
         <Layout>
           <Content className="h-100 ">
+
             <Suspense fallback={<Loading content="content" />}>
+                      {/* Top Navigation */}
+        <MainNavigation />
               {children}
+            <Footer />
             </Suspense>
           </Content>
         </Layout>

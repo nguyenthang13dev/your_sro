@@ -1,3 +1,8 @@
+
+
+
+
+
 img {
     width: 100%;
 }
@@ -95,7 +100,7 @@ img {
 .custom-table {
     width: 100%;
     border-collapse: collapse;
-    font-family: Arial, sans-serif;
+    font-family: Q, sans-serif;
     text-align: left;
     border: 1px solid #ddd;
 }
@@ -564,3 +569,278 @@ a:hover{
   .canh-bao-2 {
     display: inline !important;
   }
+
+
+
+  /* Sro */
+
+/* Header */
+
+  .navbar {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 60px;
+    font-family: 'Quick Sans bold', sans-serif;
+}
+
+  .nav-link {
+    color: #cc9966 !important;
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: 20px;
+    transition: all linear;
+    margin: 0 10px;    
+  }
+
+  .nav-link:hover {
+    cursor: pointer;
+    color: #cac3bd !important
+  }
+
+  /* Banner */
+
+  .block-item__banner {
+    font-weight: bold;
+    font-size: 1.7rem;
+    text-align: center;
+    align-items: center;
+  }
+
+    .block-item__banner:hover {
+        transform: scaleX(1.05);
+        transition: all 0.3s ease-in-out;
+    }
+
+
+    .bg-download {
+        background-image: url('/img/background/k2.png');
+        background-position: center;
+    }
+  /* Các màu riêng cho từng nút */
+  .text-download {
+      color: #FF4C29 !important;
+      /* Đỏ cam cho TẢI GAME */
+  }
+
+  .text-shop {
+      color: #ff0010;
+      /* Xanh dương cho WEB SHOP */
+  }
+
+  .text-register {
+      color: #00c7c0;
+      /* Xanh lá cho ĐĂNG KÝ */
+  }
+
+
+
+  /* Flexbox for the row of buttons */
+  .flex {
+      display: flex;
+      flex-wrap: wrap;
+      /* Allows wrapping on smaller screens */
+      gap: 20px;
+      /* Space between items */
+  }
+
+  /* Individual banner items */
+  .block-item__banner {
+      flex: 1;
+      min-width: 200px;
+      height: 200px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  /* Background images for each section */
+  .bg-guide {
+      background: url('/img/background/k3.png') center/cover no-repeat;
+  }
+
+  .bg-schedule {
+      background: url('/img/background/k3.png') center/cover no-repeat;
+  }
+
+  .bg-energy {
+      background: url('/img/background/k4.png') center/cover no-repeat;
+  }
+
+  .bg-faq {
+      background: url('/img/background/k4.png') center/cover no-repeat;
+  }
+
+  /* Styling for the button/link */
+  .game-button {
+      display: inline-block;
+      padding: 15px 30px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      text-transform: uppercase;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.5);
+      /* Semi-transparent background for readability */
+      border-radius: 5px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+  }
+
+  /* Glow effect on text */
+  .text-glow {
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.6);
+  }
+
+  /* Bounce animation for text */
+  .bounce-text {
+      animation: bounce 1s infinite;
+  }
+
+  @keyframes bounce {
+
+      0%,
+      20%,
+      50%,
+      80%,
+      100% {
+          transform: translateY(0);
+      }
+
+      40% {
+          transform: translateY(-10px);
+      }
+
+      60% {
+          transform: translateY(-5px);
+      }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+      .block-item__banner {
+          min-width: 100%;
+          /* Full width on smaller screens */
+          height: 200px;
+          /* Shorter height on mobile */
+      }
+
+      .game-button {
+          font-size: 16px;
+          padding: 10px 20px;
+      }
+  }
+
+  @keyframes bounce-text {
+
+      0%,
+      100% {
+          transform: translateY(0px);
+      }
+
+      50% {
+          transform: translateY(-5px);
+          /* Nhảy lên nhẹ */
+      }
+  }
+
+  .bounce-text {
+      animation: bounce-text 1s infinite;
+  }
+
+
+  /* News */
+
+  .bg-news {
+    background-image: url('/img/background/bg1.jpg');
+    background-position: center;
+    background-size: cover;
+  }
+
+
+  .nk-post {
+    padding: 0.2rem;
+  }
+  .nk-post-title {
+      margin: .625rem 0;
+      color: #120579 !important;
+      font-size: 1.2rem;
+  }
+
+  .nk-post-title:hover {
+      color: #c84739 !important;
+      text-decoration: underline;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+  }
+
+
+  .nk-post-date {
+      font-size: 0.8rem;color: #120579 !important;
+  }
+.nk-post-poster {
+    transition: transform 0.5s ease;
+    /* Mượt khi scale */
+}
+
+.nk-post-poster:hover {
+    transform: scale(1.05);
+    cursor: crosshair;
+    /* Phóng to nhẹ */
+}
+
+  /* Card */
+
+  .card-items {
+    background-color: #2d2d2d;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    background-image: url('/img/card/k13.png');
+  }
+
+
+  .header-card {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.25rem;
+    border-bottom: 1px solid rgba(255, 193, 7, 0.3);
+  }
+  .header-card h3 {
+        color: #ffc107 !important;
+        font-size: 1.5rem;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  .body-card {
+    padding: 1.25rem;
+  }
+  .body-card table th tr, td {
+    color:  #ffecb3 !important;
+    padding: 0.5rem 1rem;
+  }
+
+  /* form */
+
+  .form-items {
+    color: #ffecb3 !important;
+  }
+
+   .form-items input {
+       background-color: rgb(45 45 45) !important;
+    color: #ffecb3 !important;
+    padding: 0.5rem 1rem !important;
+    border: 1px solid #ffecb3 !important;
+    border-radius: 0.5rem;
+    margin-bottom: 0.8rem;
+   }
+
+   .form-items input:hover, :focus {
+       border-color: #ffecb3 !important;
+   }
+
+.title-bolder {
+    font-family: 'Quick Sans bold';
+}

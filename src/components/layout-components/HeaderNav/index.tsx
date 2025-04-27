@@ -1,28 +1,31 @@
 "use client";
-import {
-    NAV_TYPE_TOP,
-    SIDE_NAV_COLLAPSED_WIDTH,
-    SIDE_NAV_WIDTH,
-} from "@/constants/ThemeConstant";
-import {
-    toggleMobileSidebar,
-    toggleSidebar,
-} from "@/store/customizer/CustomizerSlice";
+import
+    {
+        NAV_TYPE_TOP,
+        SIDE_NAV_COLLAPSED_WIDTH,
+        SIDE_NAV_WIDTH,
+    } from "@/constants/ThemeConstant";
+import
+    {
+        toggleMobileSidebar,
+        toggleSidebar,
+    } from "@/store/customizer/CustomizerSlice";
 import { useSelector } from "@/store/hooks";
 import { AppDispatch } from "@/store/store";
-import Header from "./Header";
-import HeaderWrapper from "./HeaderWrapper";
-import Logo from "../Logo";
-import Nav from "./Nav";
-import NavEdge from "./NavEdge";
-import NavItem from "../NavItem";
 import { LeftCircleOutlined, MenuOutlined } from "@ant-design/icons";
+import { useDispatch } from "react-redux";
+import Logo from "../Logo";
+import NavItem from "../NavItem";
 import NavNotification from "../NavNotification";
 import NavProfile from "../NavProfile";
-import { useDispatch } from "react-redux";
+import Header from "./Header";
+import HeaderWrapper from "./HeaderWrapper";
+import Nav from "./Nav";
+import NavEdge from "./NavEdge";
 
 export const HeaderNav = () => {
     const dispatch = useDispatch<AppDispatch>();
+    
     const navCollapsed = useSelector((state) => state.customizer.isCollapse);
     const isMobile = useSelector((state) => state.customizer.isMobile);
     const headerNavColor = useSelector((state) => state.customizer.topNavColor);
@@ -68,18 +71,6 @@ export const HeaderNav = () => {
                             </NavItem>
                         )}
                     </NavEdge>
-                    <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                        <p style={{
-                            color: "white",
-                            margin: 0,
-                            textTransform: "uppercase",
-                            lineHeight: 1.4,
-                            fontSize: 18,
-                            fontWeight: "bold"
-                        }}>
-                            phần mềm giám sát hoạt động thương mại điện tử
-                        </p>
-                    </div>
                     <NavEdge right>
 
 
