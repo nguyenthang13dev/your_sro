@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import { Button, Form, Input, Alert,Select, Row, Col } from 'antd'
-import { MailOutlined, LockOutlined, UserOutlined, PhoneOutlined, HomeOutlined } from '@ant-design/icons'
-import { motion } from 'framer-motion'
-import { useRouter } from 'next/navigation'
-import { AppDispatch } from '@/store/store'
-import { useSelector } from '@/store/hooks'
-import { setIsLoading, setShowMessage } from '@/store/general/GeneralSlice'
-import { authService } from '@/services/auth/auth.service'
-import { createEditType } from '@/interface/auth/User'
-import { useDispatch } from 'react-redux'
 import GioiTinhConstant from '@/constants/GioiTinhConstant'
+import { createEditType } from '@/interface/auth/User'
+import { authService } from '@/services/auth/auth.service'
+import { setIsLoading, setShowMessage } from '@/store/general/GeneralSlice'
+import { useSelector } from '@/store/hooks'
+import { AppDispatch } from '@/store/store'
+import { LockOutlined, MailOutlined, PhoneOutlined, UserOutlined } from '@ant-design/icons'
+import { Alert, Button, Form, Input } from 'antd'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 
 const RegisterForm: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>()
@@ -71,33 +71,37 @@ const RegisterForm: React.FC = () => {
       >
 
         <Form.Item
-          name="username"
+          name="UserName"
           label="Tài khoản"
-          rules={[{ required: true, message: 'Vui lòng nhập tài khoản' }]}
+         rules={[
+    { required: true, message: 'Vui lòng nhập tài khoản' },
+    { pattern: /^[a-zA-Z0-9_]+$/, message: 'Tài khoản chỉ được sử dụng a-z, A-Z, số và dấu _' }
+  ]}
         >
           <Input prefix={<UserOutlined className="text-primary" />} />
         </Form.Item>
 
         <Form.Item
-          name="password"
-          label="Mật khẩu"
+          name="pass1"
+          label="Mật khẩu số 1"
           rules={[
             { required: true, message: 'Vui lòng nhập mật khẩu' },
-            { min: 6, message: 'Mật khẩu phải có ít nhất 6 ký tự' },
+           { min: 6, message: 'Mật khẩu phải có ít nhất 6 ký tự' },
+    { pattern: /^[a-zA-Z0-9_]+$/, message: 'Mật khẩu chỉ được sử dụng a-z, A-Z, số và dấu _' },
           ]}
         >
           <Input.Password prefix={<LockOutlined className="text-primary" />} />
         </Form.Item>
 
         <Form.Item
-          name="confirmPassword"
-          label="Xác nhận mật khẩu"
+          name="repass1"
+          label="Xác nhận mật khẩu 1"
           dependencies={['password']}
           rules={[
-            { required: true, message: 'Vui lòng xác nhận mật khẩu' },
+            { required: true, message: 'Vui lòng xác nhận mật khẩu 1' },
             ({ getFieldValue }) => ({
               validator(_, value) {
-                if (!value || getFieldValue('password') === value) {
+                if (!value || getFieldValue('pass1') === value) {
                   return Promise.resolve()
                 }
                 return Promise.reject(new Error('Mật khẩu không khớp'))
@@ -107,6 +111,50 @@ const RegisterForm: React.FC = () => {
         >
           <Input.Password prefix={<LockOutlined className="text-primary" />} />
         </Form.Item>
+
+
+
+         <Form.Item
+          name="pass2"
+          label="Mật khẩu số 2"
+          rules={[
+            { required: true, message: 'Vui lòng nhập mật khẩu 2' },
+            { min: 6, message: 'Mật khẩu phải có ít nhất 6 ký tự' },
+          ]}
+        >
+          <Input.Password prefix={<LockOutlined className="text-primary" />} />
+        </Form.Item>
+
+        <Form.Item
+          name="repass2"
+          label="Xác nhận mật khẩu 2"
+          dependencies={['password']}
+          rules={[
+            { required: true, message: 'Vui lòng xác nhận mật khẩu 2' },
+            ({ getFieldValue }) => ({
+              validator(_, value) {
+                if (!value || getFieldValue('pass2') === value) {
+                  return Promise.resolve()
+                }
+                return Promise.reject(new Error('Mật khẩu không khớp 2'))
+              },
+            }),
+          ]}
+        >
+          <Input.Password prefix={<LockOutlined className="text-primary" />} />
+        </Form.Item>
+
+        
+            <Form.Item
+          name="PhoneNumber"
+          label="Số diện thoại"
+          rules={[
+            { required: true, message: 'Vui lòng nhập email' },
+          ]}
+        >
+          <Input prefix={<PhoneOutlined className="text-primary" />} />
+        </Form.Item>
+
 
         <Form.Item
           name="email"

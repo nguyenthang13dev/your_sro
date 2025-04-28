@@ -1,6 +1,6 @@
 import { LoginType, UserType, createEditType } from "@/interface/auth/User";
-import { apiService } from "../index";
 import { Response } from "@/interface/general";
+import { apiService } from "../index";
 
 class AuthService {
   public async login(formData: LoginType): Promise<Response> {

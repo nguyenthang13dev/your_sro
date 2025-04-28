@@ -1,7 +1,7 @@
 "use client";
-import React from "react";
 import LoginForm from "@/components/auth-components/LoginForm";
-import { Card, Row, Col, Image } from "antd";
+import { Card, Col, Row } from "antd";
+import React from "react";
 
 const backgroundStyle = {
     backgroundImage: "url(/img/others/img-17.jpg)",
@@ -21,11 +21,7 @@ const Login: React.FC = () => {
                     marginBottom: "50px" // Đẩy lên cao 
                 }}>
                     <div style={{ width: "100px" }}>
-                        <Image
-                            className="img-fluid"
-                            src="/img/image1329quoc-huy-viet-nam.png"
-                            alt="Logo"
-                            preview={false} />
+                   
                     </div>
                     <div style={{
                         color: "white",
@@ -38,8 +34,7 @@ const Login: React.FC = () => {
                         lineHeight: 1.5,
                         marginLeft: "10px"
                     }}>
-                        <div>Bộ công thương</div>
-                        <div>Phần mềm giám sát hoạt động thương mại điện tử</div>
+                       
                     </div>
                 </div>
                 <Row justify="center">

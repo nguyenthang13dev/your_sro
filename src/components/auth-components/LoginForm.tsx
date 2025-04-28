@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import { Button, Form, Input, Alert, Row, Col } from 'antd'
-import { MailOutlined, LockOutlined } from '@ant-design/icons'
-import { motion } from 'framer-motion'
-import { useRouter } from 'next/navigation'
-import { AppDispatch } from '@/store/store'
-import { useSelector } from '@/store/hooks'
-import { setIsLoading, setShowMessage } from '@/store/general/GeneralSlice'
-import { authService } from '@/services/auth/auth.service'
 import { LoginType } from '@/interface/auth/User'
+import { authService } from '@/services/auth/auth.service'
 import { setLogin } from '@/store/auth/AuthSlice'
-import { useDispatch } from 'react-redux'
+import { setIsLoading, setShowMessage } from '@/store/general/GeneralSlice'
+import { useSelector } from '@/store/hooks'
+import { AppDispatch } from '@/store/store'
+import { LockOutlined, MailOutlined } from '@ant-design/icons'
+import { Alert, Button, Col, Form, Input, Row } from 'antd'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 
 const LoginForm: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>()
@@ -29,7 +29,7 @@ const LoginForm: React.FC = () => {
       const data = await authService.login(loginForm);
       if (data != null && data.status) {
         dispatch(setLogin(data))
-        route.push('/dashboard')
+        // route.push('/dashboard')
       } else {
         setMessage(data.message || 'Tài khoản hoặc mật khẩu không đúng')
         dispatch(setShowMessage(true))
@@ -68,7 +68,7 @@ const LoginForm: React.FC = () => {
         onFinish={onLogin}
       >
         <Form.Item
-          name="username"
+          name="Username"
           label="Tài khoản"
           rules={[
             {
