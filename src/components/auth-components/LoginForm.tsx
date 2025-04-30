@@ -11,6 +11,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { toast } from 'react-toastify'
 
 const LoginForm: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>()
@@ -28,8 +29,17 @@ const LoginForm: React.FC = () => {
     try {
       const data = await authService.login(loginForm);
       if (data != null && data.status) {
-        dispatch(setLogin(data))
-        // route.push('/dashboard')
+        dispatch( setLogin( data ) )
+        toast.success('Đăng nhập thành công', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        route.push('/dashboard')
       } else {
         setMessage(data.message || 'Tài khoản hoặc mật khẩu không đúng')
         dispatch(setShowMessage(true))

@@ -1,12 +1,11 @@
-import React from 'react';
-import { SIDE_NAV_WIDTH, SIDE_NAV_COLLAPSED_WIDTH, NAV_TYPE_TOP } from '@/constants/ThemeConstant';
 import { APP_NAME } from '@/configs/AppConfig';
-import utils from '@/utils';
-import { Grid, Image } from 'antd';
-import styled from '@emotion/styled';
-import { TEMPLATE } from '@/constants/ThemeConstant';
+import { NAV_TYPE_TOP, SIDE_NAV_COLLAPSED_WIDTH, SIDE_NAV_WIDTH, TEMPLATE } from '@/constants/ThemeConstant';
 import { useSelector } from '@/store/hooks';
+import utils from '@/utils';
+import styled from '@emotion/styled';
+import { Grid, Image } from 'antd';
 import Link from "next/link";
+import React from 'react';
 
 const LogoWrapper = styled.div(() => ({
   height: TEMPLATE.HEADER_HEIGHT,
@@ -77,7 +76,7 @@ export const Logo: React.FC<LogoProps> = ({ mobileLogo, logoType }) => {
           fontSize: 16,
           paddingLeft: '5px',
           fontWeight: 'bold'
-        }}>Bộ công thương</p>}
+        }}>SILKROAD2006</p>}
       </Link>
     </LogoWrapper>
   );

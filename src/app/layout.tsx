@@ -4,6 +4,7 @@ import { Providers } from "@/store/providers";
 import { ConfigProvider } from "antd";
 import viVN from "antd/locale/vi_VN";
 import React from "react";
+import { ToastContainer } from "react-toastify";
 
 
 
@@ -25,6 +26,8 @@ export default function RootLayout({
       <body className="dir-ltr">
         <div className="App">
           <Providers>
+
+            <ToastContainer />
             <ConfigProvider theme={lightTheme} locale={viVN}>
               {children}
             </ConfigProvider>

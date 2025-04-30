@@ -15,7 +15,7 @@ export function MainNavigation() {
   ];
 
   return (
-    <nav className="py-4 px-4 container">
+    <nav className="py-4 px-4 container header-container">
       <div className="container mx-auto px-4">
         {/* Icon  */}
         <ul className="flex flex-wrap justify-between md:justify-around items-center navbar align-items-center">

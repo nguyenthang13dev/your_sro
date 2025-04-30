@@ -3,7 +3,9 @@
 import type React from "react"
 
 import { Input } from "antd"
+import Password from "antd/es/input/Password"
 import { useState } from "react"
+import './login.css'
 
 export function LoginForm() {
   const [username, setUsername] = useState("")
@@ -15,32 +17,25 @@ export function LoginForm() {
   }
 
   return (
-    <div className="card-items">
-      <div className="game-panel-header header-card">
-        <h3 className="font-bold text-lg">ĐĂNG NHẬP</h3>
-      </div>
+    <div className="card-items bottom-0 absolute">
       <div className="game-panel-content body-card ">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="flex items-center gap-2 form-items">
-            <label htmlFor="username" className="text-amber-200 w-24">
-              TÀI KHOẢN
-            </label>
             <Input
               id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="text-amber-100 "
+              className="text-amber-100 bg-white/10"
+              placeholder="Tài khoản"
             />
           </div>
           <div className="flex items-center gap-2  form-items">
-            <label htmlFor="password" className="text-amber-200 w-24">
-              MẬT KHẨU
-            </label>
-            <Input
+            <Password
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="text-amber-100"
+              className="text-amber-100 passwod-input"
+              placeholder="Nhân mật khẩu"
             />
           </div>
 

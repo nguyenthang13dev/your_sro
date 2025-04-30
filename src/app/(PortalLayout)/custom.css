@@ -585,7 +585,7 @@ a:hover{
 }
 
   .nav-link {
-    color: #cc9966 !important;
+    color: #fff !important;
     text-decoration: none;
     font-weight: bolder;
     font-size: 20px;
@@ -753,9 +753,12 @@ a:hover{
   /* News */
 
   .bg-news {
-    background-image: url('/img/background/bg1.jpg');
+    background-image: url('/img/13113514tUwfk.jpg');
     background-position: center;
     background-size: cover;
+    background-repeat: no-repeat;
+    padding: 1rem;
+    min-height: 700px;
   }
 
 
@@ -796,6 +799,7 @@ a:hover{
     background-color: #2d2d2d;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     background-image: url('/img/card/k13.png');
+    border-radius: 7px;
   }
 
 
@@ -843,4 +847,61 @@ a:hover{
 
 .title-bolder {
     font-family: 'Quick Sans bold';
+}
+
+
+    .header-container {
+        background : rgba(0, 0, 0, .5);
+        color: #fff;
+        top: 0;
+        position: absolute;
+        z-index: 100;
+}
+
+
+
+
+/* Thông tin server */
+
+.bg-img-news {
+    background-image: url('/img/bg_f7f254e.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 1rem;
+}
+
+
+.img-h382 {
+    min-height: 382px !important;
+    max-height: 382px !important;
+    min-width: 600px !important;
+    overflow: hidden;
+    min-width: 600px !important;
+
+}
+
+.bg-khung {
+    background-image: url('/img/news-bg_11c041d.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.img-h382 img {
+    object-fit: cover;
+    object-position: center;
+}
+.min-h382 {
+    min-height: 382px !important;
+}
+
+
+.pd-news {
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+}
+
+.pd-20 {
+    padding: 2rem 0 !important;
 }

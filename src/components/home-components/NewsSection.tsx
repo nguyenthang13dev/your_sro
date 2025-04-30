@@ -1,13 +1,12 @@
 "use client";
 
-import { Col, Row } from 'antd';
 
 
 function NewsSection() {
 
   return (
     <section className="animate__animated animate__bounce pt-4 pb-[60px] xl:pt-10 xl:pb-[60px] bg-homemb-bg1 xl:bg-home-bg1 bg-cover bg-bottom relative z-10 overflow-hidden">
-      <div className="container px-4 mx-auto tlpc:max-w-[375px] 2xl:max-w-[1200px] 2xl:scale-95">
+      {/* <div className="container px-4 mx-auto tlpc:max-w-[375px] 2xl:max-w-[1200px] 2xl:scale-95">
         <h2 
                   data-aos="fade-up" 
                 
@@ -26,9 +25,7 @@ function NewsSection() {
     </Row>
 
       <Row gutter={[24, 24]}>
-        {/* Cột tin tức chính */}
         <Col xs={24} md={16}>
-          {/* Tin nổi bật */}
           <Row gutter={[10, 16]}>
                               <Col span={24}>
                                   <Row gutter={[16, 16]}>
@@ -89,16 +86,14 @@ function NewsSection() {
          
         </Col>
 
-        {/* Sidebar */}
         <Col xs={24} md={8}>
-            
 
        
         </Col>
       </Row>
     </div>
        
-      </div>
+      </div> */}
     </section>
   );
 }

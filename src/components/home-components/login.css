@@ -1,0 +1,12 @@
+ .form-items input {
+     background-color: white !important;
+     color: #000 !important;
+     padding: 0.5rem 1rem !important;
+     border: 1px solid #deca8f !important;
+     border-radius: 0.5rem;
+     margin-bottom: 0.8rem;
+ }
+
+ .passwod-input {
+    padding: unset !important;
+ }
