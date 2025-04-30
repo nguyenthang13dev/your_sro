@@ -1,57 +1,60 @@
 "use client";
 import Flex from "@/components/shared-components/Flex";
+import AutoBreadcrumb from "@/components/util-compenents/Breadcrumb";
 import { searchUserData, tableUserDataType } from "@/interface/auth/User";
-import {
-  DropdownOption,
-  ResponsePageInfo,
-  DropdownTreeOptionAntd,
-} from "@/interface/general";
+import
+  {
+    DropdownOption,
+    DropdownTreeOptionAntd,
+    ResponsePageInfo,
+  } from "@/interface/general";
 import withAuthorization from "@/libs/authentication";
+import { departmentService } from "@/services/department/department.service";
 import { userService } from "@/services/user/user.service";
 import { setIsLoading } from "@/store/general/GeneralSlice";
 import { useSelector } from "@/store/hooks";
 import { AppDispatch } from "@/store/store";
-import {
-  CloseOutlined,
-  DeleteOutlined,
-  DownOutlined,
-  EditOutlined,
-  EyeOutlined,
-  LockOutlined,
-  PlusCircleOutlined,
-  SearchOutlined,
-  UnlockOutlined,
-  UserAddOutlined,
-  UsergroupAddOutlined,
-  VerticalAlignTopOutlined,
-} from "@ant-design/icons";
-import {
-  Button,
-  Card,
-  Dropdown,
-  FormProps,
-  MenuProps,
-  Pagination,
-  Popconfirm,
-  Space,
-  Table,
-  TableProps,
-  Tag,
-} from "antd";
+import formatDate from "@/utils/formatDate";
+import
+  {
+    CloseOutlined,
+    DeleteOutlined,
+    DownOutlined,
+    EditOutlined,
+    EyeOutlined,
+    LockOutlined,
+    PlusCircleOutlined,
+    SearchOutlined,
+    UnlockOutlined,
+    UserAddOutlined,
+    UsergroupAddOutlined,
+    VerticalAlignTopOutlined,
+  } from "@ant-design/icons";
+import
+  {
+    Button,
+    Card,
+    Dropdown,
+    FormProps,
+    MenuProps,
+    Pagination,
+    Popconfirm,
+    Space,
+    Table,
+    TableProps,
+    Tag,
+  } from "antd";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import CreateOrUpdate from "./createOrUpdate";
+import UserDetail from "./Detail";
+import EditUserGroupRole from "./editUserGroupRole";
+import EditUserRole from "./editUserRole";
 import classes from "./page.module.css";
 import Search from "./search";
-import CreateOrUpdate from "./createOrUpdate";
-import { toast } from "react-toastify";
-import { useSearchParams } from "next/navigation";
-import Link from "next/link";
-import EditUserRole from "./editUserRole";
-import EditUserGroupRole from "./editUserGroupRole";
-import AutoBreadcrumb from "@/components/util-compenents/Breadcrumb";
-import { departmentService } from "@/services/department/department.service";
-import UserDetail from "./Detail";
-import formatDate from "@/utils/formatDate";
 
 const QLNguoiDung: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();

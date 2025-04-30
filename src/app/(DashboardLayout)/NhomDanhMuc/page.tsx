@@ -1,50 +1,54 @@
 'use client'
 import Flex from '@/components/shared-components/Flex'
-import {
-  searchNhomDanhMucData,
-  tableNhomDanhMucDataType,
-} from '@/interface/nhomDanhMuc/nhomDanhMuc'
-import {
-  Response,
-  ResponsePageInfo,
-  ResponsePageList,
-} from '@/interface/general'
+import AutoBreadcrumb from '@/components/util-compenents/Breadcrumb'
+import
+  {
+    Response,
+    ResponsePageInfo,
+    ResponsePageList,
+  } from '@/interface/general'
+import
+  {
+    searchNhomDanhMucData,
+    tableNhomDanhMucDataType,
+  } from '@/interface/nhomDanhMuc/nhomDanhMuc'
 import withAuthorization from '@/libs/authentication'
 import { nhomDanhMucService } from '@/services/nhomDanhMuc/nhomDanhMuc.service'
 import { setIsLoading } from '@/store/general/GeneralSlice'
 import { useSelector } from '@/store/hooks'
 import { AppDispatch } from '@/store/store'
-import {
-  CloseOutlined,
-  DeleteOutlined,
-  DownOutlined,
-  EditOutlined,
-  EyeOutlined,
-  PlusCircleOutlined,
-  SearchOutlined,
-  SettingOutlined,
-} from '@ant-design/icons'
-import {
-  Button,
-  Card,
-  Dropdown,
-  FormProps,
-  MenuProps,
-  Pagination,
-  Popconfirm,
-  Space,
-  Table,
-  TableProps,
-} from 'antd'
+import
+  {
+    CloseOutlined,
+    DeleteOutlined,
+    DownOutlined,
+    EditOutlined,
+    EyeOutlined,
+    PlusCircleOutlined,
+    SearchOutlined,
+    SettingOutlined,
+  } from '@ant-design/icons'
+import
+  {
+    Button,
+    Card,
+    Dropdown,
+    FormProps,
+    MenuProps,
+    Pagination,
+    Popconfirm,
+    Space,
+    Table,
+    TableProps,
+  } from 'antd'
+import { useRouter } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import classes from './page.module.css'
 import { toast } from 'react-toastify'
 import CreateOrUpdate from './createOrUpdate'
 import NhomDanhMucDetail from './detail'
+import classes from './page.module.css'
 import Search from './search'
-import { useRouter } from 'next/navigation'
-import AutoBreadcrumb from '@/components/util-compenents/Breadcrumb'
 
 const NhomDanhMuc: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>()
@@ -340,4 +344,4 @@ const NhomDanhMuc: React.FC = () => {
   )
 }
 
-export default withAuthorization(NhomDanhMuc, '')
+export default withAuthorization(NhomDanhMuc, 'NhomDanhMuc_index')

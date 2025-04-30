@@ -393,4 +393,4 @@ const QLModule: React.FC = () => {
   );
 };
 
-export default withAuthorization(QLModule, "QLChucNang");
+export default withAuthorization(QLModule, "QLModule");

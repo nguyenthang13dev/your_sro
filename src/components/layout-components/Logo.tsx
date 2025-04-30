@@ -50,9 +50,9 @@ export const Logo: React.FC<LogoProps> = ({ mobileLogo, logoType }) => {
   const getLogo = (): string => {
     if (logoType === 'light') {
       if (navCollapsed) {
-        return '/img/image1329quoc-huy-viet-nam.png';
+        return '/img/avatars/sroiconpng.png';
       }
-      return '/img/image1329quoc-huy-viet-nam.png';
+        return '/img/avatars/sroiconpng.png';
     }
 
     if (navCollapsed) {

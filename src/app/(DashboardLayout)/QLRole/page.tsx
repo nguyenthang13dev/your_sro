@@ -1,47 +1,49 @@
 "use client";
 import Flex from "@/components/shared-components/Flex";
+import AutoBreadcrumb from "@/components/util-compenents/Breadcrumb";
 import { ResponsePageInfo } from "@/interface/general";
+import { searchRole, tableRoleType } from "@/interface/role/role";
 import withAuthorization from "@/libs/authentication";
+import { roleService } from "@/services/role/role.service";
 import { setIsLoading } from "@/store/general/GeneralSlice";
 import { useSelector } from "@/store/hooks";
 import { AppDispatch } from "@/store/store";
-import {
-  CheckCircleOutlined,
-  CloseCircleOutlined,
-  CloseOutlined,
-  DeleteOutlined,
-  DownOutlined,
-  EditOutlined,
-  EyeOutlined,
-  PlusCircleOutlined,
-  SearchOutlined,
-  SettingOutlined,
-  VerticalAlignTopOutlined,
-} from "@ant-design/icons";
-import {
-  Button,
-  Card,
-  Dropdown,
-  FormProps,
-  MenuProps,
-  Pagination,
-  Popconfirm,
-  Space,
-  Table,
-  TableProps,
-} from "antd";
+import
+  {
+    CheckCircleOutlined,
+    CloseCircleOutlined,
+    CloseOutlined,
+    DeleteOutlined,
+    DownOutlined,
+    EditOutlined,
+    EyeOutlined,
+    PlusCircleOutlined,
+    SearchOutlined,
+    SettingOutlined,
+    VerticalAlignTopOutlined,
+  } from "@ant-design/icons";
+import
+  {
+    Button,
+    Card,
+    Dropdown,
+    FormProps,
+    MenuProps,
+    Pagination,
+    Popconfirm,
+    Space,
+    Table,
+    TableProps,
+  } from "antd";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import CreateOrUpdate from "./createOrUpdate";
+import EditRoleOperation from "./editRoleOperation";
 import classes from "./page.module.css";
 import Search from "./search";
-import CreateOrUpdate from "./createOrUpdate";
-import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { tableRoleType, searchRole } from "@/interface/role/role";
-import { roleService } from "@/services/role/role.service";
-import EditRoleOperation from "./editRoleOperation";
-import AutoBreadcrumb from "@/components/util-compenents/Breadcrumb";
 
 const QLRole: React.FC = () => {
   const router = useRouter();
@@ -372,4 +374,4 @@ const QLRole: React.FC = () => {
   );
 };
 
-export default withAuthorization(QLRole, "");
+export default withAuthorization(QLRole, "QLRole");
