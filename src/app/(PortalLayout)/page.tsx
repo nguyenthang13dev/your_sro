@@ -3,6 +3,7 @@ import { LoginForm } from "@/components/home-components/login-form"
 import { Rankings } from "@/components/home-components/rankings"
 import ServerInfor from "@/components/home-components/ServerInfor"
 import { Col, Row } from "antd"
+import Image from "next/image"
 
 export default function Home() {
   return (
@@ -24,13 +25,20 @@ export default function Home() {
 
         
         <div className="container mx-auto px-4 py-8 bg-news relative">
-              {/* <NewsSection /> */}
+          {/* <NewsSection /> */}
+          
+           <div className="absolute bottom-10 left-0 ">
+              <Image
+                src="/img/zalo.png"
+                alt="Zalo"
+                width={300}
+                height={200}
+              />
+
+            </div>
           <div className="absolute bottom-0 left-0 right-0 flex justify-center">
             {/* Zalo */}
-            <div>
-
-              
-            </div>
+           
 
             <div>
                <ServerInfor />
