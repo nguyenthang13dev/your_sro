@@ -3,6 +3,9 @@ import "@/app/assets/css/ant-button.css";
 import "@/app/assets/css/global.css";
 import { ConfigProvider, Layout } from "antd";
 import 'react-toastify/dist/ReactToastify.css';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import "./custom.css";
 
 import Footer from "@/components/home-components/footer";

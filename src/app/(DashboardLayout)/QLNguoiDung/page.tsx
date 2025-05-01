@@ -27,8 +27,7 @@ import
     SearchOutlined,
     UnlockOutlined,
     UserAddOutlined,
-    UsergroupAddOutlined,
-    VerticalAlignTopOutlined,
+    VerticalAlignTopOutlined
   } from "@ant-design/icons";
 import
   {
@@ -195,15 +194,6 @@ const QLNguoiDung: React.FC = () => {
             onClick: () => {
               setCurrentDetailUser(record);
               setIsOpenEditUserRole(true);
-            },
-          },
-          {
-            label: "Phân nhóm trò",
-            key: "editUserGroupRole",
-            icon: <UsergroupAddOutlined />,
-            onClick: () => {
-              setCurrentDetailUser(record);
-              setIsOpenEditUserGroupRole(true);
             },
           },
           {

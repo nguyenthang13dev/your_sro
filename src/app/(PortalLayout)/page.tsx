@@ -1,7 +1,7 @@
 import GameServerNotice from "@/components/home-components/GameServerNotice"
 import { LoginForm } from "@/components/home-components/login-form"
 import { Rankings } from "@/components/home-components/rankings"
-import ServerStatus from "@/components/home-components/server-status"
+import ServerInfor from "@/components/home-components/ServerInfor"
 import { Col, Row } from "antd"
 
 export default function Home() {
@@ -23,16 +23,37 @@ export default function Home() {
         {/* News Section */}
 
         
-        <div className="container mx-auto px-4 py-8 bg-news ">
+        <div className="container mx-auto px-4 py-8 bg-news relative">
               {/* <NewsSection /> */}
-        
-          
-  <Col span={8}>
-             <div>
-            <LoginForm />
+          <div className="absolute bottom-0 left-0 right-0 flex justify-center">
+            {/* Zalo */}
+            <div>
+
+              
+            </div>
+
+            <div>
+               <ServerInfor />
+            </div>            
+            {/* Nút Chơi Ngay - Thiết kế giống hình */}
+           <div className="relative align-center px-5">
+      <div className="play-button-container">
+        <button className="play-button">
+          <div className="play-button-content">
+            <span className="diamond-decoration">◆</span>
+            <span className="button-text">CHƠI GAME NGAY</span>
+            <span className="diamond-decoration">◆</span>
           </div>
-            
-        </Col>
+        </button>
+      </div>
+    </div>
+            <LoginForm />
+
+         
+          </div>
+          
+          
+          
         </div>
 
         
@@ -47,10 +68,10 @@ export default function Home() {
         {/* Main Content Grid */}
         <div className="container mx-auto px-8 py-10 ">
         <Row gutter={[24, 24]}>
-            <Col span={12}>
+            {/* <Col span={12}>
                 <ServerStatus />
             </Col>
-         
+          */}
 
             
             <Col span={12}>

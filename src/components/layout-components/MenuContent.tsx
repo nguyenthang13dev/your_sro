@@ -1,13 +1,12 @@
-import { useDispatch, useSelector } from '@/store/hooks'
-import { Grid, Image, Menu } from 'antd'
-import utils from '@/utils'
+import { MenuDataType } from '@/interface/menu/menu'
 import { setIsMobile } from '@/store/customizer/CustomizerSlice'
+import { useDispatch, useSelector } from '@/store/hooks'
+import utils from '@/utils'
+import { MinusOutlined } from '@ant-design/icons'
+import { Grid, Image, Menu } from 'antd'
+import { MenuItemType } from 'antd/es/menu/interface'
 import Link from 'next/link'
 import React, { ReactNode, useMemo } from 'react'
-import { MenuDataType } from '@/interface/menu/menu'
-import { MenuItemType } from 'antd/es/menu/interface'
-import { MinusOutlined } from '@ant-design/icons'
-import styles from './menuItem.module.css'
 const { useBreakpoint } = Grid
 
 const setDefaultOpen = (key?: string): string[] => {
@@ -73,8 +72,8 @@ const getSideNavMenuItem = (
     .map((nav: MenuDataType) => ({
       key: nav.id,
       style: {
-        // borderBottom: '1px solid #f0f2f5',
-        // borderRadius: 0,
+        borderBottom: '1px solid #f0f2f5',
+        borderRadius: 0,
         fontSize: '13px',
       },
       icon: !isSubMenu ? (
@@ -108,8 +107,7 @@ const getSideNavMenuItem = (
           />
         )
       ) : (
-        // <MinusOutlined />
-        <></>
+        <MinusOutlined />
       ),
       label: (
         <div

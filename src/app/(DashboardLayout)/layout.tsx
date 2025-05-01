@@ -112,25 +112,7 @@ export default function RootLayout({
                             </Suspense>
                         </Content>
                     </AppContent>
-                    {pathname !== "/auth/login" && pathname !== "/auth/register" && (
-                        <div
-                            style={{
-                                position: "fixed",
-                                bottom: 0,
-                                width: "100%",
-                                backgroundColor: "#fff",
-                                padding: "10px",
-                                textAlign: "center",
-                                boxShadow: "0 -2px 5px rgba(0,0,0,0.1)",
-                                zIndex: 996,
-                                fontSize: "12px",
-                                marginLeft:'-100px'
-                            }}
-                        >
-                            <div>Cục Thương mại điện tử và Kinh tế số</div>
-                            <div>Địa chỉ: 23 Ngô Quyền, Hoàn Kiếm, Hà Nội</div>
-                        </div>
-                    )}
+                  
                 </Layout>
             </Layout>
         </ConfigProvider>

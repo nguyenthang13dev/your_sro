@@ -1,66 +1,145 @@
 "use client"
 
 import type React from "react"
-
-import { Input } from "antd"
-import Password from "antd/es/input/Password"
 import { useState } from "react"
-import './login.css'
+import { Input, Checkbox, Button, ConfigProvider, theme } from "antd"
+import { EyeInvisibleOutlined, EyeOutlined, UserOutlined, LockOutlined } from "@ant-design/icons"
 
 export function LoginForm() {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
+  const [rememberMe, setRememberMe] = useState(false)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Login attempt with:", username, password)
+    console.log("Login attempt with:", username, password, rememberMe)
+  }
+
+  // Custom theme for Ant Design
+  const customTheme = {
+    token: {
+      colorPrimary: "#f59e0b", // amber-500
+      colorText: "#fcd34d", // amber-300
+      colorTextPlaceholder: "rgba(252, 211, 77, 0.5)", // amber-300 with opacity
+      colorBgContainer: "rgba(0, 0, 0, 0.6)",
+      colorBorder: "#f59e0b", // amber-500
+      borderRadius: 8,
+    },
+    components: {
+      Input: {
+        colorBgContainer: "rgba(255, 255, 255, 0.1)",
+        colorBorder: "#f59e0b",
+      },
+      Checkbox: {
+        colorPrimary: "#f59e0b",
+      },
+      Button: {
+        colorPrimary: "#f59e0b",
+        colorPrimaryHover: "#d97706",
+      },
+    },
   }
 
   return (
-    <div className="card-items bottom-0 absolute">
-      <div className="game-panel-content body-card ">
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="flex items-center gap-2 form-items">
-            <Input
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              className="text-amber-100 bg-white/10"
-              placeholder="Tài khoản"
-            />
-          </div>
-          <div className="flex items-center gap-2  form-items">
-            <Password
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="text-amber-100 passwod-input"
-              placeholder="Nhân mật khẩu"
-            />
-          </div>
+    <ConfigProvider
+      theme={{
+        algorithm: theme.darkAlgorithm,
+        ...customTheme,
+      }}
+    >
+      <div className="card-items">
+        <div
+          className="game-panel-content body-card"
+          style={{
+            background: "rgba(0, 0, 0, 0.75)",
+            borderRadius: "8px",
+            padding: "20px",
+            border: "1px solid #f59e0b",
+            width: "300px",
+          }}
+        >
+          <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+            <div>
+              <Input
+                id="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Tài khoản"
+                prefix={<UserOutlined style={{ color: "rgba(252, 211, 77, 0.5)" }} />}
+                style={{
+                  background: "rgba(255, 255, 255, 0.1)",
+                  color: "#fcd34d",
+                  borderColor: "#f59e0b",
+                  height: "40px",
+                }}
+              />
+            </div>
 
-          <div className="flex items-center gap-2 form-items justify-between">
-            <label htmlFor="remember" className="text-amber-200 w-24">
-              <input type="checkbox" id="remember" className="mr-2" />
-              Ghi nhớ tài khoản
-            </label>
+            <div>
+              <Input.Password
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Nhập mật khẩu"
+                prefix={<LockOutlined style={{ color: "rgba(252, 211, 77, 0.5)" }} />}
+                iconRender={(visible) =>
+                  visible ? (
+                    <EyeOutlined style={{ color: "rgba(252, 211, 77, 0.5)" }} />
+                  ) : (
+                    <EyeInvisibleOutlined style={{ color: "rgba(252, 211, 77, 0.5)" }} />
+                  )
+                }
+                style={{
+                  background: "rgba(255, 255, 255, 0.1)",
+                  color: "#fcd34d",
+                  borderColor: "#f59e0b",
+                  height: "40px",
+                }}
+              />
+            </div>
 
-            <label>
-              <a href="#" className="text-amber-200 hover:text-amber-300 transition-colors underline">
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <Checkbox
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+                style={{ color: "#fcd34d" }}
+              >
+                <span style={{ color: "#fcd34d", fontSize: "14px" }}>Ghi nhớ tài khoản</span>
+              </Checkbox>
+
+              <a
+                href="#"
+                style={{
+                  color: "#fcd34d",
+                  textDecoration: "underline",
+                  fontSize: "14px",
+                }}
+              >
                 Quên mật khẩu?
               </a>
-            </label>
-          </div>
+            </div>
 
-          <div className="flex justify-center pt-2">
-             <button type="submit" className="relative btn-submit absolute inset-0 flex items-center justify-center text-amber-300 text-xs font-medium border-2 border-amber-300 bg-amber-500 hover:bg-amber-600 hover:border-amber-400 transition-all duration-200 py-2 px-4 rounded-lg">
-              <span className="btn">
+            <div style={{ display: "flex", justifyContent: "center", marginTop: "8px" }}>
+              <Button
+                type="primary"
+                htmlType="submit"
+                style={{
+                  background: "#f59e0b",
+                  borderColor: "#fcd34d",
+                  color: "#000",
+                  fontWeight: "bold",
+                  height: "40px",
+                  width: "100%",
+                  fontSize: "16px",
+                }}
+              >
                 ĐĂNG NHẬP
-              </span>
-            </button>
-          </div>
-        </form>
+              </Button>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </ConfigProvider>
   )
 }
+
+export default LoginForm

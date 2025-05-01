@@ -1,6 +1,9 @@
+'use client';
+
 import { Col, Row } from 'antd';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import AchiveMent from './AchiveMent';
 
 const GameServerNotice = () => {
@@ -18,22 +21,49 @@ const GameServerNotice = () => {
           
           <Row gutter={[10, 10]} className="mb-4">
               
-              <Col span={12} className="relative">
-                     <div className="relative img-h382">
-        <Image
-          src="/img/13113539NLCJj.png" // Thay bằng đường dẫn hình ảnh thực tế
-          alt="Game Character"
-          objectFit="cover"
-                          className="opacity-80"
-                          width={600}
-                          height={382}
-        />
-        {/* <div className="absolute">
-          <h1 className="text-4xl font-bold text-yellow-400 ">
-            Thông báo tin tức mới nhất
-          </h1>
-        </div> */}
-      </div>
+        <Col span={12} className="relative">
+          
+
+          <Swiper
+        modules={[Navigation, Pagination, Autoplay]}
+        spaceBetween={30}
+        slidesPerView={1}
+        navigation={false}
+        pagination={{ clickable: true }}
+        autoplay={{ delay: 2000, disableOnInteraction: false }}
+      >
+       <SwiperSlide className='img-h382'>
+            <Image
+                src={'/img/13113539NLCJj.png'}
+                alt={'Game Character 1'}
+                objectFit="cover"
+                width={600}
+                height={382}
+                layout="responsive"
+              />
+            </SwiperSlide>
+            <SwiperSlide className='img-h382'>
+            <Image
+                src={'/img/13113539NLCJj.png'}
+                alt={'Game Character 1'}
+                objectFit="cover"
+                width={600}
+                height={382}
+                layout="responsive"
+              />
+            </SwiperSlide>
+                 <SwiperSlide className='img-h382'>
+            <Image
+                src={'/img/13113539NLCJj.png'}
+                alt={'Game Character 1'}
+                objectFit="cover"
+                width={600}
+                height={382}
+                layout="responsive"
+              />
+            </SwiperSlide>
+      </Swiper>
+                     
               </Col>
             
               <Col span={12} className="relative">
@@ -42,24 +72,20 @@ const GameServerNotice = () => {
       <div className="w-full  p-6 bg-gradient-to-b from-red-900 to-red-700 min-h382 bg-khung">
         {/* Tabs */}
         <div className="flex space-x-4 mb-4 border-b border-yellow-500">
-          <button className="pb-2 text-yellow-400 border-b-2 border-yellow-400 font-semibold">
-            toàn diện
+          <button className="pb-2 text-yellow-400 border-b-2 border-yellow-400 font-semibold uppercase">
+            toàn bộ
           </button>
-          <button className="pb-2 text-gray-300 hover:text-yellow-400">
+          <button className="pb-2 text-gray-300 hover:text-yellow-400 uppercase">
             thông báo
           </button>
-          <button className="pb-2 text-gray-300 hover:text-yellow-400">
+          <button className="pb-2 text-gray-300 hover:text-yellow-400 uppercase">
             Hoạt động
           </button>
-          <button className="pb-2 text-gray-300 hover:text-yellow-400">
+          <button className="pb-2 text-gray-300 hover:text-yellow-400 uppercase">
             Chiến lược
           </button>
         </div>
 
-        {/* Tiêu đề */}
-        <h2 className="text-2xl font-bold mb-4 text-center">
-          MÁY CHỦ 37 RED FLAME HORN 209 SẼ ĐƯỢC ...
-        </h2>
 
         {/* Danh sách thông báo */}
         <ul className="space-y-2">
@@ -74,44 +100,37 @@ const GameServerNotice = () => {
               </Col>
               
          </Row>
-   
-  {/* Main Action Buttons */}
+{/*    
               <div className="container flex justify-around items-center flex-row pd-20 ">
-                {/* Section 1: Hướng dẫn nạp Silk */}
                 <div className="relative block-item__banner bg-guide">
                   <Link href="/guide" className="game-button w-full md:w-auto bounce-text">
                     HƯỚNG DẪN NẠP SILK
                   </Link>
                 </div>
 
-                {/* Section 2: Lịch hoạt động sự kiện */}
                 <div className="relative block-item__banner bg-schedule">
                   <Link href="/schedule" className="game-button w-full md:w-auto text-schedule text-glow bounce-text">
                     LỊCH HOẠT ĐỘNG SỰ KIỆN
                   </Link>
                 </div>
 
-                {/* Section 3: Cắm năng tần thù */}
                 <div className="relative block-item__banner bg-energy">
                   <Link href="/energy" className="game-button w-full md:w-auto text-energy text-glow bounce-text">
                     CẮM NĂNG TẦN THÙ
                   </Link>
                 </div>
 
-                {/* Section 4: FAQ */}
                 <div className="relative block-item__banner bg-faq">
                   <Link href="/faq" className="game-button w-full md:w-auto text-faq text-glow bounce-text">
                     FAQ
                   </Link>
                 </div>
-              </div>
+              </div> */}
           
 
 
           {/* Achive ment */}
-
-
-              <div className="container flex justify-around items-center flex-row ">
+         <div className="container  ">
                 <AchiveMent />
           </div>
     </div>

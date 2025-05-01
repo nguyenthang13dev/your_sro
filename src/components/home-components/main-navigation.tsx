@@ -11,7 +11,7 @@ export function MainNavigation() {
     { name: "NHÓM FB", href: "/nhom-fb" },
     { name: "THÔNG TIN", href: "/thong-tin" },
     { name: "Đăng ký", href: "/auth/register" },
-    { name: "Đăng nhập", href: "/thong-tin" },
+    { name: "Đăng nhập", href: "/auth/login" },
   ];
 
   return (
