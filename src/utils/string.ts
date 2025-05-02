@@ -1,5 +1,3 @@
-import { Footer } from '@/interface/footer/footer'
-import { tableQLTinTuc_CauHinhDataType } from '@/interface/QLTinTuc_CauHinh/QLTinTuc_CauHinh'
 import { v4 as uuidv4 } from 'uuid'
 
 function createSlug(title: string): string {
@@ -34,38 +32,6 @@ function createSlugPage(title: string): string {
   return slug
 }
 
-function replaceHtmlToPreview(
-  item: tableQLTinTuc_CauHinhDataType | Footer
-): string {
-  if (!item || !item.html || !item.id) return ''
-
-  let updatedHtml = item.html
-    .replace(/\[key\]/g, item.id.toString())
-    .replace(/\[title\]/g, 'Tiêu đề tin tức')
-    .replace(
-      /\[description\]/g,
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged"
-    )
-    .replace(/\[publicDate\]/g, '12/12/2025')
-    .replace(/\/\[SlugTitle\]/g, '#')
-  // Thay thế src trong tất cả các thẻ <img>
-  updatedHtml = updatedHtml.replace(
-    /<img([^>]+)src=["']([^"']*)["']/g,
-    '<img$1src="/img/default-image.jpg"'
-  )
-
-  return updatedHtml
-}
-
-function replaceCssToPreview(
-  item: tableQLTinTuc_CauHinhDataType | Footer
-): string {
-  if (!item || !item.css || !item.id) return ''
-
-  const updatedCss = item.css.replace(/\[key\]/g, item.id.toString())
-
-  return updatedCss
-}
 
 class StringBuilder {
   private parts: string[] = []
@@ -84,10 +50,11 @@ class StringBuilder {
   }
 }
 
-export {
+export
+{
   createSlug,
   createSlugPage,
-  replaceHtmlToPreview,
-  replaceCssToPreview,
-  StringBuilder,
+
+  StringBuilder
 }
+

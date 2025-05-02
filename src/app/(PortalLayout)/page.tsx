@@ -1,5 +1,7 @@
+import BannerGame from "@/components/home-components/BannerGame"
 import GameServerNotice from "@/components/home-components/GameServerNotice"
 import { LoginForm } from "@/components/home-components/login-form"
+import RankingTable from "@/components/home-components/rank-mini"
 import { Rankings } from "@/components/home-components/rankings"
 import ServerInfor from "@/components/home-components/ServerInfor"
 import { Col, Row } from "antd"
@@ -38,8 +40,6 @@ export default function Home() {
             </div>
           <div className="absolute bottom-0 left-0 right-0 flex justify-center">
             {/* Zalo */}
-           
-
             <div>
                <ServerInfor />
             </div>            
@@ -71,17 +71,27 @@ export default function Home() {
           <GameServerNotice />
         </div>
 
-            
+              {/* Main Content Grid */}
+        <div className="container mx-auto px-8 py-10 ">
+        <Row gutter={[24, 24]}>
+            <Col span={8}>
+                <div>
+                <RankingTable />
+                </div>
+            </Col>
+
+            <Col span={16}>
+                <BannerGame />
+            </Col>
+
+
+          </Row>
+        </div>
+
 
         {/* Main Content Grid */}
         <div className="container mx-auto px-8 py-10 ">
         <Row gutter={[24, 24]}>
-            {/* <Col span={12}>
-                <ServerStatus />
-            </Col>
-          */}
-
-            
             <Col span={12}>
                 <div>
                 <Rankings />

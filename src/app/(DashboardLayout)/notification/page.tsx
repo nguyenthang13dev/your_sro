@@ -1,53 +1,48 @@
 'use client'
 import Flex from '@/components/shared-components/Flex'
+import AutoBreadcrumb from '@/components/util-compenents/Breadcrumb'
 import { DropdownOptionAntd, ResponsePageInfo } from '@/interface/general'
+import Notification, { NotificationSearch } from '@/interface/notification/notification'
 import withAuthorization from '@/libs/authentication'
+import { notificationService } from '@/services/notification/notification.service'
+import { userService } from '@/services/user/user.service'
 import { setIsLoading } from '@/store/general/GeneralSlice'
 import { useSelector } from '@/store/hooks'
 import { AppDispatch } from '@/store/store'
-import {
-  CloseOutlined,
-  DeleteOutlined,
-  DownOutlined,
-  EditOutlined,
-  EyeOutlined,
-  InsertRowRightOutlined,
-  PlusCircleOutlined,
-  SearchOutlined,
-  ArrowRightOutlined,
-  PrinterOutlined,
-  CheckOutlined
-} from '@ant-design/icons';
-import {
-  Button,
-  Card,
-  Drawer,
-  Dropdown,
-  Image,
-  MenuProps,
-  Pagination,
-  Popconfirm,
-  Space,
-  Table,
-  TableColumnsType,
-  Typography,
-  Tag,
-  Switch
-} from 'antd'
+import
+  {
+    CloseOutlined,
+    DeleteOutlined,
+    DownOutlined,
+    EditOutlined,
+    EyeOutlined,
+    InsertRowRightOutlined,
+    PlusCircleOutlined,
+    PrinterOutlined,
+    SearchOutlined
+  } from '@ant-design/icons'
+import
+  {
+    Button,
+    Card,
+    Dropdown,
+    MenuProps,
+    Pagination,
+    Popconfirm,
+    Space,
+    Switch,
+    Table,
+    TableColumnsType,
+    Typography
+  } from 'antd'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import classes from './page.module.css'
 import { toast } from 'react-toastify'
 import CreateUpdateForm from './CreateUpdateForm'
-import Search from './Search'
-import { notificationService } from '@/services/notification/notification.service'
-import Notification, { NotificationSearch } from '@/interface/notification/notification'
-import { duLieuDanhMucService } from "@/services/duLieuDanhMuc/duLieuDanhMuc.service";
-import { userService } from '@/services/user/user.service'
 import Detail from './detail'
+import classes from './page.module.css'
+import Search from './Search'
 import SendEmail from './SendEmail'
-import DanhSachGui from './DanhSachGui'
-import AutoBreadcrumb from '@/components/util-compenents/Breadcrumb'
 
 const StaticFileUrl = process.env.NEXT_PUBLIC_STATIC_FILE_BASE_URL
 
@@ -541,13 +536,7 @@ const Page: React.FC = () => {
         data={currentNotification!}
         onClose={handleCloseSendEmail}
       />
-      <DanhSachGui
-        isOpen={isOpenDanhSachGui}
-        data={currentNotification!}
-        onClose={() => {
-          setIsOpenDanhSachGui(false)
-        }}
-      />
+     
     </>
   )
 }

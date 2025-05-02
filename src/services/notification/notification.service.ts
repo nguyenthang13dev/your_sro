@@ -1,13 +1,13 @@
+import
+  {
+    Response,
+  } from "@/interface/general";
+import
+  {
+    NotificationCreate,
+    NotificationSearch,
+  } from "@/interface/notification/notification";
 import { apiService } from "../index";
-import {
-  DropdownOption,
-  DropdownOptionAntd,
-  Response,
-} from "@/interface/general";
-import Notification, {
-  NotificationCreate,
-  NotificationSearch,
-} from "@/interface/notification/notification";
 
 class NotificationService {
   public async getDataByPage(
@@ -140,16 +140,7 @@ class NotificationService {
     }
   }
 
-  public async GetDropdownEmail(): Promise<Response<DropdownOptionAntd[]>> {
-    try {
-      const response = await apiService.get<Response<DropdownOptionAntd[]>>(
-        "/Notification/GetDropdownEmail"
-      );
-      return response.data;
-    } catch (error) {
-      throw error;
-    }
-  }
+
 
   public async getById(id: string): Promise<Response> {
     try {

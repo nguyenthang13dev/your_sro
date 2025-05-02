@@ -1,10 +1,9 @@
-import { Form, Input, Modal, Row, Col, Select } from 'antd'
-import React, { useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
+import { DropdownOptionAntd } from '@/interface/general'
 import Notification from '@/interface/notification/notification'
 import { notificationService } from '@/services/notification/notification.service'
-import { DropdownOptionAntd } from '@/interface/general'
-import { onlCompanyInfoService } from "@/services/onlCompanyInfo/onlCompanyInfo.service";
+import { Col, Form, Modal, Row, Select } from 'antd'
+import React, { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
 const defaultData = {
   message: '',
@@ -27,16 +26,6 @@ const SendEmailForm: React.FC<Props> = ({ isOpen, data, onClose }) => {
   const [form] = Form.useForm()
   const [companyList, setCompanyList] = useState<DropdownOptionAntd[]>([])
 
-  useEffect(() => {
-    onlCompanyInfoService
-      .getDropdownOrganization()
-      .then((res) => {
-        setCompanyList(res.data)
-      })
-      .catch((err) => {
-        console.error('Lỗi khi tải danh sách công ty:', err)
-      })
-  }, [])
 
   useEffect(() => {
     if (data) {

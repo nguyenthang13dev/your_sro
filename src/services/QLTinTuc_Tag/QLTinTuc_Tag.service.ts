@@ -1,14 +1,15 @@
+import
+    {
+        DropdownOption,
+        Response
+    } from "@/interface/general";
+import
+    {
+        createEditType,
+        QLTinTuc_TagType,
+        searchQLTinTuc_TagData,
+    } from "@/interface/QLTinTuc_Tag/QLTinTuc_Tag";
 import { apiService } from "..";
-import {
-    DropdownOption,
-    DropdownOptionAntd,
-    Response,
-} from "@/interface/general";
-import {
-    createEditType,
-    QLTinTuc_TagType,
-    searchQLTinTuc_TagData,
-} from "@/interface/QLTinTuc_Tag/QLTinTuc_Tag";
 
 class QLTinTuc_TagService {
     public async GetData(
