@@ -1,5 +1,5 @@
 import { Response } from "@/interface/general";
-import { tableOrderCreateVMDataType } from "@/interface/Order/Order";
+import { tableOrderCreateVMDataType, tableOrderSearchVMDataType } from "@/interface/Order/Order";
 import { apiService } from "..";
 
 class OrderService
@@ -14,7 +14,31 @@ class OrderService
         } catch (error) {
           throw error
         }
-      }
+  }
+  
+   public async GetDtos(id: string): Promise<Response<tableOrderCreateVMDataType>> {
+        try {
+          const response = await apiService.get<Response<tableOrderCreateVMDataType>>(
+            `/Order/Get/${id}`,
+          )
+          return response.data
+        } catch (error) {
+          throw error
+        }
+  }
+  
+
+     public async GetDate(formData: tableOrderSearchVMDataType): Promise<Response> {
+        try {
+          const response = await apiService.post<Response>(
+            `/Order/GetData`,
+            formData
+          )
+          return response.data
+        } catch (error) {
+          throw error
+        }
+   }
 }
 
 export const orderService = new OrderService();

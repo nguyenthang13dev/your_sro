@@ -7,16 +7,18 @@ import { orderService } from "@/services/order/order.service"
 import { FormatVND } from "@/utils/FormatMoney"
 import { Button, Card, ConfigProvider, Form, Input, Radio, Space, Typography } from "antd"
 import { GamepadIcon } from "lucide-react"
+import { useRouter } from "next/navigation"
 import { useCallback, useEffect, useState } from "react"
 import { toast } from "react-toastify"
 
 const { Title, Text } = Typography
 
 export default function GameTopupForm() {
-  const [form] = Form.useForm()
-
+    const [form] = Form.useForm()
     const [denominations, setDemominations] = useState<tableConfigSilk[]>([]);
     // Hàm kiểm tra tài khoản game có tồn tại hay không
+
+    const router = useRouter();
 
     const handleCheckAccount = async ( username: string ): Promise<boolean> => {
         try {
@@ -51,6 +53,8 @@ export default function GameTopupForm() {
 
     const handleSubmit = async ( values: any ) =>
     {
+         console.log("order", form.getFieldsValue()) ;
+
         const ResponseCheck = await handleCheckAccount( values.username );
         if ( !ResponseCheck ) {
             toast.error("Tài khoản không tồn tại hoặc không hợp lệ!" );
@@ -58,15 +62,22 @@ export default function GameTopupForm() {
         }
         // Tạo 1 order theo giá trị 
         const order: tableOrderCreateVMDataType = {
-            total : Number(values.amount),
-            name: values.silk,
+          name: 'ORD-' + Date.now() + '-' + Math.floor(Math.random() * 1000),
+            total: Number(values.amount),
         }
+        
         const ResponseOrder = await handleAddOrder( order );
         if ( !ResponseOrder ) {
             toast.error("Đặt hàng không thành công!" );
             return;
+        } else
+        {
+            toast.success( "Đặt hàng thành công!" );
+            setTimeout( () =>
+            {
+                 router.push( `/payment/${ResponseOrder.id}` );
+            }, 1200);
         }
-        toast.success("Đặt hàng thành công!" );
 
     // alert(`Đặt hàng thành công!\nTài khoản: ${values.username}\nSố tiền: ${values.amount} VND`)
     }
@@ -165,22 +176,26 @@ export default function GameTopupForm() {
                             </Form.Item>
 
                             <Form.Item name="amount" label={<Text style={{ color: "#FBBF24" }}>Số tiền</Text>}>
-                            <Radio.Group style={{ width: "100%" }}>
+                            <Radio.Group style={{ width: "100%" }}  onChange={( e ) =>
+                                        {
+                                            console.log("onChange", form.getFieldsValue()) ;
+                                    }}
+                                    >
                                 <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "8px" }}>
                                 {denominations?.map((item) => (
                                     <Radio.Button
-                                    key={item.id}
-                                    value={item.silkTotal}
-                                    style={{
-                                        height: "auto",
-                                        padding: "8px 12px",
-                                        backgroundColor: "#991B1B",
-                                        borderColor: "#B91C1C",
-                                        borderRadius: "0px",
-                                        display: "block",
-                                        textAlign: "left",
-                                        width: "100%",
-                                    }}
+                                        key={item.id}
+                                        value={item.totalMount}
+                                        style={{
+                                            height: "auto",
+                                            padding: "8px 12px",
+                                            backgroundColor: "#991B1B",
+                                            borderColor: "#B91C1C",
+                                            borderRadius: "0px",
+                                            display: "block",
+                                            textAlign: "left",
+                                            width: "100%",
+                                        }}
                                     >
                                     <div style={{ color: "#FBBF24" }}>{FormatVND(item.totalMount)}</div>
                                     <div style={{ fontSize: "12px", color: "#FEF9C3", marginTop: "4px" }}>{item.silkTotal} silk</div>
