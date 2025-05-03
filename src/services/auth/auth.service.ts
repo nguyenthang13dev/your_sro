@@ -24,6 +24,18 @@ class AuthService {
     }
   }
 
+  public async checkAccount( username: string ): Promise<Response>
+  {
+    try {
+      const response = await apiService.get<Response>(
+        `/Account/CheckAccount?username=${username}`
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   public async register(formData: createEditType): Promise<Response> {
     try {
       const response = await apiService.post<Response>(

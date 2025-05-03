@@ -13,6 +13,7 @@ import { MainNavigation } from "@/components/home-components/main-navigation";
 import Loading from "@/components/shared-components/Loading";
 import { Suspense } from "react";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const { Content } = Layout;
 
@@ -25,13 +26,12 @@ export default function RootLayout({
   return (
     <ConfigProvider>
       <Layout>
-        <ToastContainer />
+        <ToastContainer  />
         <Layout>
           <Content className="h-100 ">
-
             <Suspense fallback={<Loading content="content" />}>
                       {/* Top Navigation */}
-        <MainNavigation />
+           <MainNavigation />
               {children}
             <Footer />
             </Suspense>

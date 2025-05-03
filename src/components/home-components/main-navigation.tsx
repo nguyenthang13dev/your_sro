@@ -4,10 +4,10 @@ import Link from "next/link";
 export function MainNavigation() {
   const navItems = [
     { name: "TRANG CHỦ", href: "/" },
-    { name: "NẠP tiền", href: "/nap-the" },
+    { name: "NẠP tiền", href: "/payment" },
     { name: "MINIGAME", href: "/minigame" },
     { name: "ZALO", href: "https://zalo.me/g/ybvunx631" },
-    { name: "NHÓM FB", href: "https://zalo.me/g/ybvunx631" },
+    { name: "NHÓM FB", href: "https://www.facebook.com/share/1DPmy4eGsv" },
     { name: "Đăng ký", href: "/auth/register" },
     { name: "Đăng nhập", href: "/auth/login" },
   ];
