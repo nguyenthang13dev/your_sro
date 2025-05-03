@@ -5,11 +5,9 @@ export function MainNavigation() {
   const navItems = [
     { name: "TRANG CHỦ", href: "/" },
     { name: "NẠP tiền", href: "/nap-the" },
-    { name: "FANPAGE", href: "/fanpage" },
     { name: "MINIGAME", href: "/minigame" },
-    { name: "ZALO", href: "/zalo" },
-    { name: "NHÓM FB", href: "/nhom-fb" },
-    { name: "THÔNG TIN", href: "/thong-tin" },
+    { name: "ZALO", href: "https://zalo.me/g/ybvunx631" },
+    { name: "NHÓM FB", href: "https://zalo.me/g/ybvunx631" },
     { name: "Đăng ký", href: "/auth/register" },
     { name: "Đăng nhập", href: "/auth/login" },
   ];

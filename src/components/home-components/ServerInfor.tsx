@@ -1,14 +1,11 @@
 "use client"
 
 import
-    {
-        ClockCircleOutlined,
-        StarOutlined,
-        UserOutlined,
-        WifiOutlined as WifiOffOutlined,
-        WifiOutlined,
-    } from "@ant-design/icons"
-import { Badge, Button, Card, ConfigProvider, Divider, Tag, theme, Tooltip, Typography } from "antd"
+  {
+    WifiOutlined as WifiOffOutlined,
+    WifiOutlined
+  } from "@ant-design/icons"
+import { Badge, Card, ConfigProvider, Divider, theme, Typography } from "antd"
 import { useState } from "react"
 
 const { Title, Text } = Typography
@@ -158,118 +155,22 @@ const ServerInfor = () => {
 
         <Divider style={{ borderColor: "#92400e", margin: "12px 0" }} />
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 16 }}>
-          {servers.map((server) => (
-            <Tooltip
-              key={server.id}
-              placement="bottom"
-              color="black"
-              overlayInnerStyle={{
-                border: "1px solid #ca8a04",
-                color: "#fef08a",
-              }}
-              title={
-                <div>
-                  <Text strong style={{ color: "#fef08a" }}>
-                    {server.name}
-                  </Text>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4px 16px", marginTop: 4 }}>
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <WifiOutlined style={{ fontSize: 12, marginRight: 4 }} />
-                      <Text style={{ color: "#fef08a", fontSize: 12 }}>
-                        Ping: {server.status === "online" ? `${server.ping}ms` : "N/A"}
-                      </Text>
-                    </div>
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <UserOutlined style={{ fontSize: 12, marginRight: 4 }} />
-                      <Text style={{ color: "#fef08a", fontSize: 12 }}>Người chơi: {server.players}</Text>
-                    </div>
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <StarOutlined style={{ fontSize: 12, marginRight: 4 }} />
-                      <Text style={{ color: "#fef08a", fontSize: 12 }}>Khu vực: {server.region}</Text>
-                    </div>
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <ClockCircleOutlined style={{ fontSize: 12, marginRight: 4 }} />
-                      <Text style={{ color: "#fef08a", fontSize: 12 }}>Reset: {server.lastReset}</Text>
-                    </div>
-                  </div>
-                </div>
-              }
-            >
-              <Button
-                type="default"
-                style={{
-                  position: "relative",
-                  height: "auto",
-                  width: "100%",
-                  padding: 8,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "flex-start",
-                  background: "linear-gradient(to right, #7f1d1d, #b91c1c)",
-                  color: "#fcd34d",
-                  border: selectedServer === server.id ? "1px solid #fcd34d" : "1px solid #ca8a04",
-                  opacity: server.status === "maintenance" ? 0.7 : 1,
-                }}
-                onClick={() => handleSelectServer(server.id)}
-              >
-                <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
-                  <span style={{ fontWeight: 500, fontSize: 14, overflow: "hidden", textOverflow: "ellipsis" }}>
-                    {server.name.split(" - ")[0]}
-                  </span>
-                  <div>{getStatusIcon(server.status)}</div>
-                </div>
-
-                <div style={{ display: "flex", justifyContent: "space-between", width: "100%", marginTop: 4 }}>
-                  <Text style={{ color: getStatusColor(server.status), fontSize: 12 }}>
-                    {server.status === "online" ? "Hoạt động" : server.status === "maintenance" ? "Bảo trì" : "Offline"}
-                  </Text>
-
-                  {server.status === "online" && (
-                    <Text style={{ color: getPlayerCountColor(server.players, server.maxPlayers), fontSize: 12 }}>
-                      {server.players}/{server.maxPlayers}
-                    </Text>
-                  )}
-                </div>
-
-                {server.label && (
-                  <div style={{ position: "absolute", top: -8, right: -8 }}>
-                    {server.label === "hot" && (
-                      <Tag color="red" style={{ fontSize: 10, padding: "0 4px" }}>
-                        HOT
-                      </Tag>
-                    )}
-                    {server.label === "new" && (
-                      <Tag color="green" style={{ fontSize: 10, padding: "0 4px" }}>
-                        NEW
-                      </Tag>
-                    )}
-                    {server.label === "recommended" && (
-                      <Tag color="blue" style={{ fontSize: 10, padding: "0 4px" }}>
-                        KHUYÊN DÙNG
-                      </Tag>
-                    )}
-                  </div>
-                )}
-              </Button>
-            </Tooltip>
-          ))}
+        <div style={{ color: "#fef08a", fontSize: 14, lineHeight: 1.5 }}>
+           <li>Max cap: 90 / Class: Only Asia / Skill: 90 / Master: 270 điểm</li>
+              <li>Ghost Skill: Không Ghost / Item: ITEM D9 - SOX</li>
+              <li>Giới hạn: 3 acc/PC, 1JOB / 1IP / khoá buôn (00h00-8h00)</li>
+              <li>Time: 5 giờ xanh / 1 giờ vàng</li>
+              <li>Trang bị: FULL Từ D1 - D9, đủ SOX</li>
+              <li>Hiệu ứng vũ khí: Chuẩn VDC</li>
+              <li>Không có hệ thống Gacha</li>
+              <li>LKD Đặt biệt: Có LKD</li>
+              <li>Item vứt shop: 1 vàng</li>
+              <li>SHOP NPC: Giá 10.000 VNĐ (sự kiện)</li>
+          <p>
+          </p>
         </div>
 
-        {selectedServer && (
-          <Button
-            type="primary"
-            block
-            style={{
-              background: "linear-gradient(to right, #b45309, #ca8a04)",
-              color: "#fef08a",
-              fontWeight: "bold",
-              border: "1px solid #fcd34d",
-            }}
-          >
-            Chọn Máy Chủ
-          </Button>
-        )}
+       
       </Card>
     </ConfigProvider>
   )

@@ -6,6 +6,7 @@ import { Rankings } from "@/components/home-components/rankings"
 import ServerInfor from "@/components/home-components/ServerInfor"
 import { Col, Row } from "antd"
 import Image from "next/image"
+import Link from "next/link"
 
 export default function Home() {
   return (
@@ -28,15 +29,23 @@ export default function Home() {
         
         <div className="container mx-auto px-4 py-8 bg-news relative">
           {/* <NewsSection /> */}
-          
-           <div className="absolute bottom-10 left-0 ">
-              <Image
-                src="/img/zalo.png"
-                alt="Zalo"
-                width={300}
-                height={200}
-              />
-
+          <div className="absolute position-zalo">
+            <div style={{ minWidth: "120px", maxWidth: "120px", textAlign: "center" }}>
+               <p style={{ margin: "8px 0 0", fontSize: "13px", marginBottom: "5px" }}>
+    Quét QR code để gia nhập cộng đồng
+  </p>
+  <Image
+    src="/img/zl-nhom.jpg"
+    alt="Zalo"
+    width={100}
+    height={100}
+    style={{ display: "block", borderRadius: "5px" }} // Ensures image is centered and doesn't cause layout issues
+  />
+ 
+  <p style={{ margin: "8px 0 0", fontSize: "13px" }}>
+    Vào nhóm nhận GIFTCODE khủng
+  </p>
+</div>
             </div>
           <div className="absolute bottom-0 left-0 right-0 flex justify-center">
             {/* Zalo */}
@@ -46,13 +55,31 @@ export default function Home() {
             {/* Nút Chơi Ngay - Thiết kế giống hình */}
            <div className="relative align-center px-5">
       <div className="play-button-container">
-        <button className="play-button">
+        {/* <button className="play-button">
           <div className="play-button-content">
             <span className="diamond-decoration">◆</span>
             <span className="button-text">CHƠI GAME NGAY</span>
             <span className="diamond-decoration">◆</span>
           </div>
-        </button>
+        </button> */}
+                
+        <Link href="/auth/login" className="btn-play" >
+          {/* <div className="play-button-content">
+            <span className="diamond-decoration">◆</span>
+            <span className="button-text">CHƠI GAME NGAY</span>
+            <span className="diamond-decoration">◆</span>
+                  </div> */}
+
+                  <div className="img-play-button flex justify-center items-center">
+                                <Image
+                  src="/img/start-game-CHOI-NGAY_487e4ae.png"
+                  alt="Zalo"
+                  width={300}
+                  height={300}
+                />
+                    
+              </div>
+        </Link>
       </div>
     </div>
             <LoginForm />

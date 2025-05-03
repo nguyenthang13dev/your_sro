@@ -997,3 +997,20 @@ a:hover{
 .button-text {
     letter-spacing: 1px;
 }
+
+.position-zalo {
+    top: 150px;
+    left: 30px;
+}
+
+
+.btn-play div {
+   min-height: 300px;
+}
+
+.img-play-button img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    object-position: center;
+}

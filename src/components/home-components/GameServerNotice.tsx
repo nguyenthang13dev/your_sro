@@ -34,7 +34,7 @@ const GameServerNotice = () => {
       >
        <SwiperSlide className='img-h382'>
             <Image
-                src={'/img/13113539NLCJj.png'}
+                src={'/img/anh-ben-traipng.png'}
                 alt={'Game Character 1'}
                 objectFit="cover"
                 width={600}
@@ -44,7 +44,7 @@ const GameServerNotice = () => {
             </SwiperSlide>
             <SwiperSlide className='img-h382'>
             <Image
-                src={'/img/13113539NLCJj.png'}
+                src={'/img/anh-ben-traipng.png'}
                 alt={'Game Character 1'}
                 objectFit="cover"
                 width={600}
@@ -54,7 +54,7 @@ const GameServerNotice = () => {
             </SwiperSlide>
                  <SwiperSlide className='img-h382'>
             <Image
-                src={'/img/13113539NLCJj.png'}
+                src={'/img/anh-ben-traipng.png'}
                 alt={'Game Character 1'}
                 objectFit="cover"
                 width={600}
@@ -76,13 +76,13 @@ const GameServerNotice = () => {
             toàn bộ
           </button>
           <button className="pb-2 text-gray-300 hover:text-yellow-400 uppercase">
-            thông báo
+            Sự kiện
           </button>
           <button className="pb-2 text-gray-300 hover:text-yellow-400 uppercase">
-            Hoạt động
+            Hướng dẫn
           </button>
           <button className="pb-2 text-gray-300 hover:text-yellow-400 uppercase">
-            Chiến lược
+            Tin tức
           </button>
         </div>
 
