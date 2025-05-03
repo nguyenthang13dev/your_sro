@@ -62,7 +62,7 @@ export default function GameTopupForm() {
         }
         // Tạo 1 order theo giá trị 
         const order: tableOrderCreateVMDataType = {
-          name: 'ORD-' + Date.now() + '-' + Math.floor(Math.random() * 1000),
+             name: 'ORD' + '-' + Date.now() + '-' + values.username,
             total: Number(values.amount),
         }
         
