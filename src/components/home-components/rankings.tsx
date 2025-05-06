@@ -21,9 +21,7 @@ export function Rankings() {
     <div className="card-items">
       {/* Header */}
       <div className="header-card">
-        <h3 className="font-bold text-lg uppercase">
-          Bảng xếp hạng
-        </h3>
+        <h3 className="font-bold text-lg uppercase">Bảng xếp hạng</h3>
       </div>
 
       {/* Body */}
@@ -39,10 +37,7 @@ export function Rankings() {
           </thead>
           <tbody>
             {topPlayers.map((player) => (
-              <tr
-                key={player.rank}
-                className={`${styles.rankRow} `}
-              >
+              <tr key={player.rank} className={`${styles.rankRow} `}>
                 <td className="px-4 py-3  font-bold">{player.rank}</td>
                 <td className="px-4 py-3  font-medium">{player.name}</td>
                 <td className="px-4 py-3 ">{player.guild}</td>

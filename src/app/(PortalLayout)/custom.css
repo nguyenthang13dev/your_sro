@@ -1014,3 +1014,48 @@ a:hover{
     object-fit: cover;
     object-position: center;
 }
+
+
+.game-container {
+    margin-top: 100px;
+    height: 300px; /* chỉnh theo chiều cao ảnh */
+}
+  
+  .server-info,
+  .login-form {
+    height: 200px; /* cao hơn ảnh gốc */
+  }
+  
+
+.server-info {
+    background-image: url('/img/anhWebCu/gocBenTrai.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+  }
+  
+  .login-form {
+    background-image: url('/img/anhWebCu/gocBenPhai.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right bottom;
+  }
+  
+
+
+.khoi-imge-selector {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Adjusts spacing between the blocks */
+    align-items: flex-start; /* Aligns items at the top */
+    gap: 20px; /* Adds space between the two blocks */
+  }
+  
+
+  .khoi-imge-selector > div:first-child {
+    width: 50%; /* Adjust as needed for the server info block */
+  }
+  
+  .khoi-imge-selector > div:last-child {
+    width: 50%; /* Adjust as needed for the image/character block */
+  }
