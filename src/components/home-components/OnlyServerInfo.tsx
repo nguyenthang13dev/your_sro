@@ -1,12 +1,13 @@
 "use client";
 
-import
-  {
-    WifiOutlined as WifiOffOutlined,
-    WifiOutlined,
-  } from "@ant-design/icons";
+import {
+  WifiOutlined as WifiOffOutlined,
+  WifiOutlined,
+} from "@ant-design/icons";
 import { Badge, Card, ConfigProvider, Divider, theme, Typography } from "antd";
 import { useState } from "react";
+import { Rankings } from "./rankings";
+import RankingTable from "./rank-mini";
 
 const { Title, Text } = Typography;
 
@@ -22,7 +23,7 @@ interface ServerData {
   lastReset: string;
 }
 
-const ServerInfor = () => {
+const OnlyServerInfo = () => {
   const [selectedServer, setSelectedServer] = useState<number | null>(null);
 
   const servers: ServerData[] = [
@@ -138,7 +139,6 @@ const ServerInfor = () => {
           background: "rgba(0, 0, 0, 0.6)",
           borderColor: "#ca8a04",
           borderWidth: 2,
-          width: 500,
         }}
       >
         <div
@@ -170,51 +170,22 @@ const ServerInfor = () => {
 
         <Divider style={{ borderColor: "#92400e", margin: "12px 0" }} />
 
-        <div className="grid grid-cols-2 gap-4">
-          {servers.map((server) => (
-            <Card
-              key={server.id}
-              bordered
-              style={{
-                background:
-                  server.status === "online"
-                    ? "rgba(34, 197, 94, 0.2)"
-                    : "rgba(239, 68, 68, 0.2)",
-                borderColor: server.status === "online" ? "#16a34a" : "#dc2626",
-                borderWidth: 2,
-                textAlign: "center",
-              }}
-            >
-              <div className="relative">
-                {server.label && (
-                  <Badge
-                    count={server.label.toUpperCase()}
-                    style={{
-                      position: "absolute",
-                      top: -10,
-                      right: -10,
-                      backgroundColor:
-                        server.label === "hot" ? "#b91c1c" : "#16a34a",
-                      color: "#fef08a",
-                      border: "1px solid #eab308",
-                    }}
-                  />
-                )}
-                <div style={{ color: "#fef08a", fontWeight: "bold" }}>
-                  {server.name}
-                </div>
-                <div style={{ color: "#ffffff", marginTop: 4 }}>
-                  {server.status === "online"
-                    ? `Hoạt động ${server.players}/${server.maxPlayers}`
-                    : "Bảo trì"}
-                </div>
-              </div>
-            </Card>
-          ))}
+        <div style={{ color: "#fef08a", fontSize: 14, lineHeight: 1.5 }}>
+          <li>Max cap: 90 / Class: Only Asia / Skill: 90 / Master: 270 điểm</li>
+          <li>Ghost Skill: Không Ghost / Item: ITEM D9 - SOX</li>
+          <li>Giới hạn: 3 acc/PC, 1JOB / 1IP / khoá buôn (00h00-8h00)</li>
+          <li>Time: 5 giờ xanh / 1 giờ vàng</li>
+          <li>Trang bị: FULL Từ D1 - D9, đủ SOX</li>
+          <li>Hiệu ứng vũ khí: Chuẩn VDC</li>
+          <li>Không có hệ thống Gacha</li>
+          <li>LKD Đặt biệt: Có LKD</li>
+          <li>Item vứt shop: 1 vàng</li>
+          <li>SHOP NPC: Giá 10.000 VNĐ (sự kiện)</li>
+          <p></p>
         </div>
       </Card>
     </ConfigProvider>
   );
 };
 
-export default ServerInfor;
+export default OnlyServerInfo;

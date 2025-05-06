@@ -1,12 +1,8 @@
-import BannerGame from "@/components/home-components/BannerGame"
-import GameServerNotice from "@/components/home-components/GameServerNotice"
-import { LoginForm } from "@/components/home-components/login-form"
-import RankingTable from "@/components/home-components/rank-mini"
-import { Rankings } from "@/components/home-components/rankings"
-import ServerInfor from "@/components/home-components/ServerInfor"
-import { Col, Row } from "antd"
-import Image from "next/image"
-import Link from "next/link"
+import GameServerNotice from "@/components/home-components/GameServerNotice";
+import { LoginForm } from "@/components/home-components/login-form";
+import ServerInfor from "@/components/home-components/ServerInfor";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -19,111 +15,118 @@ export default function Home() {
 
       {/* Main content */}
       <div className="relative z-10">
-
-
         {/* Banner */}
-
 
         {/* News Section */}
 
-        
         <div className="container mx-auto px-4 py-8 bg-news relative">
           {/* <NewsSection /> */}
           <div className="absolute position-zalo">
-            <div style={{ minWidth: "120px", maxWidth: "120px", textAlign: "center" }}>
-               <p style={{ margin: "8px 0 0", fontSize: "13px", marginBottom: "5px" }}>
-    Quét QR code để gia nhập cộng đồng
-  </p>
-  <Image
-    src="/img/zl-nhom.jpg"
-    alt="Zalo"
-    width={100}
-    height={100}
-    style={{ display: "block", borderRadius: "5px" }} // Ensures image is centered and doesn't cause layout issues
-  />
- 
-  <p style={{ margin: "8px 0 0", fontSize: "13px" }}>
-    Vào nhóm nhận GIFTCODE khủng
-  </p>
-</div>
+            <div
+              style={{
+                minWidth: "120px",
+                maxWidth: "120px",
+                textAlign: "center",
+              }}
+            >
+              <p
+                style={{
+                  margin: "8px 0 0",
+                  fontSize: "13px",
+                  marginBottom: "5px",
+                }}
+              >
+                Quét QR code để gia nhập cộng đồng
+              </p>
+              <Image
+                src="/img/zl-nhom.jpg"
+                alt="Zalo"
+                width={100}
+                height={100}
+                style={{ display: "block", borderRadius: "5px" }} // Ensures image is centered and doesn't cause layout issues
+              />
+
+              <p style={{ margin: "8px 0 0", fontSize: "13px" }}>
+                Vào nhóm nhận GIFTCODE khủng
+              </p>
             </div>
-          <div className="absolute bottom-0 left-0 right-0 flex justify-center">
+          </div>
 
-
-            <Row gutter={[24, 24]} >
-              <Col span={8}>
-               <ServerInfor />
-              </Col>
-              <Col span={8}>
-              {/* Nút Chơi Ngay - Thiết kế giống hình */}
-            <div className="">
-              <div className="">
-                <Link href="/auth/login" className="" >
-                  {/* <div className="play-button-content">
-                    <span className="diamond-decoration">◆</span>
-                    <span className="button-text">CHƠI GAME NGAY</span>
-                    <span className="diamond-decoration">◆</span>
-                          </div> */}
-
-                          <div className="">
-                                        <Image
-                          src="/img/start-game-CHOI-NGAY_487e4ae.png"
-                          alt="Zalo"
-                          width={300}
-                          height={300}
-                        />
-                            
-                      </div>
+          {/* <div className="absolute bottom-0 left-0 right-0 flex justify-center game-container">
+            <div className="server-info">
+              <ServerInfor />
+            </div>
+            <div className="relative align-center px-5 play-button-div">
+              <div className="play-button-container">
+                <Link href="/auth/login" className="btn-play">
+                  <div className="img-play-button flex justify-center items-center">
+                    <Image
+                      src="/img/start-game-CHOI-NGAY_487e4ae.png"
+                      alt="Zalo"
+                      width={300}
+                      height={300}
+                    />
+                  </div>
                 </Link>
               </div>
             </div>
-              </Col>
-              <Col span={8}>
-                           <LoginForm />
-              </Col>
-            </Row>
+            <div className="login-form">
+              <LoginForm />
             </div>
+          </div> */}
+          <div className="absolute bottom-0 left-0 right-0 flex justify-center game-container">
+            <div className="server-info">
+              <ServerInfor />
+            </div>
+            <div className="relative align-center px-5 play-button-div">
+              <div className="play-button-container">
+                <Link href="/auth/login" className="btn-play">
+                  <div className="img-play-button flex justify-center items-center">
+                    <Image
+                      src="/img/start-game-CHOI-NGAY_487e4ae.png"
+                      alt="Zalo"
+                      width={300}
+                      height={300}
+                    />
+                  </div>
+                </Link>
+              </div>
+            </div>
+            <div className="login-form">
+              <LoginForm />
+            </div>
+          </div>
         </div>
 
-        
-        
-        
         <div>
           <GameServerNotice />
         </div>
 
-              {/* Main Content Grid */}
-        <div className="container mx-auto px-8 py-10 ">
-        <Row gutter={[24, 24]}>
+        {/* <div className="container mx-auto px-8 py-10 ">
+          <Row gutter={[24, 24]}>
             <Col span={8}>
-                <div>
+              <div>
                 <RankingTable />
-                </div>
+              </div>
             </Col>
 
             <Col span={16}>
-                <BannerGame />
+              <BannerGame />
             </Col>
-
-
           </Row>
         </div>
-
-
-        {/* Main Content Grid */}
         <div className="container mx-auto px-8 py-10 ">
-        <Row gutter={[24, 24]}>
+          <Row gutter={[24, 24]}>
             <Col span={12}>
-                <div>
+              <div>
                 <Rankings />
-                </div>
+              </div>
             </Col>
-
           </Row>
-        </div>
+        </div> */}
 
         {/* Footer */}
       </div>
     </main>
-  )
+  );
 }
