@@ -89,10 +89,11 @@ const PaymentPage = () => {
 
       <div className="grid grid-cols-2 gap-2 text-sm mb-4">
         <div className="text-right text-gray-600">Chủ tài khoản:</div>
-        <div className="font-medium">BÙI VĂN VIỆT</div>
+        <div className="font-medium">TRAN DUC LINH
+</div>
 
         <div className="text-right text-gray-600">Số tài khoản:</div>
-        <div className="font-medium">18445681</div>
+        <div className="font-medium">04028970901</div>
 
         <div className="text-right text-gray-600">Ngân hàng:</div>
         <div className="font-medium">ACB</div>
