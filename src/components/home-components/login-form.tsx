@@ -1,9 +1,9 @@
 "use client"
 
+import { EyeInvisibleOutlined, EyeOutlined, LockOutlined, UserOutlined } from "@ant-design/icons"
+import { Button, ConfigProvider, Input, theme } from "antd"
 import type React from "react"
 import { useState } from "react"
-import { Input, Checkbox, Button, ConfigProvider, theme } from "antd"
-import { EyeInvisibleOutlined, EyeOutlined, UserOutlined, LockOutlined } from "@ant-design/icons"
 
 export function LoginForm() {
   const [username, setUsername] = useState("")
@@ -47,7 +47,7 @@ export function LoginForm() {
         ...customTheme,
       }}
     >
-      <div className="card-items">
+      <div className="">
         <div
           className="game-panel-content body-card"
           style={{
@@ -98,13 +98,13 @@ export function LoginForm() {
             </div>
 
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              <Checkbox
+              {/* <Checkbox
                 checked={rememberMe}
                 onChange={(e) => setRememberMe(e.target.checked)}
                 style={{ color: "#fcd34d" }}
               >
                 <span style={{ color: "#fcd34d", fontSize: "14px" }}>Ghi nhớ tài khoản</span>
-              </Checkbox>
+              </Checkbox> */}
 
               <a
                 href="#"

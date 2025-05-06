@@ -156,16 +156,10 @@ const ServerInfor = () => {
         <Divider style={{ borderColor: "#92400e", margin: "12px 0" }} />
 
         <div style={{ color: "#fef08a", fontSize: 14, lineHeight: 1.5 }}>
-           <li>Max cap: 90 / Class: Only Asia / Skill: 90 / Master: 270 điểm</li>
-              <li>Ghost Skill: Không Ghost / Item: ITEM D9 - SOX</li>
-              <li>Giới hạn: 3 acc/PC, 1JOB / 1IP / khoá buôn (00h00-8h00)</li>
+           <li>Max cap: 90</li>
+              <li>Ghost Skill: Không Ghost</li>
+              <li>Giới hạn: 3 acc/PC, 1JOB </li>
               <li>Time: 5 giờ xanh / 1 giờ vàng</li>
-              <li>Trang bị: FULL Từ D1 - D9, đủ SOX</li>
-              <li>Hiệu ứng vũ khí: Chuẩn VDC</li>
-              <li>Không có hệ thống Gacha</li>
-              <li>LKD Đặt biệt: Có LKD</li>
-              <li>Item vứt shop: 1 vàng</li>
-              <li>SHOP NPC: Giá 10.000 VNĐ (sự kiện)</li>
           <p>
           </p>
         </div>

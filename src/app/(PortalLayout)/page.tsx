@@ -48,47 +48,41 @@ export default function Home() {
 </div>
             </div>
           <div className="absolute bottom-0 left-0 right-0 flex justify-center">
-            {/* Zalo */}
-            <div>
+
+
+            <Row gutter={[24, 24]} >
+              <Col span={8}>
                <ServerInfor />
-            </div>            
-            {/* Nút Chơi Ngay - Thiết kế giống hình */}
-           <div className="relative align-center px-5">
-      <div className="play-button-container">
-        {/* <button className="play-button">
-          <div className="play-button-content">
-            <span className="diamond-decoration">◆</span>
-            <span className="button-text">CHƠI GAME NGAY</span>
-            <span className="diamond-decoration">◆</span>
-          </div>
-        </button> */}
-                
-        <Link href="/auth/login" className="btn-play" >
-          {/* <div className="play-button-content">
-            <span className="diamond-decoration">◆</span>
-            <span className="button-text">CHƠI GAME NGAY</span>
-            <span className="diamond-decoration">◆</span>
-                  </div> */}
+              </Col>
+              <Col span={8}>
+              {/* Nút Chơi Ngay - Thiết kế giống hình */}
+            <div className="">
+              <div className="">
+                <Link href="/auth/login" className="" >
+                  {/* <div className="play-button-content">
+                    <span className="diamond-decoration">◆</span>
+                    <span className="button-text">CHƠI GAME NGAY</span>
+                    <span className="diamond-decoration">◆</span>
+                          </div> */}
 
-                  <div className="img-play-button flex justify-center items-center">
-                                <Image
-                  src="/img/start-game-CHOI-NGAY_487e4ae.png"
-                  alt="Zalo"
-                  width={300}
-                  height={300}
-                />
-                    
+                          <div className="">
+                                        <Image
+                          src="/img/start-game-CHOI-NGAY_487e4ae.png"
+                          alt="Zalo"
+                          width={300}
+                          height={300}
+                        />
+                            
+                      </div>
+                </Link>
               </div>
-        </Link>
-      </div>
-    </div>
-            <LoginForm />
-
-         
-          </div>
-          
-          
-          
+            </div>
+              </Col>
+              <Col span={8}>
+                           <LoginForm />
+              </Col>
+            </Row>
+            </div>
         </div>
 
         

@@ -79,7 +79,7 @@ const PaymentPage = () => {
 
       <div className="flex justify-center mb-4">
         <img
-          src={`https://qr.sepay.vn/img?acc=18445681&bank=ACB&amount=${order.total}&des=DH_${order.id}&download=true`}
+          src={`https://qr.sepay.vn/img?acc=04028970901&bank=TPBank&amount=${order.total}&des=DH_${order.id}&download=true`}
           width={200}
           height={200}
           alt="QR Code"
