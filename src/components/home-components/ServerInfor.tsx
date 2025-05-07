@@ -1,9 +1,10 @@
 "use client";
 
-import {
-  WifiOutlined as WifiOffOutlined,
-  WifiOutlined,
-} from "@ant-design/icons";
+import
+  {
+    WifiOutlined as WifiOffOutlined,
+    WifiOutlined,
+  } from "@ant-design/icons";
 import { Badge, Card, ConfigProvider, Divider, theme, Typography } from "antd";
 import { useState } from "react";
 

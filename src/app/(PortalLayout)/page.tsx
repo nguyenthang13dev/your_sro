@@ -1,10 +1,6 @@
-import BannerGame from "@/components/home-components/BannerGame";
 import GameServerNotice from "@/components/home-components/GameServerNotice";
 import { LoginForm } from "@/components/home-components/login-form";
-import RankingTable from "@/components/home-components/rank-mini";
-import { Rankings } from "@/components/home-components/rankings";
 import ServerInfor from "@/components/home-components/ServerInfor";
-import { Col, Row } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 

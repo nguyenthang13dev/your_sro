@@ -79,7 +79,7 @@ const PaymentPage = () => {
 
       <div className="flex justify-center mb-4">
         <img
-          src={`https://qr.sepay.vn/img?acc=18445681&bank=ACB&amount=${order.total}&des=DH_${order.id}&download=true`}
+          src={`https://qr.sepay.vn/img?acc=04028970901&bank=TPBank&amount=${order.total}&des=DH_${order.id}&download=true`}
           width={200}
           height={200}
           alt="QR Code"
@@ -89,10 +89,11 @@ const PaymentPage = () => {
 
       <div className="grid grid-cols-2 gap-2 text-sm mb-4">
         <div className="text-right text-gray-600">Chủ tài khoản:</div>
-        <div className="font-medium">BÙI VĂN VIỆT</div>
+        <div className="font-medium">TRAN DUC LINH
+</div>
 
         <div className="text-right text-gray-600">Số tài khoản:</div>
-        <div className="font-medium">18445681</div>
+        <div className="font-medium">04028970901</div>
 
         <div className="text-right text-gray-600">Ngân hàng:</div>
         <div className="font-medium">ACB</div>
