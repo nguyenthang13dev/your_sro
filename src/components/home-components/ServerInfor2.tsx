@@ -184,12 +184,6 @@ const ServerInfor2 = () => {
           <p></p>
         </div>
       </Card>
-      <div>
-        <Rankings />
-      </div>
-      <div>
-        <RankingTable />
-      </div>
     </ConfigProvider>
   );
 };

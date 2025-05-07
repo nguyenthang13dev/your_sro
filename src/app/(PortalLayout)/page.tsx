@@ -19,13 +19,21 @@ export default function Home() {
 
       {/* Main content */}
       <div className="relative z-10">
-        {/* Banner */}
+        <div className="mx-auto px-4 py-8 bg-news relative overflow-hidden">
+          {/* Video nền */}
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute top-0 left-0 w-full h-full object-cover -z-10"
+          >
+            <source src="/video/QRcode.mp4" type="video/mp4" />
+            Trình duyệt của bạn không hỗ trợ video.
+          </video>
 
-        {/* News Section */}
-
-        <div className="container mx-auto px-4 py-8 bg-news relative">
-          {/* <NewsSection /> */}
-          <div className="absolute position-zalo">
+          {/* Hiển thị QR Code*/}
+          {/* <div className="absolute position-zalo">
             <div
               style={{
                 minWidth: "120px",
@@ -54,37 +62,15 @@ export default function Home() {
                 Vào nhóm nhận GIFTCODE khủng
               </p>
             </div>
-          </div>
-
-          {/* <div className="absolute bottom-0 left-0 right-0 flex justify-center game-container">
-            <div className="server-info">
-              <ServerInfor />
-            </div>
-            <div className="relative align-center px-5 play-button-div">
-              <div className="play-button-container">
-                <Link href="/auth/login" className="btn-play">
-                  <div className="img-play-button flex justify-center items-center">
-                    <Image
-                      src="/img/start-game-CHOI-NGAY_487e4ae.png"
-                      alt="Zalo"
-                      width={300}
-                      height={300}
-                    />
-                  </div>
-                </Link>
-              </div>
-            </div>
-            <div className="login-form">
-              <LoginForm />
-            </div>
           </div> */}
-          <div className="absolute bottom-0 left-0 right-0 flex justify-center game-container">
-            <div className="server-info">
+
+          <Row className="absolute left-0 right-0 justify-end main-banner-thong-tin">
+            <Col className="server-info">
               <ServerInfor />
-            </div>
-            <div className="relative align-center px-5 play-button-div">
+            </Col>
+            <Col>
               <div className="play-button-container">
-                <Link href="/auth/login" className="btn-play">
+                <Link href="/auth/login" className="">
                   <div className="img-play-button flex justify-center items-center">
                     <Image
                       src="/img/start-game-CHOI-NGAY_487e4ae.png"
@@ -95,41 +81,19 @@ export default function Home() {
                   </div>
                 </Link>
               </div>
-            </div>
-            <div className="login-form">
-              <LoginForm />
-            </div>
-          </div>
+            </Col>
+            <Col>
+              <div className="login-form">
+                <LoginForm />
+              </div>
+            </Col>
+          </Row>
+          {/* <div className="absolute bottom-0 left-0 right-0 flex justify-center game-container"></div> */}
         </div>
 
         <div>
           <GameServerNotice />
         </div>
-
-        {/* <div className="container mx-auto px-8 py-10 ">
-          <Row gutter={[24, 24]}>
-            <Col span={8}>
-              <div>
-                <RankingTable />
-              </div>
-            </Col>
-
-            <Col span={16}>
-              <BannerGame />
-            </Col>
-          </Row>
-        </div>
-        <div className="container mx-auto px-8 py-10 ">
-          <Row gutter={[24, 24]}>
-            <Col span={12}>
-              <div>
-                <Rankings />
-              </div>
-            </Col>
-          </Row>
-        </div> */}
-
-        {/* Footer */}
       </div>
     </main>
   );

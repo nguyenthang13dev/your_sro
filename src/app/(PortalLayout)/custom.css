@@ -588,7 +588,7 @@ a:hover{
     color: #fff !important;
     text-decoration: none;
     font-weight: bolder;
-    font-size: 20px;
+    font-size: 18px;
     transition: all linear;
     margin: 0 10px;    
   }
@@ -753,7 +753,7 @@ a:hover{
   /* News */
 
   .bg-news {
-    background-image: url('/img/13113514tUwfk.jpg');
+    /* background-image: url('/img/13113514tUwfk.jpg'); */
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -856,6 +856,7 @@ a:hover{
         top: 0;
         position: absolute;
         z-index: 100;
+        width: 100%;
 }
 
 
@@ -896,6 +897,13 @@ a:hover{
     min-height: 382px !important;
 }
 
+.min-h300 {
+    min-height: 300px !important;
+}
+
+.min-h900 {
+    min-height: 900px !important;
+}
 
 .pd-news {
     padding-top: 5rem !important;
@@ -937,7 +945,6 @@ a:hover{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
 }
 
 .play-button {
@@ -1010,7 +1017,7 @@ a:hover{
 
 .img-play-button img {
     width: 100%;
-    height: 150px;
+    height: 180px;
     object-fit: cover;
     object-position: center;
 }
@@ -1021,13 +1028,17 @@ a:hover{
     height: 300px; /* chỉnh theo chiều cao ảnh */
 }
   
+
+.server-info {
+    margin-top: 20px;
+}
   .server-info,
   .login-form {
-    height: 200px; /* cao hơn ảnh gốc */
+    /* height: 200px;  */
   }
   
 
-.server-info {
+/* .server-info {
     background-image: url('/img/anhWebCu/gocBenTrai.png');
     background-size: contain;
     background-repeat: no-repeat;
@@ -1039,7 +1050,7 @@ a:hover{
     background-size: contain;
     background-repeat: no-repeat;
     background-position: right bottom;
-  }
+  } */
   
 
 
@@ -1058,4 +1069,31 @@ a:hover{
   
   .khoi-imge-selector > div:last-child {
     width: 50%; /* Adjust as needed for the image/character block */
+  }
+
+
+.main-banner-thong-tin {
+    bottom: 4%;
+    right: 5%;
+}
+
+.main-logo {
+    z-index: 3;
+    position: absolute;
+    top: 0;
+    left: -4px;
+    width: 219px;
+    height: 140px;
+    text-indent: -9999px;
+    background: url('/img/avatars/logo.png') no-repeat;
+}
+
+
+/*Css main layout 2*/
+.cha-main-layout-2 {
+    display: flex;
+    justify-content: center;
+}
+  .main-layout-2 {
+    width: 1500px;
   }

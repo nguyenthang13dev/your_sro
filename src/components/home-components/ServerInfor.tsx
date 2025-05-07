@@ -9,102 +9,7 @@ import { useState } from "react";
 
 const { Title, Text } = Typography;
 
-interface ServerData {
-  id: number;
-  name: string;
-  status: "online" | "offline" | "maintenance";
-  players: number;
-  maxPlayers: number;
-  region: string;
-  ping: number;
-  label?: "hot" | "new" | "recommended";
-  lastReset: string;
-}
-
 const ServerInfor = () => {
-  const [selectedServer, setSelectedServer] = useState<number | null>(null);
-
-  const servers: ServerData[] = [
-    {
-      id: 1,
-      name: "Server 1 - Rồng Xanh",
-      status: "online",
-      players: 1250,
-      maxPlayers: 2000,
-      region: "Asia",
-      ping: 25,
-      label: "hot",
-      lastReset: "2 ngày trước",
-    },
-    {
-      id: 2,
-      name: "Server 2 - Phượng Hoàng",
-      status: "online",
-      players: 980,
-      maxPlayers: 2000,
-      region: "Asia",
-      ping: 30,
-      label: "new",
-      lastReset: "5 ngày trước",
-    },
-    {
-      id: 3,
-      name: "Server 3 - Hổ Vàng",
-      status: "online",
-      players: 750,
-      maxPlayers: 2000,
-      region: "Asia",
-      ping: 35,
-      lastReset: "10 ngày trước",
-    },
-    {
-      id: 4,
-      name: "Server 4 - Rùa Đen",
-      status: "maintenance",
-      players: 0,
-      maxPlayers: 2000,
-      region: "Asia",
-      ping: 0,
-      lastReset: "Bảo trì",
-    },
-  ];
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "online":
-        return "#4ade80"; // green-400
-      case "offline":
-        return "#ef4444"; // red-500
-      case "maintenance":
-        return "#eab308"; // yellow-500
-      default:
-        return "#9ca3af"; // gray-400
-    }
-  };
-
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case "online":
-        return <WifiOutlined style={{ color: "#4ade80" }} />;
-      case "offline":
-      case "maintenance":
-        return <WifiOffOutlined style={{ color: "#ef4444" }} />;
-      default:
-        return null;
-    }
-  };
-
-  const getPlayerCountColor = (players: number, maxPlayers: number) => {
-    const ratio = players / maxPlayers;
-    if (ratio > 0.8) return "#f87171"; // red-400
-    if (ratio > 0.5) return "#facc15"; // yellow-400
-    return "#4ade80"; // green-400
-  };
-
-  const handleSelectServer = (id: number) => {
-    setSelectedServer(id);
-  };
-
   // Custom theme for Ant Design
   const customTheme = {
     token: {
@@ -137,7 +42,8 @@ const ServerInfor = () => {
           background: "rgba(0, 0, 0, 0.6)",
           borderColor: "#ca8a04",
           borderWidth: 2,
-          width: 500,
+          width: 360,
+          fontSize: "16px",
         }}
       >
         <div
@@ -149,9 +55,9 @@ const ServerInfor = () => {
           }}
         >
           <Title level={4} style={{ color: "#fcd34d", margin: 0 }}>
-            Thông Tin Máy Chủ
+            Thông Tin Quan Trọng
           </Title>
-          <Badge
+          {/* <Badge
             count={
               servers.reduce(
                 (acc, server) =>
@@ -164,52 +70,21 @@ const ServerInfor = () => {
               color: "#fef08a",
               border: "1px solid #eab308",
             }}
-          />
+          /> */}
         </div>
 
         <Divider style={{ borderColor: "#92400e", margin: "12px 0" }} />
 
-        <div className="grid grid-cols-2 gap-4">
-          {servers.map((server) => (
-            <Card
-              key={server.id}
-              bordered
-              style={{
-                background:
-                  server.status === "online"
-                    ? "rgba(34, 197, 94, 0.2)"
-                    : "rgba(239, 68, 68, 0.2)",
-                borderColor: server.status === "online" ? "#16a34a" : "#dc2626",
-                borderWidth: 2,
-                textAlign: "center",
-              }}
-            >
-              <div className="relative">
-                {server.label && (
-                  <Badge
-                    count={server.label.toUpperCase()}
-                    style={{
-                      position: "absolute",
-                      top: -10,
-                      right: -10,
-                      backgroundColor:
-                        server.label === "hot" ? "#b91c1c" : "#16a34a",
-                      color: "#fef08a",
-                      border: "1px solid #eab308",
-                    }}
-                  />
-                )}
-                <div style={{ color: "#fef08a", fontWeight: "bold" }}>
-                  {server.name}
-                </div>
-                <div style={{ color: "#ffffff", marginTop: 4 }}>
-                  {server.status === "online"
-                    ? `Hoạt động ${server.players}/${server.maxPlayers}`
-                    : "Bảo trì"}
-                </div>
-              </div>
-            </Card>
-          ))}
+        <div className="grid grid-cols-1 gap-4">
+          <div style={{ color: "#fef08a", fontWeight: "bold" }}>
+            <a>1. Sự kiện ĐUA TOP Khai mở server</a>
+          </div>
+          <div style={{ color: "#fef08a", fontWeight: "bold" }}>
+            <a>2. Khuyến mại nạp thẻ - Nhận ngàn tích luỹ</a>
+          </div>
+          <div style={{ color: "#fef08a", fontWeight: "bold" }}>
+            <a>3. Điểm đặc sắc của Server : Silkroad Việt</a>
+          </div>
         </div>
       </Card>
     </ConfigProvider>

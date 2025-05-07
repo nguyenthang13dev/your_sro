@@ -1,19 +1,24 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
-import { Input, Checkbox, Button, ConfigProvider, theme } from "antd"
-import { EyeInvisibleOutlined, EyeOutlined, UserOutlined, LockOutlined } from "@ant-design/icons"
+import type React from "react";
+import { useState } from "react";
+import { Input, Checkbox, Button, ConfigProvider, theme } from "antd";
+import {
+  EyeInvisibleOutlined,
+  EyeOutlined,
+  UserOutlined,
+  LockOutlined,
+} from "@ant-design/icons";
 
 export function LoginForm() {
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
-  const [rememberMe, setRememberMe] = useState(false)
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log("Login attempt with:", username, password, rememberMe)
-  }
+    e.preventDefault();
+    console.log("Login attempt with:", username, password, rememberMe);
+  };
 
   // Custom theme for Ant Design
   const customTheme = {
@@ -38,7 +43,7 @@ export function LoginForm() {
         colorPrimaryHover: "#d97706",
       },
     },
-  }
+  };
 
   return (
     <ConfigProvider
@@ -58,14 +63,19 @@ export function LoginForm() {
             width: "300px",
           }}
         >
-          <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+          <form
+            onSubmit={handleSubmit}
+            style={{ display: "flex", flexDirection: "column", gap: "16px" }}
+          >
             <div>
               <Input
                 id="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Tài khoản"
-                prefix={<UserOutlined style={{ color: "rgba(252, 211, 77, 0.5)" }} />}
+                prefix={
+                  <UserOutlined style={{ color: "rgba(252, 211, 77, 0.5)" }} />
+                }
                 style={{
                   background: "rgba(255, 255, 255, 0.1)",
                   color: "#fcd34d",
@@ -80,12 +90,16 @@ export function LoginForm() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Nhập mật khẩu"
-                prefix={<LockOutlined style={{ color: "rgba(252, 211, 77, 0.5)" }} />}
+                prefix={
+                  <LockOutlined style={{ color: "rgba(252, 211, 77, 0.5)" }} />
+                }
                 iconRender={(visible) =>
                   visible ? (
                     <EyeOutlined style={{ color: "rgba(252, 211, 77, 0.5)" }} />
                   ) : (
-                    <EyeInvisibleOutlined style={{ color: "rgba(252, 211, 77, 0.5)" }} />
+                    <EyeInvisibleOutlined
+                      style={{ color: "rgba(252, 211, 77, 0.5)" }}
+                    />
                   )
                 }
                 style={{
@@ -97,14 +111,20 @@ export function LoginForm() {
               />
             </div>
 
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-              <Checkbox
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              {/* <Checkbox
                 checked={rememberMe}
                 onChange={(e) => setRememberMe(e.target.checked)}
                 style={{ color: "#fcd34d" }}
               >
                 <span style={{ color: "#fcd34d", fontSize: "14px" }}>Ghi nhớ tài khoản</span>
-              </Checkbox>
+              </Checkbox> */}
 
               <a
                 href="#"
@@ -118,7 +138,13 @@ export function LoginForm() {
               </a>
             </div>
 
-            <div style={{ display: "flex", justifyContent: "center", marginTop: "8px" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: "8px",
+              }}
+            >
               <Button
                 type="primary"
                 htmlType="submit"
@@ -139,7 +165,7 @@ export function LoginForm() {
         </div>
       </div>
     </ConfigProvider>
-  )
+  );
 }
 
-export default LoginForm
+export default LoginForm;
