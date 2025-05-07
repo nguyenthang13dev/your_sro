@@ -24,8 +24,6 @@ interface ServerData {
 }
 
 const ImageSelectorInfo = () => {
-  const [selectedServer, setSelectedServer] = useState<number | null>(null);
-
   const servers: ServerData[] = [
     {
       id: 1,
@@ -70,42 +68,6 @@ const ImageSelectorInfo = () => {
       lastReset: "Bảo trì",
     },
   ];
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "online":
-        return "#4ade80"; // green-400
-      case "offline":
-        return "#ef4444"; // red-500
-      case "maintenance":
-        return "#eab308"; // yellow-500
-      default:
-        return "#9ca3af"; // gray-400
-    }
-  };
-
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case "online":
-        return <WifiOutlined style={{ color: "#4ade80" }} />;
-      case "offline":
-      case "maintenance":
-        return <WifiOffOutlined style={{ color: "#ef4444" }} />;
-      default:
-        return null;
-    }
-  };
-
-  const getPlayerCountColor = (players: number, maxPlayers: number) => {
-    const ratio = players / maxPlayers;
-    if (ratio > 0.8) return "#f87171"; // red-400
-    if (ratio > 0.5) return "#facc15"; // yellow-400
-    return "#4ade80"; // green-400
-  };
-
-  const handleSelectServer = (id: number) => {
-    setSelectedServer(id);
-  };
 
   // Custom theme for Ant Design
   const customTheme = {

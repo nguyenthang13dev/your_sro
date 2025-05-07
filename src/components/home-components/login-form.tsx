@@ -9,25 +9,56 @@ import {
   UserOutlined,
   LockOutlined,
 } from "@ant-design/icons";
+import { useRouter } from "next/navigation";
+import { authService } from "@/services/auth/auth.service";
+import { toast } from "react-toastify";
+
+type LoginType = {
+  username: string;
+  password: string;
+  rememberMe?: boolean;
+};
 
 export function LoginForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
+  const [rememberMe] = useState(false); // Nếu cần có thể bật lại checkbox
+  const [message, setMessage] = useState("");
+  const router = useRouter();
+
+  const onLogin = async (loginForm: LoginType) => {
+    try {
+      const data = await authService.login(loginForm);
+      if (data != null && data.status) {
+        toast.success("Đăng nhập thành công", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+        router.push("/dashboard");
+      } else {
+        setMessage(data.message || "Tài khoản hoặc mật khẩu không đúng");
+      }
+    } catch (err) {
+      setMessage("Tài khoản hoặc mật khẩu không đúng");
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Login attempt with:", username, password, rememberMe);
+    onLogin({ username, password, rememberMe });
   };
 
-  // Custom theme for Ant Design
   const customTheme = {
     token: {
-      colorPrimary: "#f59e0b", // amber-500
-      colorText: "#fcd34d", // amber-300
-      colorTextPlaceholder: "rgba(252, 211, 77, 0.5)", // amber-300 with opacity
+      colorPrimary: "#f59e0b",
+      colorText: "#fcd34d",
+      colorTextPlaceholder: "rgba(252, 211, 77, 0.5)",
       colorBgContainer: "rgba(0, 0, 0, 0.6)",
-      colorBorder: "#f59e0b", // amber-500
+      colorBorder: "#f59e0b",
       borderRadius: 8,
     },
     components: {
@@ -46,12 +77,7 @@ export function LoginForm() {
   };
 
   return (
-    <ConfigProvider
-      theme={{
-        algorithm: theme.darkAlgorithm,
-        ...customTheme,
-      }}
-    >
+    <ConfigProvider theme={{ algorithm: theme.darkAlgorithm, ...customTheme }}>
       <div className="card-items">
         <div
           className="game-panel-content body-card"
@@ -67,49 +93,45 @@ export function LoginForm() {
             onSubmit={handleSubmit}
             style={{ display: "flex", flexDirection: "column", gap: "16px" }}
           >
-            <div>
-              <Input
-                id="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                placeholder="Tài khoản"
-                prefix={
-                  <UserOutlined style={{ color: "rgba(252, 211, 77, 0.5)" }} />
-                }
-                style={{
-                  background: "rgba(255, 255, 255, 0.1)",
-                  color: "#fcd34d",
-                  borderColor: "#f59e0b",
-                  height: "40px",
-                }}
-              />
-            </div>
+            <Input
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Tài khoản"
+              prefix={
+                <UserOutlined style={{ color: "rgba(252, 211, 77, 0.5)" }} />
+              }
+              style={{
+                background: "rgba(255, 255, 255, 0.1)",
+                color: "#fcd34d",
+                borderColor: "#f59e0b",
+                height: "40px",
+              }}
+            />
 
-            <div>
-              <Input.Password
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Nhập mật khẩu"
-                prefix={
-                  <LockOutlined style={{ color: "rgba(252, 211, 77, 0.5)" }} />
-                }
-                iconRender={(visible) =>
-                  visible ? (
-                    <EyeOutlined style={{ color: "rgba(252, 211, 77, 0.5)" }} />
-                  ) : (
-                    <EyeInvisibleOutlined
-                      style={{ color: "rgba(252, 211, 77, 0.5)" }}
-                    />
-                  )
-                }
-                style={{
-                  background: "rgba(255, 255, 255, 0.1)",
-                  color: "#fcd34d",
-                  borderColor: "#f59e0b",
-                  height: "40px",
-                }}
-              />
-            </div>
+            <Input.Password
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Nhập mật khẩu"
+              prefix={
+                <LockOutlined style={{ color: "rgba(252, 211, 77, 0.5)" }} />
+              }
+              iconRender={(visible) =>
+                visible ? (
+                  <EyeOutlined style={{ color: "rgba(252, 211, 77, 0.5)" }} />
+                ) : (
+                  <EyeInvisibleOutlined
+                    style={{ color: "rgba(252, 211, 77, 0.5)" }}
+                  />
+                )
+              }
+              style={{
+                background: "rgba(255, 255, 255, 0.1)",
+                color: "#fcd34d",
+                borderColor: "#f59e0b",
+                height: "40px",
+              }}
+            />
 
             <div
               style={{
@@ -118,16 +140,6 @@ export function LoginForm() {
                 alignItems: "center",
               }}
             >
-              <Checkbox
-                checked={rememberMe}
-                onChange={(e) => setRememberMe(e.target.checked)}
-                style={{ color: "#fcd34d" }}
-              >
-                <span style={{ color: "#fcd34d", fontSize: "14px" }}>
-                  Ghi nhớ tài khoản
-                </span>
-              </Checkbox>
-
               <a
                 href="#"
                 style={{
@@ -140,29 +152,33 @@ export function LoginForm() {
               </a>
             </div>
 
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                marginTop: "8px",
-              }}
-            >
-              <Button
-                type="primary"
-                htmlType="submit"
+            {message && (
+              <div
                 style={{
-                  background: "#f59e0b",
-                  borderColor: "#fcd34d",
-                  color: "#000",
-                  fontWeight: "bold",
-                  height: "40px",
-                  width: "100%",
-                  fontSize: "16px",
+                  color: "#f87171",
+                  fontSize: "14px",
+                  textAlign: "center",
                 }}
               >
-                ĐĂNG NHẬP
-              </Button>
-            </div>
+                {message}
+              </div>
+            )}
+
+            <Button
+              type="primary"
+              htmlType="submit"
+              style={{
+                background: "#f59e0b",
+                borderColor: "#fcd34d",
+                color: "#000",
+                fontWeight: "bold",
+                height: "40px",
+                width: "100%",
+                fontSize: "16px",
+              }}
+            >
+              ĐĂNG NHẬP
+            </Button>
           </form>
         </div>
       </div>

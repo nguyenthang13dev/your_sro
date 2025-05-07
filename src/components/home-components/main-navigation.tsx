@@ -27,7 +27,7 @@ export function MainNavigation() {
               alt="SRO Icon"
               width={120}
               height={80}
-              className="object-contain"
+              className="object-contain main-logo"
             />
             {/* <a className="main-logo"></a> */}
           </li>

@@ -1,16 +1,17 @@
 "use client";
 
-import { Col, Row } from "antd";
+import { Card, Col, Row } from "antd";
 import Image from "next/image";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import AchiveMent from "./AchiveMent";
 import ServerInfor2 from "./ServerInfor2";
-import ImageSelector from "./ImageSelector";
+
 import ImageSelectorInfo from "./ImageSelectorInfo";
 import { Rankings } from "./rankings";
 import RankingTable from "./rank-mini";
 import DetailTinTuc from "./DetailTinTuc";
+import ImageSelector from "./ImageSelector";
 
 const GameServerNotice = () => {
   const servers = [
@@ -70,18 +71,9 @@ const GameServerNotice = () => {
       </div>
 
       <div className="cha-main-layout-2 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-lg shadow-lg overflow-hidden bg-img-news">
-        {/* <div className="khoi-imge-selector relative">
-          <ImageSelectorInfo />
+        <div className="main-layout-2">
           <ImageSelector />
-        </div> */}
-        <Row gutter={24}>
-          <Col span={12}>
-            <ImageSelectorInfo />
-          </Col>
-          <Col span={12}>
-            <ImageSelector />
-          </Col>
-        </Row>
+        </div>
       </div>
     </>
   );

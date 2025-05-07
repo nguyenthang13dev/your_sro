@@ -887,6 +887,9 @@ a:hover{
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    border-color: #ca8a04;
+    border-width: 2px;
+    border-radius: 10px
 }
 
 .img-h382 img {
@@ -1081,11 +1084,11 @@ a:hover{
     z-index: 3;
     position: absolute;
     top: 0;
-    left: -4px;
+    left: -16px;
     width: 219px;
     height: 140px;
     text-indent: -9999px;
-    background: url('/img/avatars/logo.png') no-repeat;
+    /* background: url('/img/avatars/logo.png') no-repeat; */
 }
 
 

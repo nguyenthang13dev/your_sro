@@ -18,7 +18,7 @@ export function Rankings() {
   ];
 
   return (
-    <div className="card-items">
+    <div className="card-items mb-4">
       {/* Header */}
       <div className="header-card">
         <h3 className="font-bold text-lg uppercase">Bảng xếp hạng</h3>
