@@ -52,7 +52,7 @@ export function LoginForm() {
         ...customTheme,
       }}
     >
-      <div className="">
+      <div className="card-items">
         <div
           className="game-panel-content body-card"
           style={{
@@ -118,14 +118,15 @@ export function LoginForm() {
                 alignItems: "center",
               }}
             >
-              {/* <Checkbox
+              <Checkbox
                 checked={rememberMe}
                 onChange={(e) => setRememberMe(e.target.checked)}
                 style={{ color: "#fcd34d" }}
               >
-                <span style={{ color: "#fcd34d", fontSize: "14px" }}>Ghi nhớ tài khoản</span>
-              </Checkbox> */}
-              </Checkbox> */}
+                <span style={{ color: "#fcd34d", fontSize: "14px" }}>
+                  Ghi nhớ tài khoản
+                </span>
+              </Checkbox>
 
               <a
                 href="#"

@@ -1,6 +1,7 @@
 import GameServerNotice from "@/components/home-components/GameServerNotice";
 import { LoginForm } from "@/components/home-components/login-form";
 import ServerInfor from "@/components/home-components/ServerInfor";
+import { Col, Row } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 
