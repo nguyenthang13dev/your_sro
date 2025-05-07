@@ -60,19 +60,14 @@ const GameServerNotice = () => {
           </Row>
           <Row gutter={24} className="mb-4">
             <Col span={12}>
-              <Rankings />
+              {/* <Rankings /> */}
               <RankingTable />
+              <ImageSelector />
             </Col>
             <Col span={12}>
               <DetailTinTuc />
             </Col>
           </Row>
-        </div>
-      </div>
-
-      <div className="cha-main-layout-2 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-lg shadow-lg overflow-hidden bg-img-news">
-        <div className="main-layout-2">
-          <ImageSelector />
         </div>
       </div>
     </>

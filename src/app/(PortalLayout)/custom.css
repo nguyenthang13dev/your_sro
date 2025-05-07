@@ -798,7 +798,7 @@ a:hover{
   .card-items {
     background-color: #2d2d2d;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    background-image: url('/img/card/k13.png');
+    /* background-image: url('/img/card/k13.png'); */
     border-radius: 7px;
   }
 
