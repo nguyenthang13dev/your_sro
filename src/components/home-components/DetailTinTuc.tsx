@@ -1,31 +1,13 @@
-"use client";
+"use client"
 
-import {
-  WifiOutlined as WifiOffOutlined,
-  WifiOutlined,
-} from "@ant-design/icons";
-import { Badge, Card, ConfigProvider, Divider, theme, Typography } from "antd";
-import { useState } from "react";
-import { Rankings } from "./rankings";
-import RankingTable from "./rank-mini";
+import type { tableQLNewsData } from "@/interface/QLNews/QLNews"
+import { CalendarOutlined, TagOutlined } from "@ant-design/icons"
+import { Card, ConfigProvider, Divider, Tag, theme, Typography } from "antd"
+import dayjs from "dayjs"
 
-const { Title, Text } = Typography;
+const { Title, Text, Paragraph } = Typography
 
-interface ServerData {
-  id: number;
-  name: string;
-  status: "online" | "offline" | "maintenance";
-  players: number;
-  maxPlayers: number;
-  region: string;
-  ping: number;
-  label?: "hot" | "new" | "recommended";
-  lastReset: string;
-}
-
-const DetailTinTuc = () => {
-  const [selectedServer, setSelectedServer] = useState<number | null>(null);
-
+const DetailTinTuc = ({ news }: { news?: tableQLNewsData }) => {
   // Custom theme for Ant Design
   const customTheme = {
     token: {
@@ -43,7 +25,23 @@ const DetailTinTuc = () => {
         colorPrimaryHover: "#a16207", // yellow-600
       },
     },
-  };
+  }
+
+  // Map news type to a more readable format and tag color
+  const getNewsTypeInfo = (type?: string) => {
+    switch (type) {
+      case "news":
+        return { label: "Tin tức", color: "blue" }
+      case "event":
+        return { label: "Sự kiện", color: "green" }
+      case "notification":
+        return { label: "Thông báo mới", color: "red" }
+      default:
+        return { label: "Không xác định", color: "default" }
+    }
+  }
+
+  const typeInfo = getNewsTypeInfo(news?.type)
 
   return (
     <ConfigProvider
@@ -70,16 +68,96 @@ const DetailTinTuc = () => {
           }}
         >
           <Title level={4} style={{ color: "#fcd34d", margin: 0 }}>
-            Chi tiết tin tức
+            {news?.title || "Chi tiết tin tức"}
           </Title>
+        </div>
+
+        <div style={{ marginBottom: 12 }}>
+          {news?.type && (
+            <Tag color={typeInfo.color} icon={<TagOutlined />} style={{ marginRight: 8 }}>
+              {typeInfo.label}
+            </Tag>
+          )}
+
+          {news?.publishDate && (
+            <Tag icon={<CalendarOutlined />} color="gold">
+              {dayjs(news.publishDate).format("DD/MM/YYYY")}
+            </Tag>
+          )}
         </div>
 
         <Divider style={{ borderColor: "#92400e", margin: "12px 0" }} />
 
-        <div style={{ color: "#fef08a", fontSize: 14, lineHeight: 1.5 }}></div>
+        <div style={{ color: "#fef08a", fontSize: 14, lineHeight: 1.5 }}>
+          {news?.content ? (
+            <div
+              className="ql-editor"
+              dangerouslySetInnerHTML={{ __html: news.content }}
+              style={{
+                padding: 0,
+                color: "#f8fafc", // slate-50
+                fontSize: "1rem",
+              }}
+            />
+          ) : (
+            <Text style={{ color: "#fef08a" }}>Không có nội dung</Text>
+          )}
+        </div>
       </Card>
-    </ConfigProvider>
-  );
-};
 
-export default DetailTinTuc;
+      {/* Add the following styles to properly render Quill content */}
+      <style jsx global>{`
+        .ql-editor h1, .ql-editor h2, .ql-editor h3, .ql-editor h4, .ql-editor h5, .ql-editor h6 {
+          color: #fcd34d;
+          margin-top: 1em;
+          margin-bottom: 0.5em;
+        }
+        .ql-editor h1 { font-size: 1.75em; }
+        .ql-editor h2 { font-size: 1.5em; }
+        .ql-editor h3 { font-size: 1.25em; }
+        .ql-editor p {
+          margin-bottom: 1em;
+        }
+        .ql-editor ul, .ql-editor ol {
+          padding-left: 2em;
+          margin-bottom: 1em;
+        }
+        .ql-editor li {
+          margin-bottom: 0.5em;
+        }
+        .ql-editor a {
+          color: #38bdf8;
+          text-decoration: underline;
+        }
+        .ql-editor img {
+          max-width: 100%;
+          height: auto;
+          margin: 1em 0;
+          border-radius: 4px;
+        }
+        .ql-editor blockquote {
+          border-left: 4px solid #ca8a04;
+          padding-left: 1em;
+          margin-left: 0;
+          margin-right: 0;
+          font-style: italic;
+          color: #cbd5e1;
+        }
+        .ql-editor pre {
+          background-color: rgba(0, 0, 0, 0.3);
+          border-radius: 4px;
+          padding: 1em;
+          overflow-x: auto;
+        }
+        .ql-editor code {
+          background-color: rgba(0, 0, 0, 0.3);
+          padding: 0.2em 0.4em;
+          border-radius: 3px;
+          font-family: monospace;
+        }
+      `}</style>
+    </ConfigProvider>
+  )
+}
+
+export default DetailTinTuc

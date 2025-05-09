@@ -1,27 +1,54 @@
 "use client";
 
-import { Card, Col, Row } from "antd";
-import Image from "next/image";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import AchiveMent from "./AchiveMent";
+import { Col, Row } from "antd";
 import ServerInfor2 from "./ServerInfor2";
 
-import ImageSelectorInfo from "./ImageSelectorInfo";
-import { Rankings } from "./rankings";
-import RankingTable from "./rank-mini";
+import { newsTypeMap } from "@/constants/QLNewsTinTuc";
+import { QLNewsGroup, tableQLNewsData } from "@/interface/QLNews/QLNews";
+import { qlnewsservice } from "@/services/QLNews/QLNews.service";
+import { useEffect, useState } from "react";
 import DetailTinTuc from "./DetailTinTuc";
 import ImageSelector from "./ImageSelector";
+import RankingTable from "./rank-mini";
 
 const GameServerNotice = () => {
-  const servers = [
-    { name: "Server 37 Red Flame Horn 208", date: "10:00 ngày 2..04-29" },
-    { name: "Server 37 Red Flame Horn 207", date: "10:00 ngày 2..04-28" },
-    { name: "Server 37 Red Flame Horn 206", date: "10:00 ngày 2..04-27" },
-    { name: "Server 37 Red Flame Horn 205", date: "10:00 ngày 2..04-26" },
-    { name: "Server 37 Red Flame Horn 204", date: "10:00 ngày 2..04-25" },
-  ];
+  const [newsGroups, setNewsGroups] = useState<QLNewsGroup[]>([]);
+  const [ activeTab, setActiveTab ] = useState( "Toàn bộ" );
+  const [ currentContent, setCurrentContent ] = useState<tableQLNewsData>();
 
+
+
+  const handleGetTinTuc = async () => {
+    const search = {}; // searchQLNewsType
+    const res = await qlnewsservice.GetGroupData(search);
+    setNewsGroups(res.data);
+  };
+
+  const renderNewsItems = () => {
+    const currentGroup = newsGroups.find((g) => g.groupName === activeTab);
+    if (!currentGroup) return <p>Không có dữ liệu.</p>;
+
+    return (
+      <ul className="space-y-2">
+        {currentGroup.items.map((item) => (
+          <li key={item.id} style={{
+            cursor: "pointer"
+          }} className="text-sm" onClick={() =>
+          {
+            setCurrentContent( item );
+          }}>
+            <span className="text-yellow-400">[{item.title}]</span>
+          </li>
+        ))}
+      </ul>
+    );
+  };
+  const tabNames = newsGroups.map((g) => g.groupName);
+
+
+  useEffect(() => {
+    handleGetTinTuc();
+  }, []);
   return (
     <>
       <div className="cha-main-layout-2 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-lg shadow-lg overflow-hidden bg-img-news">
@@ -31,32 +58,26 @@ const GameServerNotice = () => {
             <Col span={12} className="relative">
               <ServerInfor2 />
             </Col>
-            <Col span={12} className="relative">
-              <div className="w-full p-6 bg-gradient-to-b from-red-900 to-red-700 min-h300  bg-khung">
-                <div className="flex space-x-4 mb-4 border-b border-yellow-500">
-                  <button className="pb-2 text-yellow-400 border-b-2 border-yellow-400 font-semibold uppercase">
-                    toàn bộ
-                  </button>
-                  <button className="pb-2 text-gray-300 hover:text-yellow-400 uppercase">
-                    Sự kiện
-                  </button>
-                  <button className="pb-2 text-gray-300 hover:text-yellow-400 uppercase">
-                    Hướng dẫn
-                  </button>
-                  <button className="pb-2 text-gray-300 hover:text-yellow-400 uppercase">
-                    Tin tức
-                  </button>
-                </div>
-                <ul className="space-y-2">
-                  {servers.map((server, index) => (
-                    <li key={index} className="text-sm">
-                      <span className="text-yellow-400">[Thông báo]</span>{" "}
-                      {server.name} sẽ ra mắt vào lúc {server.date}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Col>
+            <Col span={12}>
+          <div className="w-full p-6 bg-gradient-to-b from-red-900 to-red-700 min-h300 bg-khung">
+            <div className="flex space-x-4 mb-4 border-b border-yellow-500">
+              {tabNames.map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`pb-2 uppercase ${
+                    activeTab === tab
+                      ? "text-yellow-400 border-b-2 border-yellow-400 font-semibold"
+                      : "text-gray-300 hover:text-yellow-400"
+                  }`}
+                >
+                  {newsTypeMap[tab.toLowerCase()]}
+                </button>
+              ))}
+            </div>
+            {renderNewsItems()}
+          </div>
+        </Col>
           </Row>
           <Row gutter={24} className="mb-4">
             <Col span={12}>
@@ -65,7 +86,7 @@ const GameServerNotice = () => {
               <ImageSelector />
             </Col>
             <Col span={12}>
-              <DetailTinTuc />
+              <DetailTinTuc news={currentContent} />
             </Col>
           </Row>
         </div>

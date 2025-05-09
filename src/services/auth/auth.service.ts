@@ -35,6 +35,17 @@ class AuthService {
       throw error;
     }
   }
+  public async GetAccountRecentLy( ): Promise<Response>
+  {
+    try {
+      const response = await apiService.get<Response>(
+        `/Account/GetAccountRecentLy`
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
 
   public async register(formData: createEditType): Promise<Response> {
     try {
