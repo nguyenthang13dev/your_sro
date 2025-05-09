@@ -1,45 +1,45 @@
 "use client";
+import { DropdownOption, DropdownTreeOptionAntd } from "@/interface/general";
 import { createEditType } from "@/interface/qlTinTuc/qlTinTuc";
-import {
-  Checkbox,
-  DatePicker,
-  Form,
-  FormProps,
-  Input,
-  Select,
-  UploadFile,
-  Row,
-  Col,
-  Button,
-  Card,
-  Collapse,
-  Slider,
-  Image,
-  TreeSelect,
-} from "antd";
+import UploadFiler from "@/libs/UploadFilter";
+import
+  {
+    Button,
+    Card,
+    Checkbox,
+    Col,
+    Collapse,
+    DatePicker,
+    Form,
+    FormProps,
+    Input,
+    Row,
+    Select,
+    Slider,
+    TreeSelect,
+    UploadFile
+  } from "antd";
+import dynamic from "next/dynamic";
 import React, {
+  ForwardedRef,
   useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
-  ForwardedRef,
 } from "react";
-import { DropdownOption, DropdownTreeOptionAntd } from "@/interface/general";
 import { toast } from "react-toastify";
-import UploadFiler from "@/libs/UploadFilter";
-import dynamic from "next/dynamic";
 
-import { CaretRightOutlined } from "@ant-design/icons";
-import { qLTinTuc_TagService } from "@/services/QLTinTuc_Tag/QLTinTuc_Tag.service";
 import { chuyenMucService } from "@/services/ChuyenMuc/ChuyenMuc.service";
+import { qLTinTuc_TagService } from "@/services/QLTinTuc_Tag/QLTinTuc_Tag.service";
+import { blobToRcFile } from "@/utils/blobToRcFile";
 import { getCroppedImage } from "@/utils/ImageCrop";
+import { CaretRightOutlined } from "@ant-design/icons";
+import "cropperjs/dist/cropper.css";
 import Cropper from "react-easy-crop";
 import classes from "../page.module.css";
-import "cropperjs/dist/cropper.css";
-import { blobToRcFile } from "@/utils/blobToRcFile";
 
-import {} from "react";
+import { } from "react";
 import type { ReactQuillProps } from "react-quill";
 // const ReactQuill = dynamic(() => import('react-quill'), { ssr: false })
 
@@ -63,19 +63,19 @@ const QuillEditor = dynamic(
   }
 );
 // import ReactQuill
-import "react-quill/dist/quill.snow.css";
-import { createSlug } from "@/utils/string";
-import convertDayjsToISOString from "@/utils/convertDayjsToISOString";
 import LoaiTaiLieuConstant from "@/constants/LoaiTaiLieuConstant";
-import { useSelector } from "react-redux";
-import { RootState } from "@/store/store";
-import "dayjs/locale/vi";
-import dayjs from "dayjs";
-dayjs.locale("vi");
-import { qlTinTucService } from "@/services/qlTinTuc/qlTinTuc.service";
 import { uploadFileService } from "@/services/File/uploadFile.service";
-import { useRouter, useSearchParams } from "next/navigation";
+import { qlTinTucService } from "@/services/qlTinTuc/qlTinTuc.service";
+import { RootState } from "@/store/store";
+import convertDayjsToISOString from "@/utils/convertDayjsToISOString";
+import { createSlug } from "@/utils/string";
 import { CheckboxChangeEvent } from "antd/lib";
+import dayjs from "dayjs";
+import "dayjs/locale/vi";
+import { useRouter, useSearchParams } from "next/navigation";
+import "react-quill/dist/quill.snow.css";
+import { useSelector } from "react-redux";
+dayjs.locale("vi");
 const currentDayjs = dayjs(new Date());
 
 const StaticFileUrl = process.env.NEXT_PUBLIC_STATIC_FILE_BASE_URL;
