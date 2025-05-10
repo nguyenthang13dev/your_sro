@@ -1,5 +1,4 @@
 "use client"
-
 import type { createEditType, tableQLNewsData } from "@/interface/QLNews/QLNews"
 import { qlnewsservice } from "@/services/QLNews/QLNews.service"
 import { DatePicker, Form, type FormProps, Input, Modal, Select, Switch } from "antd"
@@ -28,14 +27,17 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
 
   const newsTypes = [
     { value: "news", label: "Tin tức" },
-    { value: "event", label: "Sự kiện" },
+    { value: "events", label: "Sự kiện" },
     { value: "notification", label: "Thông báo mới" },
+    { value: "serverinfor", label: "Thônng tin máy chủ" },
+    { value: "lawplay", label: "Luật chơi" },
+    { value: "updateroad", label: "Lịch trình update" },
+    { value: "jobselect", label: "Lựa job" },
   ]
 
   const handleOnFinish: FormProps<createEditType>["onFinish"] = async (formData: createEditType) => {
     try {
         let response;
-        debugger
       if (props.news) {
         response = await qlnewsservice.Update(formData)
       } else {

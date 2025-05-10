@@ -1,13 +1,17 @@
 "use client"
 
-import type { tableQLNewsData } from "@/interface/QLNews/QLNews"
+import { useSelector } from "@/store/hooks"
 import { CalendarOutlined, TagOutlined } from "@ant-design/icons"
 import { Card, ConfigProvider, Divider, Tag, theme, Typography } from "antd"
 import dayjs from "dayjs"
 
 const { Title, Text, Paragraph } = Typography
 
-const DetailTinTuc = ({ news }: { news?: tableQLNewsData }) => {
+const DetailTinTuc = () =>
+{
+  
+
+  const news = useSelector( state => state.currentNews.news );
   // Custom theme for Ant Design
   const customTheme = {
     token: {
@@ -36,6 +40,12 @@ const DetailTinTuc = ({ news }: { news?: tableQLNewsData }) => {
         return { label: "Sự kiện", color: "green" }
       case "notification":
         return { label: "Thông báo mới", color: "red" }
+      case "lawplay":
+      return { label: "Luật chơi", color: "orange" }
+      case "updateroad":
+        return { label: "Lịch trình update", color: "purple" }
+      case "jobselect":
+        return { label: "Lựa job", color: "purple" }
       default:
         return { label: "Không xác định", color: "default" }
     }

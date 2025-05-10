@@ -130,7 +130,7 @@ export default function GameTopupForm() {
         colorText: "#7F1D1D", // red-900
       },
       Button: {
-        colorPrimary: "#EAB308", // yellow-500
+        colorPrimary: "#EAB308", // yellow-500VND
         colorPrimaryHover: "#CA8A04", // yellow-600
         colorPrimaryActive: "#A16207", // yellow-700
         colorText: "#7F1D1D", // red-900
@@ -216,7 +216,7 @@ export default function GameTopupForm() {
                                 fontSize: "16px",
                                 }}
                             >
-                                Đặt hàng
+                                Mua silk
                             </Button>
                             </Form.Item>
                         </Form>

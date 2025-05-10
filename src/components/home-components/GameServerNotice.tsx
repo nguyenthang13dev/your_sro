@@ -4,31 +4,35 @@ import { Col, Row } from "antd";
 import ServerInfor2 from "./ServerInfor2";
 
 import { newsTypeMap } from "@/constants/QLNewsTinTuc";
-import { QLNewsGroup, tableQLNewsData } from "@/interface/QLNews/QLNews";
+import { tableQLNewsData } from "@/interface/QLNews/QLNews";
 import { qlnewsservice } from "@/services/QLNews/QLNews.service";
-import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "@/store/hooks";
+import { setNewsGroup } from "@/store/QlNews/QLNewsSlice";
+import { setCurrent } from "@/store/QLNewsCurrent/QLNewsCurrentSlice";
+import { useCallback, useEffect, useState } from "react";
 import DetailTinTuc from "./DetailTinTuc";
 import ImageSelector from "./ImageSelector";
 import ListAccountRegister from "./ListAccountRegister";
 import RankingTable from "./rank-mini";
 
-const GameServerNotice = () => {
-  const [newsGroups, setNewsGroups] = useState<QLNewsGroup[]>([]);
-  const [ activeTab, setActiveTab ] = useState( "Toàn bộ" );
+const GameServerNotice = () =>
+{
+  const dispatch = useDispatch();
+  const newsGroups = useSelector((state) => state.qlnewsGroup.newsGroups)
+  const [ activeTab, setActiveTab ] = useState( "all" );
   const [ currentContent, setCurrentContent ] = useState<tableQLNewsData>();
 
 
 
-  const handleGetTinTuc = async () => {
+  const handleGetTinTuc = useCallback(async () => {
     const search = {}; // searchQLNewsType
     const res = await qlnewsservice.GetGroupData(search);
-    setNewsGroups(res.data);
-  };
-
+    dispatch(setNewsGroup(res.data));
+  }, [ newsGroups ] );
+  
   const renderNewsItems = () => {
     const currentGroup = newsGroups.find((g) => g.groupName === activeTab);
     if (!currentGroup) return <p>Không có dữ liệu.</p>;
-
     return (
       <ul className="space-y-2">
         {currentGroup.items.map((item) => (
@@ -36,7 +40,7 @@ const GameServerNotice = () => {
             cursor: "pointer"
           }} className="text-sm" onClick={() =>
           {
-            setCurrentContent( item );
+            dispatch(setCurrent(item));
           }}>
             <span className="text-yellow-400">[{item.title}]</span>
           </li>
@@ -44,9 +48,7 @@ const GameServerNotice = () => {
       </ul>
     );
   };
-  const tabNames = newsGroups.map((g) => g.groupName);
-
-
+  const tabNames = ["all", "news",  "event", "notification"];
   useEffect(() => {
     handleGetTinTuc();
   }, []);
@@ -87,10 +89,9 @@ const GameServerNotice = () => {
               <ImageSelector />
             </Col>
             <Col span={12}>
-              <DetailTinTuc news={currentContent} />
+              <DetailTinTuc  />
             </Col>
           </Row>
-
           <Row className="mb-4">
             <Col span={12}>
               <ListAccountRegister />
