@@ -10,29 +10,29 @@ import { setIsLoading } from "@/store/general/GeneralSlice";
 import { useSelector } from "@/store/hooks";
 import { AppDispatch } from "@/store/store";
 import
-    {
-        CloseOutlined,
-        DeleteOutlined,
-        DownOutlined,
-        EditOutlined,
-        EyeOutlined,
-        PlusCircleOutlined,
-        SearchOutlined
-    } from "@ant-design/icons";
+  {
+    CloseOutlined,
+    DeleteOutlined,
+    DownOutlined,
+    EditOutlined,
+    EyeOutlined,
+    PlusCircleOutlined,
+    SearchOutlined
+  } from "@ant-design/icons";
 import
-    {
-        Button,
-        Card,
-        Dropdown,
-        FormProps,
-        MenuProps,
-        Pagination,
-        Popconfirm,
-        Space,
-        Table,
-        TableProps,
-        Tag
-    } from "antd";
+  {
+    Button,
+    Card,
+    Dropdown,
+    FormProps,
+    MenuProps,
+    Pagination,
+    Popconfirm,
+    Space,
+    Table,
+    TableProps,
+    Tag
+  } from "antd";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";

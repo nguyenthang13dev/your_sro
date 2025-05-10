@@ -9,6 +9,7 @@ import { qlnewsservice } from "@/services/QLNews/QLNews.service";
 import { useEffect, useState } from "react";
 import DetailTinTuc from "./DetailTinTuc";
 import ImageSelector from "./ImageSelector";
+import ListAccountRegister from "./ListAccountRegister";
 import RankingTable from "./rank-mini";
 
 const GameServerNotice = () => {
@@ -87,6 +88,12 @@ const GameServerNotice = () => {
             </Col>
             <Col span={12}>
               <DetailTinTuc news={currentContent} />
+            </Col>
+          </Row>
+
+          <Row className="mb-4">
+            <Col span={12}>
+              <ListAccountRegister />
             </Col>
           </Row>
         </div>

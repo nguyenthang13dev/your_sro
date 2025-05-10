@@ -91,6 +91,7 @@ export default function Home() {
         <div>
           <GameServerNotice />
         </div>
+        
       </div>
     </main>
   );

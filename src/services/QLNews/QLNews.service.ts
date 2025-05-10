@@ -51,7 +51,7 @@ class QLNewsService {
     public async Delete(id: string): Promise<Response>
     {
         try {
-            const response = await apiService.delete<Response>( `/QLNews/Delete?Id=${id}`,
+            const response = await apiService.delete<Response>( `/QLNews/Delete/${id}`,
                 );
             return response.data;
         } catch (error) {

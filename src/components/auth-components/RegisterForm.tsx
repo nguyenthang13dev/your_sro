@@ -29,8 +29,14 @@ const RegisterForm: React.FC = () => {
     dispatch(setIsLoading(true))
     try {
       const data = await authService.register(registerForm)
-      if (data != null && data.status) {
-        route.push('/auth/login') // Chuyển hướng về trang đăng nhập
+      if ( data != null && data.status )
+      {
+        setMessage( "Đăng ký thành công! Vui lòng đăng nhập quản trị tài khoản!" )
+        dispatch(setShowMessage(true))
+        setTimeout(() => {
+          route.push( '/auth/login' ) // Chuyển hướng về trang đăng nhập
+        }, 2000);
+
       } else {
         setMessage(data.message || 'Đăng ký thất bại, vui lòng thử lại')
         dispatch(setShowMessage(true))
