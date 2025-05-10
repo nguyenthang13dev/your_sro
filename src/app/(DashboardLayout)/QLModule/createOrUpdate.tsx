@@ -184,25 +184,9 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
             <Radio value={false}> Không hiển thị </Radio>
           </Radio.Group>
         </Form.Item>
-        <Form.Item<createEditType> label="Icon" name="fileIcon">
-          <Upload
-            name="fileIcon"
-            listType="picture"
-            maxCount={1}
-            fileList={fileList}
-            onChange={({ fileList }) => setFileList(fileList)}
-            beforeUpload={() => false}
-          >
-            <Button icon={<UploadOutlined />}>Chọn file</Button>
-          </Upload>
-        </Form.Item>
+     
 
-        <Form.Item<createEditType> label="Class Css" name="classCss">
-          <Input />
-        </Form.Item>
-        <Form.Item<createEditType> label="Style Css" name="styleCss">
-          <Input />
-        </Form.Item>
+       
       </Form>
     </Modal>
   );

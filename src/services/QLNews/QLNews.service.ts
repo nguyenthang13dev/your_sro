@@ -1,7 +1,6 @@
 import { Response } from "@/interface/general";
 import { createEditType, searchQLNewsType } from "@/interface/QLNews/QLNews";
 import { apiService } from "..";
-
 class QLNewsService {
     public async getDataByPage( formData: searchQLNewsType ): Promise<Response>
     {
@@ -47,7 +46,6 @@ class QLNewsService {
             throw error;
         }
     }
-
     public async Delete(id: string): Promise<Response>
     {
         try {
@@ -58,7 +56,6 @@ class QLNewsService {
             throw error;
         }
     }
-
 }
 
 export const qlnewsservice = new QLNewsService();

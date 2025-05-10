@@ -137,8 +137,6 @@ export default function GameTopupForm() {
       },
     },
   }
-
-
     useEffect( () =>
     {
         handleGetConfigSilk()
@@ -157,16 +155,16 @@ export default function GameTopupForm() {
                         <Space align="center">
                             <GamepadIcon size={24} color="rgb(251, 191, 36)" />
                             <Title level={3} style={{ margin: 0, color: "rgb(251, 191, 36)"  }}>
-                            Đặt hàng
+                            NHẬN SILK
                             </Title>
-                        </Space>
-
-                        <Text style={{ color: "#FEF9C3" }}>Nhập tên tài khoản game và chọn mệnh giá nạp tiền</Text>
-
-                        <Form form={form} layout="vertical" initialValues={{ amount: "50000" }} onFinish={handleSubmit}>
+                            </Space>
+                            
+                        <Text style={{ color: "#FEF9C3" }}>Vui lòng nhập tên tài khoản chính xác để nhận được silk</Text>
+                        
+                            <Form form={form} layout="vertical" initialValues={{ amount: "50000" }} onFinish={handleSubmit}>
                             <Form.Item
                             name="username"
-                            label={<Text style={{ color: "#FBBF24" }}>Tên tài khoản game</Text>}
+                            label={<Text style={{ color: "#FBBF24" }}>Tên tài khoản</Text>}
                             rules={[{ required: true, message: "Vui lòng nhập tên tài khoản!" }]}
                             >
                             <Input
@@ -175,7 +173,7 @@ export default function GameTopupForm() {
                             />
                             </Form.Item>
 
-                            <Form.Item name="amount" label={<Text style={{ color: "#FBBF24" }}>Số tiền</Text>}>
+                            <Form.Item name="amount" label={<Text style={{ color: "#FBBF24" }}>Vui lòng chọn silk</Text>}>
                             <Radio.Group style={{ width: "100%" }}  onChange={( e ) =>
                                         {
                                             console.log("onChange", form.getFieldsValue()) ;
