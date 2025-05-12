@@ -1,3 +1,5 @@
+"use clent"
+
 import GameServerNotice from "@/components/home-components/GameServerNotice";
 import { LoginForm } from "@/components/home-components/login-form";
 import ServerInfor from "@/components/home-components/ServerInfor";
@@ -5,7 +7,11 @@ import { Col, Row } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Home() {
+export default function Home()
+{
+  
+
+
   return (
     <main className="min-h-screen bg-black text-amber-100 relative overflow-hidden">
       {/* Background image with overlay */}
