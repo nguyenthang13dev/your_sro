@@ -25,8 +25,9 @@ export function MainNavigation() {
             <Image
               src="/img/avatars/logo.png"
               alt="SRO Icon"
-              width={120}
-              height={80}
+              width={70}
+              height={85}
+              style={{marginLeft: "25px"}}
               className="object-contain main-logo"
             />
             {/* <a className="main-logo"></a> */}
