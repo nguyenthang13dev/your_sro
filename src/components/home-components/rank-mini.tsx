@@ -43,7 +43,7 @@ export default function RankingTable()
         </div>
 
         {/* Table rows */}
-        <div className="max-h-[300px] overflow-y-auto">
+        <div className="max-h-[220px] overflow-y-auto">
           {rankings.map((player, index) => (
             <div
               key={index}

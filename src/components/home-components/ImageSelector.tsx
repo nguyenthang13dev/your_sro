@@ -57,14 +57,13 @@ const ImageSelector = () =>
   }, [selectedImage]);
 
   return (
-    <Row gutter={24} style={{ marginTop: "60px", marginBottom: "40px" }}>
-      <Col span={24}>
-        <Row className="items-start p-4" style={{ display: "flex" }}>
-          <Col
-            className="w-2/3 h-64 relative mr-4 bg-center bg-contain bg-no-repeat transform scale-[1.5] transition-all duration-300"
-            style={{ backgroundImage: `url(${selectedImage})` }}
+    <Row gutter={10}>
+        <Col
+          span={18}
+              className="h-64 relative bg-center bg-contain bg-no-repeat transform  transition-all duration-300"
+              style={{ backgroundImage: `url(${selectedImage})` }}
           ></Col>
-          <Col>
+          <Col span={6}>
             {images.map((image, index) => {
               const isSelected = image === selectedImage;
               return (
@@ -103,8 +102,6 @@ const ImageSelector = () =>
               );
             })}
           </Col>
-        </Row>
-      </Col>
     </Row>
   );
 };
