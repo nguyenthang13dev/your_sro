@@ -58,10 +58,10 @@ const GameServerNotice = () =>
         {/* Phần hình ảnh bên trái */}
         <div className="main-layout-2">
           <Row gutter={24} className="mb-4">
-            <Col span={12} className="relative">
+            <Col span={9} className="relative">
               <ServerInfor2 />
             </Col>
-            <Col span={12}>
+            <Col span={10}>
           <div className="w-full p-6 bg-gradient-to-b from-red-900 to-red-700 min-h300 bg-khung">
             <div className="flex space-x-4 mb-4 border-b border-yellow-500">
               {tabNames.map((tab) => (
@@ -80,12 +80,17 @@ const GameServerNotice = () =>
             </div>
             {renderNewsItems()}
           </div>
-        </Col>
+            </Col>
+            
+
+            <Col span={5}>
+              <RankingTable />
+            
+            </Col>
           </Row>
           <Row gutter={24} className="mb-4">
             <Col span={12}>
               {/* <Rankings /> */}
-              <RankingTable />
               <ImageSelector />
             </Col>
             <Col span={12}>

@@ -46,6 +46,17 @@ class AuthService {
       throw error;
     }
   }
+  public async GetBxhIngame( ): Promise<Response>
+  {
+    try {
+      const response = await apiService.get<Response>(
+        `/Account/GetBxhIngame`
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
 
   public async register(formData: createEditType): Promise<Response> {
     try {

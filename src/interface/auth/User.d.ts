@@ -1,6 +1,15 @@
-import dayjs from "dayjs";
 import { SearchBase } from "../general";
 import { MenuDataType } from "../menu/menu";
+
+
+
+
+export interface tableAppUserBXHDataType { 
+  id? : string;
+  userNameTk: string;
+  silk: number;
+}
+
 
 export interface LoginType {
   username?: string;
