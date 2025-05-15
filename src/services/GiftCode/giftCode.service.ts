@@ -3,6 +3,7 @@ import
   {
     createEditType,
     searchGiftCode,
+    tableAddItemModelDataType,
     tableGiftCode,
   } from "@/interface/GiftCode/GiftCode";
 import { apiService } from "..";
@@ -61,6 +62,17 @@ class GiftCodeService {
       const response = await apiService.post<Response>(
         "/GiftCode/GetDropGiftCodeItem",
         selected
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+  async AddGiftCodeForPlayer(formData: tableAddItemModelDataType): Promise<Response> {
+    try {
+      const response = await apiService.post<Response>(
+        "/GiftCode/AddGiftCodeForPlayer",
+        formData
       );
       return response.data;
     } catch (error) {

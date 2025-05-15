@@ -37,6 +37,7 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import AssignGiftModal from "./AssignGiftModal";
 import CreateOrUpdate from "./createOrUpdate";
 import QLModuleDetail from "./detail";
 import classes from "./page.module.css";
@@ -60,7 +61,8 @@ const QLGift: React.FC = () => {
     useState<tableGiftCode>();
   const [isOpenDetail, setIsOpenDetail] = useState<boolean>(false);
   const [openPopconfirmId, setOpenPopconfirmId] = useState<string | null>(null);
-
+const [isAssignModalOpen, setIsAssignModalOpen] = useState<boolean>(false);
+const [selectedGiftCode, setSelectedGiftCode] = useState<tableGiftCode | null>(null);
   const tableColumns: TableProps<tableGiftCode>["columns"] = [
     {
       title: "STT",
@@ -87,7 +89,6 @@ const QLGift: React.FC = () => {
       title: "Thời gian kết thúc",
       dataIndex: "dueDateStr",
       render: (_: any, record: tableGiftCode) =>   <span>{record.dueDateStr}</span>
-
     },
     {
       title: "Các gift item",
@@ -96,7 +97,6 @@ const QLGift: React.FC = () => {
         <span>{record.giftCodeItems_txt}</span>
       ),
     },
-
     {
       title: "Thao tác",
       dataIndex: "actions",
@@ -113,6 +113,15 @@ const QLGift: React.FC = () => {
           },
           {
             type: "divider",
+          },
+           {
+            label: "Gán giftcode tự động",
+          key: "2",
+          icon: <PlusCircleOutlined />,
+          onClick: () => {
+            setSelectedGiftCode(record);
+            setIsAssignModalOpen(true);
+          },
           },
           {
             label: "Xóa",
@@ -233,12 +242,44 @@ const QLGift: React.FC = () => {
     setIsOpenDetail(false);
   };
 
+
+
+  const handleAssign = async (userList: string[]) => {
+    if (!selectedGiftCode) return;
+    try {
+      const res = await giftCodeService.AddGiftCodeForPlayer({
+        giftCode: selectedGiftCode.code,
+        charNames: userList
+      });
+
+      if (res.status) {
+        toast.success("Gán giftcode thành công!");
+      } else {
+        toast.error("Gán giftcode thất bại.");
+      }
+    } catch (err) {
+      toast.error("Lỗi khi gán giftcode.");
+    }
+  }
+
+
+
+
+  
   useEffect(() => {
     handleGetListModule();
   }, [handleGetListModule]);
 
   return (
     <>
+      
+  <AssignGiftModal
+  open={isAssignModalOpen}
+  onClose={() => setIsAssignModalOpen(false)}
+  onAssign={handleAssign}
+  giftCodeName={selectedGiftCode?.code || ""}
+/>
+
       <Flex
         alignItems="center"
         justifyContent="space-between"

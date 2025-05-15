@@ -8,6 +8,11 @@ export interface createEditType {
   description?: string;
 }
 
+
+export interface tableAddItemModelDataType { 
+    giftCode: string;
+    charNames?: string[];
+}
 export interface tableGiftCode {
   id?: string;
   name: string;
