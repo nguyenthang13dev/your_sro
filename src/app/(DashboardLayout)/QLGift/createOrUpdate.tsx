@@ -1,28 +1,25 @@
-import {
-  Button,
-  DatePicker,
-  Form,
-  FormProps,
-  Image,
-  Input,
-  InputNumber,
-  Modal,
-  Radio,
-  Select,
-  Upload,
-} from "antd";
-import React, { useEffect, useState } from "react";
-import dayjs from "dayjs";
-import { toast } from "react-toastify";
-import { fetchDropdown } from "@/utils/fetchDropdown";
 import { DropdownOption } from "@/interface/general";
-import {
-  tableGiftCode,
-  createEditType,
-  searchGiftCode,
-} from "@/interface/GiftCode/GiftCode";
+import
+  {
+    createEditType,
+    tableGiftCode
+  } from "@/interface/GiftCode/GiftCode";
 import { giftCodeService } from "@/services/GiftCode/giftCode.service";
 import { giftCodeItemService } from "@/services/GiftCodeItem/giftCodeItem.service";
+import { fetchDropdown } from "@/utils/fetchDropdown";
+import
+  {
+    DatePicker,
+    Form,
+    FormProps,
+    Input,
+    InputNumber,
+    Modal,
+    Select
+  } from "antd";
+import dayjs from "dayjs";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 dayjs.locale("vi");
 
 interface Props {
@@ -131,12 +128,12 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
         )}
         <Form.Item<createEditType>
           name="giftCodeItems"
-          label="Tên gift code item"
+          label="Danh sách vật phẩm đi kềm"
           // initialValue={props.moduleId}
           // rules={[{ required: true, message: "Vui lòng nhập thông tin này!" }]}
         >
           <Select
-            placeholder="Chọn chức năng"
+            placeholder="Chọn vật phẩm"
             options={lstGiftCodeItem.map((item) => ({
               ...item,
               value: item.value.toLowerCase(),
@@ -161,6 +158,22 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
         >
           <Input />
         </Form.Item>
+
+          <Form.Item<createEditType>
+          label="Số lượng tối đa sử dụng"
+          name="maxCountUsed"
+          rules={[{ required: true, message: "Vui lòng nhập thông tin này!" }]}
+        >
+          <InputNumber min={0}  />
+        </Form.Item>
+
+          <Form.Item<createEditType>
+          label="Thời gian hết hạn"
+          name="dueDate"
+        >
+          <DatePicker  />
+        </Form.Item>
+
       </Form>
     </Modal>
   );

@@ -3,6 +3,9 @@ export interface createEditType {
   name: string;
   code: string;
   giftCodeItems: string[];
+    maxCountUsed: number;
+  dueDate?: Date;
+  description?: string;
 }
 
 export interface tableGiftCode {

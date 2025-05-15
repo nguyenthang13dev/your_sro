@@ -2,33 +2,37 @@
 import Flex from "@/components/shared-components/Flex";
 import AutoBreadcrumb from "@/components/util-compenents/Breadcrumb";
 import DropdownOption, { ResponsePageInfo } from "@/interface/general";
+import
+  {
+    searchGiftCodeItem,
+    tableGiftCodeItem
+  } from "@/interface/GiftCodeItem/GiftCodeItem";
+import { giftCodeItemService } from "@/services/GiftCodeItem/giftCodeItem.service";
 import { setIsLoading } from "@/store/general/GeneralSlice";
 import { useSelector } from "@/store/hooks";
 import { AppDispatch } from "@/store/store";
-import {
-  CloseOutlined,
-  DeleteOutlined,
-  DownOutlined,
-  EditOutlined,
-  EyeOutlined,
-  PlusCircleOutlined,
-  SearchOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
-import {
-  Button,
-  Card,
-  Dropdown,
-  FormProps,
-  Image,
-  MenuProps,
-  Pagination,
-  Popconfirm,
-  Space,
-  Table,
-  TableProps,
-  Tag,
-} from "antd";
+import
+  {
+    CloseOutlined,
+    DeleteOutlined,
+    DownOutlined,
+    EditOutlined,
+    PlusCircleOutlined,
+    SearchOutlined
+  } from "@ant-design/icons";
+import
+  {
+    Button,
+    Card,
+    Dropdown,
+    FormProps,
+    MenuProps,
+    Pagination,
+    Popconfirm,
+    Space,
+    Table,
+    TableProps
+  } from "antd";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -37,12 +41,6 @@ import CreateOrUpdate from "./createOrUpdate";
 import QLModuleDetail from "./detail";
 import classes from "./page.module.css";
 import Search from "./search";
-import {
-  tableGiftCodeItem,
-  createEditType,
-  searchGiftCodeItem,
-} from "@/interface/GiftCodeItem/GiftCodeItem";
-import { giftCodeItemService } from "@/services/GiftCodeItem/giftCodeItem.service";
 
 const QLGiftCode: React.FC = () => {
   const router = useRouter();
@@ -136,7 +134,7 @@ const QLGiftCode: React.FC = () => {
             </Dropdown>
             <Popconfirm
               title="Xác nhận xóa"
-              description="Bạn có muốn xóa chức năng này?"
+              description="Bạn có muốn xóa vật phẩm này?"
               okText="Xóa"
               cancelText="Hủy"
               open={openPopconfirmId === record.id}
@@ -151,16 +149,14 @@ const QLGiftCode: React.FC = () => {
       },
     },
   ];
-
   const hanleCreateEditSuccess = () => {
     handleGetListModule();
   };
-
   const handleDeleteModule = async (id: string) => {
     try {
       const response = await giftCodeItemService.Delete(id);
       if (response.status) {
-        toast.success("Xóa chức năng thành công");
+        toast.success("Xóa vật phẩm thành công");
         handleGetListModule();
       } else {
         toast.error("Xóa chức năng thất bại");

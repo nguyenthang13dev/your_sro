@@ -1,26 +1,21 @@
-import {
-  Button,
-  DatePicker,
-  Form,
-  FormProps,
-  Image,
-  Input,
-  InputNumber,
-  Modal,
-  Radio,
-  Select,
-  Upload,
-} from "antd";
-import React, { useEffect, useState } from "react";
-import dayjs from "dayjs";
-import { toast } from "react-toastify";
-import { UploadOutlined } from "@ant-design/icons";
-import { UploadFile } from "antd/lib";
-import {
-  tableGiftCodeItem,
-  createEditType,
-} from "@/interface/GiftCodeItem/GiftCodeItem";
+import
+  {
+    createEditType,
+    tableGiftCodeItem,
+  } from "@/interface/GiftCodeItem/GiftCodeItem";
 import { giftCodeItemService } from "@/services/GiftCodeItem/giftCodeItem.service";
+import
+  {
+    Form,
+    FormProps,
+    Input,
+    InputNumber,
+    Modal
+  } from "antd";
+import { UploadFile } from "antd/lib";
+import dayjs from "dayjs";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 dayjs.locale("vi");
 
 interface Props {
@@ -86,8 +81,8 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
     <Modal
       title={
         props.tableGiftCode != null
-          ? "Chỉnh sửa gift code"
-          : "Thêm mới gift code"
+          ? "Chỉnh sửa vật phẩm"
+          : "Thêm mới vật phẩm"
       }
       open={isOpen}
       onOk={() => form.submit()}
@@ -110,7 +105,7 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
           </Form.Item>
         )}
         <Form.Item<createEditType>
-          label="Mã gift code"
+          label="Mã vật phẩm"
           name="codeItem"
           rules={[{ required: true, message: "Vui lòng nhập thông tin này!" }]}
         >
@@ -118,7 +113,7 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
         </Form.Item>
 
         <Form.Item<createEditType>
-          label="Tên gift code"
+          label="Tên vât phẩm"
           name="nameItem"
           rules={[{ required: true, message: "Vui lòng nhập thông tin này!" }]}
         >

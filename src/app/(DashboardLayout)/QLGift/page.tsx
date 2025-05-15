@@ -2,33 +2,38 @@
 import Flex from "@/components/shared-components/Flex";
 import AutoBreadcrumb from "@/components/util-compenents/Breadcrumb";
 import DropdownOption, { ResponsePageInfo } from "@/interface/general";
-import withAuthorization from "@/libs/authentication";
+import
+  {
+    searchGiftCode,
+    tableGiftCode
+  } from "@/interface/GiftCode/GiftCode";
+import { giftCodeService } from "@/services/GiftCode/giftCode.service";
 import { moduleService } from "@/services/module/module.service";
 import { setIsLoading } from "@/store/general/GeneralSlice";
 import { useSelector } from "@/store/hooks";
 import { AppDispatch } from "@/store/store";
-import {
-  CloseOutlined,
-  DeleteOutlined,
-  DownOutlined,
-  EditOutlined,
-  PlusCircleOutlined,
-  SearchOutlined,
-} from "@ant-design/icons";
-import {
-  Button,
-  Card,
-  Dropdown,
-  FormProps,
-  Image,
-  MenuProps,
-  Pagination,
-  Popconfirm,
-  Space,
-  Table,
-  TableProps,
-  Tag,
-} from "antd";
+import
+  {
+    CloseOutlined,
+    DeleteOutlined,
+    DownOutlined,
+    EditOutlined,
+    PlusCircleOutlined,
+    SearchOutlined,
+  } from "@ant-design/icons";
+import
+  {
+    Button,
+    Card,
+    Dropdown,
+    FormProps,
+    MenuProps,
+    Pagination,
+    Popconfirm,
+    Space,
+    Table,
+    TableProps
+  } from "antd";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -37,12 +42,6 @@ import CreateOrUpdate from "./createOrUpdate";
 import QLModuleDetail from "./detail";
 import classes from "./page.module.css";
 import Search from "./search";
-import {
-  tableGiftCode,
-  createEditType,
-  searchGiftCode,
-} from "@/interface/GiftCode/GiftCode";
-import { giftCodeService } from "@/services/GiftCode/giftCode.service";
 
 const QLGift: React.FC = () => {
   const router = useRouter();
@@ -129,7 +128,7 @@ const QLGift: React.FC = () => {
             </Dropdown>
             <Popconfirm
               title="Xác nhận xóa"
-              description="Bạn có muốn xóa chức năng này?"
+              description="Bạn có muốn xóa gift này?"
               okText="Xóa"
               cancelText="Hủy"
               open={openPopconfirmId === record.id}
