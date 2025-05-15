@@ -1,49 +1,60 @@
-import GioiTinhConstant from "@/constants/GioiTinhConstant";
 import { createEditType } from "@/interface/auth/User";
-import { authService } from "@/services/auth/auth.service";
-import { setIsLoading, setShowMessage } from "@/store/general/GeneralSlice";
-import { useSelector } from "@/store/hooks";
-import { AppDispatch } from "@/store/store";
-import {
-  LockOutlined,
-  MailOutlined,
-  PhoneOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
-import { Alert, Button, Form, Input } from "antd";
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { Button, Form, Input, Alert, Modal } from "antd";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { motion } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "@/store/store";
 
-const RegisterForm: React.FC = () => {
+import { setShowMessage, setIsLoading } from "@/store/general/GeneralSlice";
+import { UserOutlined, LockOutlined } from "@ant-design/icons";
+import Link from "next/link";
+import { authService } from "@/services/auth/auth.service";
+import { useRouter } from "next/navigation";
+
+interface ChangePassForm extends createEditType {
+  UserName: string;
+  NewPass1: string;
+  ReNewPass1: string;
+  NewPass2: string;
+  ReNewPass2: string;
+}
+
+interface ChangePassProps {
+  visible: boolean;
+  onClose: () => void;
+}
+
+const ChangePass: React.FC<ChangePassProps> = ({ visible, onClose }) => {
   const dispatch = useDispatch<AppDispatch>();
-  const route = useRouter();
+  const router = useRouter();
   const [form] = Form.useForm();
-  const loading = useSelector((state) => state.general.isLoading);
-  const showMessage = useSelector((state) => state.general.showMessage);
+  const loading = useSelector((state: any) => state.general.isLoading);
+  const showMessage = useSelector((state: any) => state.general.showMessage);
   const [message, setMessage] = useState<string>("");
-  const gioiTinhOptions = GioiTinhConstant.getDropdownList();
 
   const hideAuthMessage = () => {
     dispatch(setShowMessage(false));
   };
 
-  const onRegister = async (registerForm: createEditType) => {
+  const onChangePass = async (changePassForm: ChangePassForm) => {
     dispatch(setIsLoading(true));
     try {
-      const data = await authService.register(registerForm);
+      const data = await authService.changePass({
+        userName: changePassForm.UserName,
+        newPass1: changePassForm.NewPass1,
+        reNewPass1: changePassForm.ReNewPass1,
+        newPass2: changePassForm.NewPass2,
+        reNewPass2: changePassForm.ReNewPass2,
+      });
       if (data != null && data.status) {
-        setMessage(
-          "Đăng ký thành công! Vui lòng đăng nhập quản trị tài khoản!"
-        );
+        setMessage("Đổi mật khẩu thành công!");
         dispatch(setShowMessage(true));
         setTimeout(() => {
-          route.push("/auth/login"); // Chuyển hướng về trang đăng nhập
+          onClose(); // Đóng modal
+          router.push("/auth/login"); // Chuyển hướng về trang đăng nhập
         }, 2000);
       } else {
-        setMessage(data.message || "Đăng ký thất bại, vui lòng thử lại");
+        setMessage(data.message || "Đổi mật khẩu thất bại, vui lòng thử lại");
         dispatch(setShowMessage(true));
       }
     } catch (err) {
@@ -63,7 +74,13 @@ const RegisterForm: React.FC = () => {
   }, [showMessage]);
 
   return (
-    <>
+    <Modal
+      title="Đổi mật khẩu"
+      open={visible}
+      onCancel={onClose}
+      footer={null}
+      destroyOnClose
+    >
       <motion.div
         initial={{ opacity: 0, marginBottom: 0 }}
         animate={{
@@ -71,14 +88,18 @@ const RegisterForm: React.FC = () => {
           marginBottom: showMessage ? 20 : 0,
         }}
       >
-        <Alert type="error" showIcon message={message} />
+        <Alert
+          type={message.includes("thành công") ? "success" : "error"}
+          showIcon
+          message={message}
+        />
       </motion.div>
 
-      <Form<createEditType>
+      <Form<ChangePassForm>
         layout="vertical"
-        name="register-form"
+        name="change-pass-form"
         form={form}
-        onFinish={onRegister}
+        onFinish={onChangePass}
       >
         <Form.Item
           name="UserName"
@@ -95,10 +116,10 @@ const RegisterForm: React.FC = () => {
         </Form.Item>
 
         <Form.Item
-          name="pass1"
-          label="Mật khẩu số 1"
+          name="NewPass1"
+          label="Mật khẩu số 1 mới"
           rules={[
-            { required: true, message: "Vui lòng nhập mật khẩu" },
+            { required: true, message: "Vui lòng nhập mật khẩu mới" },
             { min: 6, message: "Mật khẩu phải có ít nhất 6 ký tự" },
             {
               pattern: /^[a-zA-Z0-9_]+$/,
@@ -110,14 +131,14 @@ const RegisterForm: React.FC = () => {
         </Form.Item>
 
         <Form.Item
-          name="repass1"
-          label="Xác nhận mật khẩu 1"
-          dependencies={["password"]}
+          name="ReNewPass1"
+          label="Xác nhận mật khẩu số 1 mới"
+          dependencies={["NewPass1"]}
           rules={[
-            { required: true, message: "Vui lòng xác nhận mật khẩu 1" },
+            { required: true, message: "Vui lòng xác nhận mật khẩu số 1 mới" },
             ({ getFieldValue }) => ({
               validator(_, value) {
-                if (!value || getFieldValue("pass1") === value) {
+                if (!value || getFieldValue("NewPass1") === value) {
                   return Promise.resolve();
                 }
                 return Promise.reject(new Error("Mật khẩu không khớp"));
@@ -129,28 +150,32 @@ const RegisterForm: React.FC = () => {
         </Form.Item>
 
         <Form.Item
-          name="pass2"
-          label="Mật khẩu số 2"
+          name="NewPass2"
+          label="Mật khẩu số 2 mới"
           rules={[
-            { required: true, message: "Vui lòng nhập mật khẩu 2" },
+            { required: true, message: "Vui lòng nhập mật khẩu số 2 mới" },
             { min: 6, message: "Mật khẩu phải có ít nhất 6 ký tự" },
+            {
+              pattern: /^[a-zA-Z0-9_]+$/,
+              message: "Mật khẩu chỉ được sử dụng a-z, A-Z, số và dấu _",
+            },
           ]}
         >
           <Input.Password prefix={<LockOutlined className="text-primary" />} />
         </Form.Item>
 
         <Form.Item
-          name="repass2"
-          label="Xác nhận mật khẩu 2"
-          dependencies={["password"]}
+          name="ReNewPass2"
+          label="Xác nhận mật khẩu số 2 mới"
+          dependencies={["NewPass2"]}
           rules={[
-            { required: true, message: "Vui lòng xác nhận mật khẩu 2" },
+            { required: true, message: "Vui lòng xác nhận mật khẩu số 2 mới" },
             ({ getFieldValue }) => ({
               validator(_, value) {
-                if (!value || getFieldValue("pass2") === value) {
+                if (!value || getFieldValue("NewPass2") === value) {
                   return Promise.resolve();
                 }
-                return Promise.reject(new Error("Mật khẩu không khớp 2"));
+                return Promise.reject(new Error("Mật khẩu không khớp"));
               },
             }),
           ]}
@@ -158,36 +183,17 @@ const RegisterForm: React.FC = () => {
           <Input.Password prefix={<LockOutlined className="text-primary" />} />
         </Form.Item>
 
-        <Form.Item
-          name="PhoneNumber"
-          label="Số diện thoại"
-          rules={[{ required: true, message: "Vui lòng nhập email" }]}
-        >
-          <Input prefix={<PhoneOutlined className="text-primary" />} />
-        </Form.Item>
-
-        <Form.Item
-          name="email"
-          label="Email"
-          rules={[
-            { required: true, message: "Vui lòng nhập email" },
-            { type: "email", message: "Email không hợp lệ" },
-          ]}
-        >
-          <Input prefix={<MailOutlined className="text-primary" />} />
-        </Form.Item>
-
         <Form.Item>
           <Button type="primary" htmlType="submit" block loading={loading}>
-            Đăng ký
+            Đổi mật khẩu
           </Button>
         </Form.Item>
         <div style={{ textAlign: "center", marginTop: "10px" }}>
-          Bạn đã có tài khoản? <Link href="/auth/login">Đăng nhập</Link>
+          Quay lại? <Link href="/auth/login">Đăng nhập</Link>
         </div>
       </Form>
-    </>
+    </Modal>
   );
 };
 
-export default RegisterForm;
+export default ChangePass;

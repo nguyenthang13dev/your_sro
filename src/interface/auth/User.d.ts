@@ -1,15 +1,11 @@
 import { SearchBase } from "../general";
 import { MenuDataType } from "../menu/menu";
 
-
-
-
-export interface tableAppUserBXHDataType { 
-  id? : string;
+export interface tableAppUserBXHDataType {
+  id?: string;
   userNameTk: string;
   silk: number;
 }
-
 
 export interface LoginType {
   username?: string;
@@ -118,4 +114,13 @@ export interface BuocXuLyAndListNhanSuDto {
   listNhanSu: tableUserDataType[];
   idBuocXuLy: string; // GUID thường được sử dụng dưới dạng string
   tenBuocXuLy: string;
+}
+
+export interface createChangePassViewModel {
+  id?: string;
+  userName: string;
+  newPass1: string;
+  reNewPass1: string;
+  newPass2: string;
+  reNewPass2: string;
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Dropdown, Avatar, MenuProps } from "antd";
 import { useDispatch } from "react-redux";
 import {
@@ -20,6 +20,7 @@ import { setLogout } from "@/store/auth/AuthSlice";
 import { useRouter } from "next/navigation";
 import { useSelector } from "@/store/hooks";
 import { resetMenuData } from "@/store/menu/MenuSlice";
+import ChangePass from "./ChangePass";
 
 // Styled components
 const Icon = styled.div(() => ({
@@ -86,39 +87,59 @@ const MenuItemSignOut: React.FC<MenuItemSignOutProps> = ({ label }) => {
   );
 };
 
-const items: MenuProps["items"] = [
-  {
-    key: "Chỉnh sửa thông tin",
-    label: (
-      <MenuItem path="/" label="Chỉnh sửa thông tin" icon={<EditOutlined />} />
-    ),
-  },
-  {
-    key: "Account Setting",
-    label: (
-      <MenuItem path="/" label="Account Setting" icon={<SettingOutlined />} />
-    ),
-  },
-  {
-    key: "Đăng xuất",
-    label: <MenuItemSignOut label="Đăng xuất" />,
-  },
-];
-
 export const NavProfile: React.FC = () => {
   const user = useSelector((state) => state.auth.User);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalVisible(false);
+  };
+
+  const items: MenuProps["items"] = [
+    {
+      key: "Chỉnh sửa thông tin",
+      label: (
+        <div onClick={handleOpenModal}>
+          <MenuItem
+            path="/"
+            label="Chỉnh sửa thông tin"
+            icon={<EditOutlined />}
+            // Mở modal khi nhấn
+          />
+        </div>
+      ),
+    },
+    {
+      key: "Account Setting",
+      label: (
+        <MenuItem path="/" label="Account Setting" icon={<SettingOutlined />} />
+      ),
+    },
+    {
+      key: "Đăng xuất",
+      label: <MenuItemSignOut label="Đăng xuất" />,
+    },
+  ];
+
   return (
-    <Dropdown placement="bottomRight" menu={{ items }} trigger={["click"]}>
-      <NavItem>
-        <Profile>
-          <Avatar src={user?.anhDaiDien || "/img/avatars/thumb-12.jpg"} />
-          <UserInfo className="profile-text">
-            <Name>{user?.name}</Name>
-            <Title>{user?.tenDonVi_txt}</Title>
-          </UserInfo>
-        </Profile>
-      </NavItem>
-    </Dropdown>
+    <>
+      <Dropdown placement="bottomRight" menu={{ items }} trigger={["click"]}>
+        <NavItem>
+          <Profile>
+            <Avatar src={user?.anhDaiDien || "/img/avatars/thumb-12.jpg"} />
+            <UserInfo className="profile-text">
+              <Name>{user?.name}</Name>
+              <Title>{user?.tenDonVi_txt}</Title>
+            </UserInfo>
+          </Profile>
+        </NavItem>
+      </Dropdown>
+      <ChangePass visible={isModalVisible} onClose={handleCloseModal} />
+    </>
   );
 };
 
