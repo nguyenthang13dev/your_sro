@@ -14,7 +14,11 @@ import DetailTinTuc from "./DetailTinTuc";
 import ImageSelector from "./ImageSelector";
 import ListAccountRegister from "./ListAccountRegister";
 import RankingTable from "./rank-mini";
-
+declare global {
+  interface Window {
+    FB: any;
+  }
+}
 const GameServerNotice = () =>
 {
   const dispatch = useDispatch();
@@ -51,7 +55,21 @@ const GameServerNotice = () =>
   const tabNames = ["all", "news",  "event", "notification"];
   useEffect(() => {
     handleGetTinTuc();
-  }, []);
+  }, [] );
+  
+  useEffect(() => {
+    if (window.FB) {
+      window.FB.XFBML.parse();
+    } else {
+      const script = document.createElement("script");
+      script.src = "https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v17.0";
+      script.async = true;
+      script.defer = true;
+      script.crossOrigin = "anonymous";
+      document.body.appendChild(script);
+    }
+  }, [] );
+  
   return (
     <>
       <div className="cha-main-layout-2 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-lg shadow-lg overflow-hidden bg-img-news">
@@ -103,6 +121,28 @@ const GameServerNotice = () =>
           <Row gutter={8}  className="mb-4">
             <Col span={10}>
               <ListAccountRegister />
+            </Col>
+
+            <Col span={10}>
+              <div
+
+      className="fb-page"
+      data-href="https://www.facebook.com/profile.php?id=61575212982906"
+      data-tabs="timeline"
+      data-width="500"
+      data-small-header="false"
+      data-adapt-container-width="true"
+      data-hide-cover="false"
+                data-show-facepile="true"
+                style={{
+                    width: "100%",
+                }}
+    ></div>
+            </Col>
+
+
+            <Col span={4}>
+              
             </Col>
           </Row>
         </div>

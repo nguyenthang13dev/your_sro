@@ -1100,3 +1100,9 @@ a:hover{
   .main-layout-2 {
     width: 1500px;
   }
+
+
+
+  .fb-page {
+    width: 100% !important;
+  }
