@@ -1,4 +1,4 @@
-"use clent"
+"use clent";
 
 import GameServerNotice from "@/components/home-components/GameServerNotice";
 import LoginForm from "@/components/home-components/login-form";
@@ -7,11 +7,7 @@ import { Col, Row } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Home()
-{
-  
-
-
+export default function Home() {
   return (
     <main className="min-h-screen bg-black text-amber-100 relative overflow-hidden">
       {/* Background image with overlay */}
@@ -92,47 +88,43 @@ export default function Home()
             </Col>
           </Row> */}
           {/* <div className="absolute bottom-0 left-0 right-0 flex justify-center game-container"></div> */}
-       
-       
-          <Row gutter={10} className="absolute left-0 right-0 justify-end main-banner-thong-tin">
-            
-            <Col span={6}>
-            </Col>
+
+          <Row
+            gutter={10}
+            className="absolute left-0 right-0 justify-end main-banner-thong-tin"
+          >
+            <Col span={6}></Col>
 
             <Col span={18}>
-               <Row>
-              <Col className="server-info"  span={8}>
-                <ServerInfor />
-              </Col>
-              <Col span={10}>
-                <div className="play-button-container">
-                  <Link href="/auth/login" className="">
-                    <div className="img-play-button flex justify-center items-center">
-                      <Image
-                        src="/img/start-game-CHOI-NGAY_487e4ae.png"
-                        alt="Zalo"
-                        width={300}
-                        height={300}
-                      />
-                    </div>
-                  </Link>
-                </div>
-              </Col>
-              <Col span={6}>
-      <LoginForm />
-
-              </Col>
-            </Row>
+              <Row>
+                <Col className="server-info" span={8}>
+                  <ServerInfor />
+                </Col>
+                <Col span={10}>
+                  <div className="play-button-container">
+                    <Link href="/auth/login" className="">
+                      <div className="img-play-button flex justify-center items-center">
+                        <Image
+                          src="/img/taiNgay.png"
+                          alt="Zalo"
+                          width={300}
+                          height={300}
+                        />
+                      </div>
+                    </Link>
+                  </div>
+                </Col>
+                <Col span={6}>
+                  <LoginForm />
+                </Col>
+              </Row>
             </Col>
-           
           </Row>
-       
         </div>
 
         <div>
           <GameServerNotice />
         </div>
-        
       </div>
     </main>
   );

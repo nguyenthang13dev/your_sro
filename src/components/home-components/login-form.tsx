@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input, Checkbox, Button, ConfigProvider, theme } from "antd";
 import {
   EyeInvisibleOutlined,
@@ -12,6 +12,8 @@ import {
 import { useRouter } from "next/navigation";
 import { authService } from "@/services/auth/auth.service";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
+import { UserType } from "@/interface/auth/User";
 
 type LoginType = {
   username: string;
@@ -25,6 +27,8 @@ export function LoginForm() {
   const [rememberMe] = useState(false); // Nếu cần có thể bật lại checkbox
   const [message, setMessage] = useState("");
   const router = useRouter();
+  const [token, setToken] = useState<string | null>("");
+  const [userInfo, setUserInfo] = useState<any>();
 
   const onLogin = async (loginForm: LoginType) => {
     try {
@@ -76,113 +80,164 @@ export function LoginForm() {
     },
   };
 
+  const handleGetUserInfo = async () => {
+    try {
+      const response = await authService.getInfo();
+      if (response.status) {
+        setUserInfo(response.data);
+      }
+      console.log(response);
+    } catch (err) {}
+  };
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem("AccessToken");
+    setToken(accessToken);
+    if (accessToken) {
+      handleGetUserInfo();
+    }
+  }, []);
+
   return (
-    <ConfigProvider theme={{ algorithm: theme.darkAlgorithm, ...customTheme }}>
-      <div className="card-items">
-        <div
-          className="game-panel-content body-card"
-          style={{
-            background: "rgba(0, 0, 0, 0.75)",
-            borderRadius: "8px",
-            padding: "20px",
-            border: "1px solid #f59e0b",
-            width: "300px",
-          }}
-        >
-          <form
-            onSubmit={handleSubmit}
-            style={{ display: "flex", flexDirection: "column", gap: "16px" }}
+    <>
+      {token ? (
+        <>
+          <Button
+            type="primary"
+            style={{
+              background: "#f59e0b",
+              borderColor: "#fcd34d",
+              color: "#000",
+              fontWeight: "bold",
+
+              width: "100%",
+              fontSize: "16px",
+            }}
           >
-            <Input
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Tài khoản"
-              prefix={
-                <UserOutlined style={{ color: "rgba(252, 211, 77, 0.5)" }} />
-              }
-              style={{
-                background: "rgba(255, 255, 255, 0.1)",
-                color: "#fcd34d",
-                borderColor: "#f59e0b",
-                height: "40px",
-              }}
-            />
-
-            <Input.Password
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Nhập mật khẩu"
-              prefix={
-                <LockOutlined style={{ color: "rgba(252, 211, 77, 0.5)" }} />
-              }
-              iconRender={(visible) =>
-                visible ? (
-                  <EyeOutlined style={{ color: "rgba(252, 211, 77, 0.5)" }} />
-                ) : (
-                  <EyeInvisibleOutlined
-                    style={{ color: "rgba(252, 211, 77, 0.5)" }}
-                  />
-                )
-              }
-              style={{
-                background: "rgba(255, 255, 255, 0.1)",
-                color: "#fcd34d",
-                borderColor: "#f59e0b",
-                height: "40px",
-              }}
-            />
-
+            Xin chào, {userInfo?.userName}
+          </Button>
+        </>
+      ) : (
+        <ConfigProvider
+          theme={{ algorithm: theme.darkAlgorithm, ...customTheme }}
+        >
+          <div className="card-items">
             <div
+              className="game-panel-content body-card"
               style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
+                background: "rgba(0, 0, 0, 0.75)",
+                borderRadius: "8px",
+                padding: "20px",
+                border: "1px solid #f59e0b",
+                width: "300px",
               }}
             >
-              <a
-                href="#"
+              <form
+                onSubmit={handleSubmit}
                 style={{
-                  color: "#fcd34d",
-                  textDecoration: "underline",
-                  fontSize: "14px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "16px",
                 }}
               >
-                Quên mật khẩu?
-              </a>
+                <Input
+                  id="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  placeholder="Tài khoản"
+                  prefix={
+                    <UserOutlined
+                      style={{ color: "rgba(252, 211, 77, 0.5)" }}
+                    />
+                  }
+                  style={{
+                    background: "rgba(255, 255, 255, 0.1)",
+                    color: "#fcd34d",
+                    borderColor: "#f59e0b",
+                    height: "40px",
+                  }}
+                />
+
+                <Input.Password
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Nhập mật khẩu"
+                  prefix={
+                    <LockOutlined
+                      style={{ color: "rgba(252, 211, 77, 0.5)" }}
+                    />
+                  }
+                  iconRender={(visible) =>
+                    visible ? (
+                      <EyeOutlined
+                        style={{ color: "rgba(252, 211, 77, 0.5)" }}
+                      />
+                    ) : (
+                      <EyeInvisibleOutlined
+                        style={{ color: "rgba(252, 211, 77, 0.5)" }}
+                      />
+                    )
+                  }
+                  style={{
+                    background: "rgba(255, 255, 255, 0.1)",
+                    color: "#fcd34d",
+                    borderColor: "#f59e0b",
+                    height: "40px",
+                  }}
+                />
+
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <a
+                    href="#"
+                    style={{
+                      color: "#fcd34d",
+                      textDecoration: "underline",
+                      fontSize: "14px",
+                    }}
+                  >
+                    Quên mật khẩu?
+                  </a>
+                </div>
+
+                {message && (
+                  <div
+                    style={{
+                      color: "#f87171",
+                      fontSize: "14px",
+                      textAlign: "center",
+                    }}
+                  >
+                    {message}
+                  </div>
+                )}
+
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  style={{
+                    background: "#f59e0b",
+                    borderColor: "#fcd34d",
+                    color: "#000",
+                    fontWeight: "bold",
+                    height: "40px",
+                    width: "100%",
+                    fontSize: "16px",
+                  }}
+                >
+                  ĐĂNG NHẬP
+                </Button>
+              </form>
             </div>
-
-            {message && (
-              <div
-                style={{
-                  color: "#f87171",
-                  fontSize: "14px",
-                  textAlign: "center",
-                }}
-              >
-                {message}
-              </div>
-            )}
-
-            <Button
-              type="primary"
-              htmlType="submit"
-              style={{
-                background: "#f59e0b",
-                borderColor: "#fcd34d",
-                color: "#000",
-                fontWeight: "bold",
-                height: "40px",
-                width: "100%",
-                fontSize: "16px",
-              }}
-            >
-              ĐĂNG NHẬP
-            </Button>
-          </form>
-        </div>
-      </div>
-    </ConfigProvider>
+          </div>
+        </ConfigProvider>
+      )}
+    </>
   );
 }
 
