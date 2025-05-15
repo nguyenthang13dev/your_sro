@@ -72,14 +72,14 @@ const QLGiftCode: React.FC = () => {
       render: (_: any, __: any, index: number) => index + 1,
     },
     {
-      title: "Mã giftcode",
+      title: "Mã vật phẩm",
       dataIndex: "CodeItem",
       render: (_: any, record: tableGiftCodeItem) => (
         <span>{record.codeItem}</span>
       ),
     },
     {
-      title: "Tên giftcode",
+      title: "Tên vật phẩm",
       dataIndex: "NameItem",
 
       render: (_: any, record: tableGiftCodeItem) => (
@@ -94,7 +94,7 @@ const QLGiftCode: React.FC = () => {
       ),
     },
     {
-      title: "",
+      title: "Thao tác",
       dataIndex: "actions",
       fixed: "right",
       render: (_: any, record: tableGiftCodeItem) => {

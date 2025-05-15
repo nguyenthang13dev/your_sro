@@ -1,10 +1,11 @@
-import { ResponsePageList, Response } from "@/interface/general";
+import { Response, ResponsePageList } from "@/interface/general";
+import
+  {
+    createEditType,
+    searchGiftCode,
+    tableGiftCode,
+  } from "@/interface/GiftCode/GiftCode";
 import { apiService } from "..";
-import {
-  tableGiftCode,
-  createEditType,
-  searchGiftCode,
-} from "@/interface/GiftCode/GiftCode";
 
 class GiftCodeService {
   public async getDataByPage(

@@ -1,11 +1,10 @@
-import { Button, Card, Col, Form, FormProps, Input, Row, Select } from "antd";
-import classes from "./page.module.css";
-import { DownloadOutlined, SearchOutlined } from "@ant-design/icons";
 import Flex from "@/components/shared-components/Flex";
-import { useEffect } from "react";
+import { searchGiftCodeItem } from "@/interface/GiftCodeItem/GiftCodeItem";
 import { userService } from "@/services/user/user.service";
 import { downloadFileFromBase64 } from "@/utils/fileDownload";
-import { searchGiftCodeItem } from "@/interface/GiftCodeItem/GiftCodeItem";
+import { SearchOutlined } from "@ant-design/icons";
+import { Button, Card, Col, Form, Input, Row } from "antd";
+import classes from "./page.module.css";
 
 interface SearchProps {
   onFinish: ((values: searchGiftCodeItem) => void) | undefined;
@@ -13,7 +12,7 @@ interface SearchProps {
 const Search: React.FC<SearchProps> = ({ onFinish }) => {
   const handleExport = async () => {
     const excelBase64 = await userService.exportExcel();
-    downloadFileFromBase64(excelBase64.data, "Danh sách người dùng.xlsx");
+    downloadFileFromBase64(excelBase64.data, "Danh sách vật phẩm.xlsx");
   };
 
   return (
@@ -31,18 +30,18 @@ const Search: React.FC<SearchProps> = ({ onFinish }) => {
           <Row gutter={24} justify={"center"}>
             <Col span={8}>
               <Form.Item<searchGiftCodeItem>
-                label="Mã chức năng"
+                label="Mã vật phẩm"
                 name="codeItem"
               >
-                <Input placeholder="Mã chức năng" />
+                <Input placeholder="Mã vật phẩm" />
               </Form.Item>
             </Col>
             <Col span={8}>
               <Form.Item<searchGiftCodeItem>
-                label="Tên chức năng"
+                label="Tên vật phẩm"
                 name="nameItem"
               >
-                <Input placeholder="Tên chức năng" />
+                <Input placeholder="Tên vật phẩm" />
               </Form.Item>
             </Col>
           </Row>

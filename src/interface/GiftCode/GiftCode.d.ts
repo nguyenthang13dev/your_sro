@@ -15,6 +15,10 @@ export interface tableGiftCode {
   giftCodeItems: string;
   giftCodeItems_txt?: string;
   giftCodeItems_Data?: string[];
+    maxCountUsed: number;
+  dueDate?: Date;
+  description?: string;
+  dueDateStr?: string;
 }
 
 export interface searchGiftCode extends SearchBase {

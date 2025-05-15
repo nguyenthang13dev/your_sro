@@ -1,15 +1,13 @@
-import { Button, Card, Col, Form, FormProps, Input, Row, Select } from "antd";
-import classes from "./page.module.css";
-import { DownloadOutlined, SearchOutlined } from "@ant-design/icons";
 import Flex from "@/components/shared-components/Flex";
-import { useEffect } from "react";
+import
+  {
+    searchGiftCode
+  } from "@/interface/GiftCode/GiftCode";
 import { userService } from "@/services/user/user.service";
 import { downloadFileFromBase64 } from "@/utils/fileDownload";
-import {
-  tableGiftCode,
-  createEditType,
-  searchGiftCode,
-} from "@/interface/GiftCode/GiftCode";
+import { SearchOutlined } from "@ant-design/icons";
+import { Button, Card, Col, Form, Input, Row } from "antd";
+import classes from "./page.module.css";
 
 interface SearchProps {
   onFinish: ((values: searchGiftCode) => void) | undefined;
@@ -34,13 +32,13 @@ const Search: React.FC<SearchProps> = ({ onFinish }) => {
         >
           <Row gutter={24} justify={"center"}>
             <Col span={8}>
-              <Form.Item<searchGiftCode> label="Mã chức năng" name="code">
-                <Input placeholder="Mã chức năng" />
+              <Form.Item<searchGiftCode> label="Mã vật phẩm" name="code">
+                <Input placeholder="Mã gift code" />
               </Form.Item>
             </Col>
             <Col span={8}>
-              <Form.Item<searchGiftCode> label="Tên chức năng" name="name">
-                <Input placeholder="Tên chức năng" />
+              <Form.Item<searchGiftCode> label="Tên sự kiện" name="name">
+                <Input placeholder="Tên sự kiện" />
               </Form.Item>
             </Col>
           </Row>

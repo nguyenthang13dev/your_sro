@@ -51,7 +51,7 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
       } else {
         const response = await giftCodeService.Create(formData);
         if (response.status) {
-          toast.success("Tạo thao tác thành công");
+          toast.success("Tạo giftcode thành công");
           form.resetFields();
           props.onSuccess();
           props.onClose();
@@ -72,6 +72,13 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
       giftCodeItems: Array.isArray(props.tableGiftCode?.giftCodeItems_Data)
         ? props.tableGiftCode?.giftCodeItems_Data
         : [],
+    } );
+    
+
+    form.setFieldsValue({
+      dueDate: dayjs( props.tableGiftCode?.dueDate ),
+      maxCountUsed: props.tableGiftCode?.maxCountUsed,
+      description: props.tableGiftCode?.description,
     });
   };
 

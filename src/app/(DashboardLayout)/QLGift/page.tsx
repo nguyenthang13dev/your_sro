@@ -8,7 +8,6 @@ import
     tableGiftCode
   } from "@/interface/GiftCode/GiftCode";
 import { giftCodeService } from "@/services/GiftCode/giftCode.service";
-import { moduleService } from "@/services/module/module.service";
 import { setIsLoading } from "@/store/general/GeneralSlice";
 import { useSelector } from "@/store/hooks";
 import { AppDispatch } from "@/store/store";
@@ -79,6 +78,17 @@ const QLGift: React.FC = () => {
       dataIndex: "code",
       render: (_: any, record: tableGiftCode) => <span>{record.code}</span>,
     },
+     {
+      title: "Số lượt sử dụng tối đa",
+      dataIndex: "maxCountUsed",
+      render: (_: any, record: tableGiftCode) => <span>{record.maxCountUsed}</span>,
+    },
+     {
+      title: "Thời gian kết thúc",
+      dataIndex: "dueDateStr",
+      render: (_: any, record: tableGiftCode) =>   <span>{record.dueDateStr}</span>
+
+    },
     {
       title: "Các gift item",
       dataIndex: "giftCodeItems_txt",
@@ -88,7 +98,7 @@ const QLGift: React.FC = () => {
     },
 
     {
-      title: "",
+      title: "Thao tác",
       dataIndex: "actions",
       fixed: "right",
       render: (_: any, record: tableGiftCode) => {
@@ -150,15 +160,15 @@ const QLGift: React.FC = () => {
 
   const handleDeleteModule = async (id: string) => {
     try {
-      const response = await moduleService.Delete(id);
+      const response = await giftCodeService.Delete(id);
       if (response.status) {
-        toast.success("Xóa chức năng thành công");
+        toast.success("Xóa  gift code thành công");
         handleGetListModule();
       } else {
-        toast.error("Xóa chức năng thất bại");
+        toast.error("Xóa gift code thất bại");
       }
     } catch (error) {
-      toast.error("Xóa chức năng thất bại");
+      toast.error("Xóa gift code thất bại");
     }
   };
 
