@@ -12,8 +12,9 @@ import {
 import { useRouter } from "next/navigation";
 import { authService } from "@/services/auth/auth.service";
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
-import { UserType } from "@/interface/auth/User";
+import { setLogin } from "@/store/auth/AuthSlice";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/store/store";
 
 type LoginType = {
   username: string;
@@ -29,11 +30,12 @@ export function LoginForm() {
   const router = useRouter();
   const [token, setToken] = useState<string | null>("");
   const [userInfo, setUserInfo] = useState<any>();
-
+  const dispatch = useDispatch<AppDispatch>();
   const onLogin = async (loginForm: LoginType) => {
     try {
       const data = await authService.login(loginForm);
       if (data != null && data.status) {
+        dispatch(setLogin(data));
         toast.success("Đăng nhập thành công", {
           position: "top-right",
           autoClose: 3000,
@@ -104,15 +106,31 @@ export function LoginForm() {
         <>
           <Button
             type="primary"
+            onClick={() => router.push("/dashboard")}
             style={{
-              background: "#f59e0b",
+              background: "linear-gradient(45deg, #f59e0b, #fbbf24)",
               borderColor: "#fcd34d",
-              color: "#000",
-              fontWeight: "bold",
-
+              color: "#1f2937",
+              fontWeight: "600",
               width: "100%",
               fontSize: "16px",
+              height: "48px",
+              borderRadius: "8px",
+              transition: "all 0.3s ease",
+              boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
+              padding: "0 24px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              cursor: "pointer",
             }}
+            // styles={{
+            //   hover: {
+            //     background: "linear-gradient(45deg, #d97706, #f59e0b)",
+            //     boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
+            //     transform: "translateY(-1px)",
+            //   },
+            // }}
           >
             Xin chào, {userInfo?.userName}
           </Button>
@@ -129,7 +147,7 @@ export function LoginForm() {
                 borderRadius: "8px",
                 padding: "20px",
                 border: "1px solid #f59e0b",
-                width: "300px",
+                width: "100%",
               }}
             >
               <form
