@@ -865,7 +865,7 @@ a:hover{
 /* Thông tin server */
 
 .bg-img-news {
-    background-image: url('/img/bg_f7f254e.jpg');
+    background-image: url('/img/bg_do.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -1105,3 +1105,13 @@ a:hover{
   .fb-page {
     width: 100% !important;
   }
+   .fb-page span:first-of-type {
+    width: 100% !important;
+}
+.iframeWrapper {
+    border: 2px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  max-width: 500px;
+  margin: 0 auto;
+}
