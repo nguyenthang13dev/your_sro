@@ -86,6 +86,11 @@ const [selectedGiftCode, setSelectedGiftCode] = useState<tableGiftCode | null>(n
       render: (_: any, record: tableGiftCode) => <span>{record.maxCountUsed}</span>,
     },
      {
+      title: "Số lượt đã sử dụng",
+      dataIndex: "countUsed",
+      render: (_: any, record: tableGiftCode) => <span>{record.countUsed}</span>,
+    },
+     {
       title: "Thời gian kết thúc",
       dataIndex: "dueDateStr",
       render: (_: any, record: tableGiftCode) =>   <span>{record.dueDateStr}</span>
