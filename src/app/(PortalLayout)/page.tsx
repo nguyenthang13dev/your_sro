@@ -93,11 +93,11 @@ export default function Home() {
             gutter={10}
             className="absolute left-0 right-0 justify-end main-banner-thong-tin"
           >
-            <Col span={6}></Col>
-
-            <Col span={18}>
+            <Col span={8}></Col>
+            <Col span={16}>
               <Row>
-                <Col className="server-info" span={8}>
+                <Col span={2}></Col>
+                <Col className="server-info" span={6}>
                   <ServerInfor />
                 </Col>
                 <Col span={10}>
@@ -114,7 +114,7 @@ export default function Home() {
                     </Link>
                   </div>
                 </Col>
-                <Col span={6}>
+                <Col span={4}>
                   <LoginForm />
                 </Col>
               </Row>

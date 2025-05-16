@@ -25,13 +25,12 @@ const customTheme = {
   },
 };
 const ServerInfor2 = () => {
-  const newsGroups = useSelector( state => state.qlnewsGroup.newsGroups );
-  
-  console.log(newsGroups)
-  const news = useMemo( () =>
-  {
-    return newsGroups?.find(x => x.groupName == objectFixNews.serverinfor);
-  }, [newsGroups])
+  const newsGroups = useSelector((state) => state.qlnewsGroup.newsGroups);
+
+  console.log(newsGroups);
+  const news = useMemo(() => {
+    return newsGroups?.find((x) => x.groupName == objectFixNews.serverinfor);
+  }, [newsGroups]);
   return (
     <ConfigProvider
       theme={{
@@ -45,6 +44,7 @@ const ServerInfor2 = () => {
           background: "rgba(0, 0, 0, 0.6)",
           borderColor: "#ca8a04",
           borderWidth: 2,
+          minHeight: "98%",
         }}
       >
         <div
@@ -61,9 +61,9 @@ const ServerInfor2 = () => {
         </div>
 
         <Divider style={{ borderColor: "#92400e", margin: "12px 0" }} />
-        
+
         <div style={{ color: "#fef08a", fontSize: 14, lineHeight: 1.5 }}>
-          {(news?.items && news.items[0]) ? (
+          {news?.items && news.items[0] ? (
             <div
               className="ql-editor"
               dangerouslySetInnerHTML={{ __html: news.items[0]?.content ?? "" }}
@@ -77,7 +77,6 @@ const ServerInfor2 = () => {
             <Text style={{ color: "#fef08a" }}>Không có nội dung</Text>
           )}
         </div>
-
       </Card>
     </ConfigProvider>
   );

@@ -1,17 +1,14 @@
-"use client"
+"use client";
 
-import { useSelector } from "@/store/hooks"
-import { CalendarOutlined, TagOutlined } from "@ant-design/icons"
-import { Card, ConfigProvider, Divider, Tag, theme, Typography } from "antd"
-import dayjs from "dayjs"
+import { useSelector } from "@/store/hooks";
+import { CalendarOutlined, TagOutlined } from "@ant-design/icons";
+import { Card, ConfigProvider, Divider, Tag, theme, Typography } from "antd";
+import dayjs from "dayjs";
 
-const { Title, Text, Paragraph } = Typography
+const { Title, Text, Paragraph } = Typography;
 
-const DetailTinTuc = () =>
-{
-  
-
-  const news = useSelector( state => state.currentNews.news );
+const DetailTinTuc = () => {
+  const news = useSelector((state) => state.currentNews.news);
   // Custom theme for Ant Design
   const customTheme = {
     token: {
@@ -29,29 +26,29 @@ const DetailTinTuc = () =>
         colorPrimaryHover: "#a16207", // yellow-600
       },
     },
-  }
+  };
 
   // Map news type to a more readable format and tag color
   const getNewsTypeInfo = (type?: string) => {
     switch (type) {
       case "news":
-        return { label: "Tin tức", color: "blue" }
+        return { label: "Tin tức", color: "blue" };
       case "event":
-        return { label: "Sự kiện", color: "green" }
+        return { label: "Sự kiện", color: "green" };
       case "notification":
-        return { label: "Thông báo mới", color: "red" }
+        return { label: "Thông báo mới", color: "red" };
       case "lawplay":
-      return { label: "Luật chơi", color: "orange" }
+        return { label: "Luật chơi", color: "orange" };
       case "updateroad":
-        return { label: "Lịch trình update", color: "purple" }
+        return { label: "Lịch trình update", color: "purple" };
       case "jobselect":
-        return { label: "Lựa job", color: "purple" }
+        return { label: "Lựa job", color: "purple" };
       default:
-        return { label: "Không xác định", color: "default" }
+        return { label: "Không xác định", color: "default" };
     }
-  }
+  };
 
-  const typeInfo = getNewsTypeInfo(news?.type)
+  const typeInfo = getNewsTypeInfo(news?.type);
 
   return (
     <ConfigProvider
@@ -84,7 +81,11 @@ const DetailTinTuc = () =>
 
         <div style={{ marginBottom: 12 }}>
           {news?.type && (
-            <Tag color={typeInfo.color} icon={<TagOutlined />} style={{ marginRight: 8 }}>
+            <Tag
+              color={typeInfo.color}
+              icon={<TagOutlined />}
+              style={{ marginRight: 8 }}
+            >
               {typeInfo.label}
             </Tag>
           )}
@@ -98,7 +99,15 @@ const DetailTinTuc = () =>
 
         <Divider style={{ borderColor: "#92400e", margin: "12px 0" }} />
 
-        <div style={{ color: "#fef08a", fontSize: 14, lineHeight: 1.5 }}>
+        <div
+          style={{
+            color: "#fef08a",
+            fontSize: 14,
+            lineHeight: 1.5,
+            maxHeight: "400px",
+            overflowY: "auto",
+          }}
+        >
           {news?.content ? (
             <div
               className="ql-editor"
@@ -117,18 +126,30 @@ const DetailTinTuc = () =>
 
       {/* Add the following styles to properly render Quill content */}
       <style jsx global>{`
-        .ql-editor h1, .ql-editor h2, .ql-editor h3, .ql-editor h4, .ql-editor h5, .ql-editor h6 {
-          color: #fcd34d;
+        .ql-editor h1,
+        .ql-editor h2,
+        .ql-editor h3,
+        .ql-editor h4,
+        .ql-editor h5,
+        .ql-editor h6 {
+          color: #fcd34d !important;
           margin-top: 1em;
           margin-bottom: 0.5em;
         }
-        .ql-editor h1 { font-size: 1.75em; }
-        .ql-editor h2 { font-size: 1.5em; }
-        .ql-editor h3 { font-size: 1.25em; }
+        .ql-editor h1 {
+          font-size: 1.75em;
+        }
+        .ql-editor h2 {
+          font-size: 1.5em;
+        }
+        .ql-editor h3 {
+          font-size: 1.25em;
+        }
         .ql-editor p {
           margin-bottom: 1em;
         }
-        .ql-editor ul, .ql-editor ol {
+        .ql-editor ul,
+        .ql-editor ol {
           padding-left: 2em;
           margin-bottom: 1em;
         }
@@ -167,7 +188,7 @@ const DetailTinTuc = () =>
         }
       `}</style>
     </ConfigProvider>
-  )
-}
+  );
+};
 
-export default DetailTinTuc
+export default DetailTinTuc;

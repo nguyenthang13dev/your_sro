@@ -113,7 +113,7 @@ export function LoginForm() {
               color: "#1f2937",
               fontWeight: "600",
               width: "100%",
-              fontSize: "16px",
+              fontSize: "24px",
               height: "48px",
               borderRadius: "8px",
               transition: "all 0.3s ease",
@@ -123,14 +123,9 @@ export function LoginForm() {
               alignItems: "center",
               justifyContent: "center",
               cursor: "pointer",
+              minHeight: "70%",
+              marginTop: "24px",
             }}
-            // styles={{
-            //   hover: {
-            //     background: "linear-gradient(45deg, #d97706, #f59e0b)",
-            //     boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
-            //     transform: "translateY(-1px)",
-            //   },
-            // }}
           >
             Xin chào, {userInfo?.userName}
           </Button>

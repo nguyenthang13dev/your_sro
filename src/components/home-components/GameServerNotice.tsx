@@ -19,57 +19,59 @@ declare global {
     FB: any;
   }
 }
-const GameServerNotice = () =>
-{
+const GameServerNotice = () => {
   const dispatch = useDispatch();
-  const newsGroups = useSelector((state) => state.qlnewsGroup.newsGroups)
-  const [ activeTab, setActiveTab ] = useState( "all" );
-  const [ currentContent, setCurrentContent ] = useState<tableQLNewsData>();
-
-
+  const newsGroups = useSelector((state) => state.qlnewsGroup.newsGroups);
+  const [activeTab, setActiveTab] = useState("all");
+  const [currentContent, setCurrentContent] = useState<tableQLNewsData>();
 
   const handleGetTinTuc = useCallback(async () => {
     const search = {}; // searchQLNewsType
     const res = await qlnewsservice.GetGroupData(search);
     dispatch(setNewsGroup(res.data));
-  }, [ newsGroups ] );
-  
+  }, [newsGroups]);
+
   const renderNewsItems = () => {
     const currentGroup = newsGroups.find((g) => g.groupName === activeTab);
     if (!currentGroup) return <p>Không có dữ liệu.</p>;
     return (
       <ul className="space-y-2">
         {currentGroup.items.map((item) => (
-          <li key={item.id} style={{
-            cursor: "pointer"
-          }} className="text-sm" onClick={() =>
-          {
-            dispatch(setCurrent(item));
-          }}>
+          <li
+            key={item.id}
+            style={{
+              cursor: "pointer",
+            }}
+            className="text-sm"
+            onClick={() => {
+              dispatch(setCurrent(item));
+            }}
+          >
             <span className="text-yellow-400">[{item.title}]</span>
           </li>
         ))}
       </ul>
     );
   };
-  const tabNames = ["all", "news",  "event", "notification"];
+  const tabNames = ["all", "news", "event", "notification"];
   useEffect(() => {
     handleGetTinTuc();
-  }, [] );
-  
+  }, []);
+
   useEffect(() => {
     if (window.FB) {
       window.FB.XFBML.parse();
     } else {
       const script = document.createElement("script");
-      script.src = "https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v17.0";
+      script.src =
+        "https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v17.0";
       script.async = true;
       script.defer = true;
       script.crossOrigin = "anonymous";
       document.body.appendChild(script);
     }
-  }, [] );
-  
+  }, []);
+
   return (
     <>
       <div className="cha-main-layout-2 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-lg shadow-lg overflow-hidden bg-img-news">
@@ -79,32 +81,30 @@ const GameServerNotice = () =>
             <Col span={10} className="relative">
               <ServerInfor2 />
             </Col>
-  <Col span={10}>
-                <div className="w-full p-6 bg-gradient-to-b from-red-900 to-red-700 min-h300 bg-khung">
-            <div className="flex space-x-4 mb-4 border-b border-yellow-500">
-              {tabNames.map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`pb-2 uppercase ${
-                    activeTab === tab
-                      ? "text-yellow-400 border-b-2 border-yellow-400 font-semibold"
-                      : "text-gray-300 hover:text-yellow-400"
-                  }`}
-                >
-                  {newsTypeMap[tab.toLowerCase()]}
-                </button>
-              ))}
-            </div>
-            {renderNewsItems()}
+            <Col span={10}>
+              <div className="w-full p-6 bg-gradient-to-b from-red-900 to-red-700 min-h300 bg-khung">
+                <div className="flex space-x-4 mb-4 border-b border-yellow-500">
+                  {tabNames.map((tab) => (
+                    <button
+                      key={tab}
+                      onClick={() => setActiveTab(tab)}
+                      className={`pb-2 uppercase ${
+                        activeTab === tab
+                          ? "text-yellow-400 border-b-2 border-yellow-400 font-semibold"
+                          : "text-gray-300 hover:text-yellow-400"
+                      }`}
+                    >
+                      {newsTypeMap[tab.toLowerCase()]}
+                    </button>
+                  ))}
+                </div>
+                {renderNewsItems()}
               </div>
-                </Col>
+            </Col>
 
             <Col span={4}>
               <RankingTable />
-                </Col>
-
-         
+            </Col>
           </Row>
           <Row gutter={8} className="mb-4">
             <Col span={10}>
@@ -112,37 +112,31 @@ const GameServerNotice = () =>
               <ImageSelector />
             </Col>
             <Col span={10}>
-              <DetailTinTuc  />
+              <DetailTinTuc />
             </Col>
-              <Col span={4}>
+            <Col span={4}>
               <RankingTable />
-                </Col>
+            </Col>
           </Row>
-          <Row gutter={8}  className="mb-4">
+          <Row gutter={8} className="mb-4">
             <Col span={10}>
               <ListAccountRegister />
             </Col>
 
-            <Col span={10}>
-              <div
-
-      className="fb-page"
-      data-href="https://www.facebook.com/profile.php?id=61575212982906"
-      data-tabs="timeline"
-      data-width="500"
-      data-small-header="false"
-      data-adapt-container-width="true"
-      data-hide-cover="false"
-                data-show-facepile="true"
-                style={{
-                    width: "100%",
-                }}
-    ></div>
-            </Col>
-
-
-            <Col span={4}>
-              
+            <Col span={14}>
+              <div className="iframeWrapper">
+                <iframe
+                  title="Facebook Page Plugin"
+                  src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61575212982906&tabs=timeline&width=500&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true"
+                  width="100%"
+                  height="500"
+                  style={{ border: "none", overflow: "hidden" }}
+                  scrolling="no"
+                  frameBorder="0"
+                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                  allowFullScreen
+                ></iframe>
+              </div>
             </Col>
           </Row>
         </div>
