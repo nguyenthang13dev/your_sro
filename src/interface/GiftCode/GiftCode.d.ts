@@ -3,7 +3,7 @@ export interface createEditType {
   name: string;
   code: string;
   giftCodeItems: string[];
-    maxCountUsed: number;
+  maxCountUsed: number;
   dueDate?: Date;
   description?: string;
 }
@@ -24,6 +24,7 @@ export interface tableGiftCode {
   dueDate?: Date;
   description?: string;
   dueDateStr?: string;
+    countUsed: number;
 }
 
 export interface searchGiftCode extends SearchBase {
