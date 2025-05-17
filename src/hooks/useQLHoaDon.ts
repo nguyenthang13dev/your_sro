@@ -1,3 +1,5 @@
+'use client'
+
 import { tableOrderDataType, tableOrderSearchVMDataType } from "@/interface/Order/Order";
 import { orderService } from "@/services/order/order.service";
 import { setIsLoading } from "@/store/general/GeneralSlice";
@@ -42,7 +44,7 @@ const useQLHoaDon = () =>
         pageIndex,
         pageSize,
         isPannelSearch,
-        
+
         setLstOrders,
         handleGetData,
         setSearchData,

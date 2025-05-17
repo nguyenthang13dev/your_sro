@@ -1,3 +1,5 @@
+'use client'
+
 import Flex from "@/components/shared-components/Flex";
 import AutoBreadcrumb from "@/components/util-compenents/Breadcrumb";
 import useQLHoaDon from "@/hooks/useQLHoaDon";
