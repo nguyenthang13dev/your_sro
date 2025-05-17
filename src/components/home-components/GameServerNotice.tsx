@@ -78,7 +78,7 @@ const GameServerNotice = () => {
         {/* Phần hình ảnh bên trái */}
         <div className="main-layout-2">
           <Row gutter={8} className="mb-4">
-            <Col span={10} className="relative">
+            <Col span={10} className="relative" style={{ height: "350px" }}>
               <ServerInfor2 />
             </Col>
             <Col span={10}>
