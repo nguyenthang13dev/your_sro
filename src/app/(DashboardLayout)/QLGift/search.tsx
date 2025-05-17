@@ -32,7 +32,7 @@ const Search: React.FC<SearchProps> = ({ onFinish }) => {
         >
           <Row gutter={24} justify={"center"}>
             <Col span={8}>
-              <Form.Item<searchGiftCode> label="Mã vật phẩm" name="code">
+              <Form.Item<searchGiftCode> label="Mã gift" name="code">
                 <Input placeholder="Mã gift code" />
               </Form.Item>
             </Col>

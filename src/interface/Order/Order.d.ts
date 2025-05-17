@@ -4,6 +4,16 @@ export interface tableOrderCreateVMDataType {
     name: string;
     PaymentStatus?: string;
 }
+
+
+export interface tableOrderDataType { 
+    id? : string;
+    total: number;
+    name: string;
+    PaymentStatus?: string;
+}
+
+
 export interface tableOrderSearchVMDataType extends SearchBase { 
     id? : string;
     name: string;
