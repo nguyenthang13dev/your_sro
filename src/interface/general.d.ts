@@ -18,10 +18,10 @@ export interface ResponsePageList<T = any> {
 }
 
 export interface ResponsePageInfo {
-  pageIndex?: int;
-  pageSize?: int;
-  totalCount?: int | 0;
-  totalPage?: int | 0;
+  pageIndex?: int | 1;
+  pageSize?: int | 20;
+  totalCount?: int | 1;
+  totalPage?: int | 1;
 }
 
 export interface SearchBase {

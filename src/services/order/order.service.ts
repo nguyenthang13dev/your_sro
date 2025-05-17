@@ -1,5 +1,5 @@
-import { Response } from "@/interface/general";
-import { tableOrderCreateVMDataType, tableOrderSearchVMDataType } from "@/interface/Order/Order";
+import { Response, ResponsePageList } from "@/interface/general";
+import { tableOrderCreateVMDataType, tableOrderDataType, tableOrderSearchVMDataType } from "@/interface/Order/Order";
 import { apiService } from "..";
 
 class OrderService
@@ -28,7 +28,7 @@ class OrderService
   }
   
 
-     public async GetDate(formData: tableOrderSearchVMDataType): Promise<Response> {
+     public async GetDate(formData: tableOrderSearchVMDataType): Promise<Response<ResponsePageList<tableOrderDataType[]>>> {
         try {
           const response = await apiService.post<Response>(
             `/Order/GetData`,

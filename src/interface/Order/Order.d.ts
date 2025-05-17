@@ -11,6 +11,7 @@ export interface tableOrderDataType {
     total: number;
     name: string;
     PaymentStatus?: string;
+    
 }
 
 

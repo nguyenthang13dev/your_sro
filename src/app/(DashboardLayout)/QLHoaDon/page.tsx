@@ -5,12 +5,16 @@ import AutoBreadcrumb from "@/components/util-compenents/Breadcrumb";
 import useQLHoaDon from "@/hooks/useQLHoaDon";
 import { tableOrderDataType } from "@/interface/Order/Order";
 import { CloseOutlined, PlusCircleOutlined, SearchOutlined } from "@ant-design/icons";
-import { Button, Card, Table } from "antd";
+import { Button, Card, Pagination, Table } from "antd";
 import { TableProps } from "antd/lib";
+import { useEffect } from "react";
 import classes from "./page.module.css";
 const QLHoaDon = () =>
 {
-    const {handleGetData, lstOrders, loading, isPannelSearch, setIsPannelSearch} = useQLHoaDon()
+    const { handleGetData, lstOrders,
+        pageIndex,
+        setPageIndex, setPageSize, loading, pageSize,
+        isPannelSearch, dataPage , setIsPannelSearch } = useQLHoaDon()
 
 
     const tableColumns: TableProps<tableOrderDataType>["columns"] = [
@@ -42,6 +46,12 @@ const QLHoaDon = () =>
             key: "totalPrice",
         }
     ]
+
+
+    useEffect(() =>
+    {
+        // handleGetData( searchData );
+    }, [pageIndex, pageSize, handleGetData])
 
     return (
         <>
@@ -86,7 +96,7 @@ const QLHoaDon = () =>
             loading={loading}
           />
         </div>
-        {/* <Pagination
+        <Pagination
           className="mt-2"
           total={dataPage?.totalCount}
           showTotal={(total, range) =>
@@ -103,7 +113,7 @@ const QLHoaDon = () =>
           }}
           size="small"
           align="end"
-        /> */}
+        />
       </Card>
         
         </>
