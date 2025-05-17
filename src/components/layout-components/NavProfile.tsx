@@ -100,25 +100,25 @@ export const NavProfile: React.FC = () => {
   };
 
   const items: MenuProps["items"] = [
-    {
-      key: "Chỉnh sửa thông tin",
-      label: (
-        <div onClick={handleOpenModal}>
-          <MenuItem
-            path="/"
-            label="Chỉnh sửa thông tin"
-            icon={<EditOutlined />}
-            // Mở modal khi nhấn
-          />
-        </div>
-      ),
-    },
-    {
-      key: "Account Setting",
-      label: (
-        <MenuItem path="/" label="Account Setting" icon={<SettingOutlined />} />
-      ),
-    },
+    // {
+    //   key: "Chỉnh sửa thông tin",
+    //   label: (
+    //     <div onClick={handleOpenModal}>
+    //       <MenuItem
+    //         path="/"
+    //         label="Chỉnh sửa thông tin"
+    //         icon={<EditOutlined />}
+    //         // Mở modal khi nhấn
+    //       />
+    //     </div>
+    //   ),
+    // },
+    // {
+    //   key: "Account Setting",
+    //   label: (
+    //     <MenuItem path="/" label="Account Setting" icon={<SettingOutlined />} />
+    //   ),
+    // },
     {
       key: "Đăng xuất",
       label: <MenuItemSignOut label="Đăng xuất" />,
@@ -138,7 +138,7 @@ export const NavProfile: React.FC = () => {
           </Profile>
         </NavItem>
       </Dropdown>
-      <ChangePass visible={isModalVisible} onClose={handleCloseModal} />
+      {/* <ChangePass visible={isModalVisible} onClose={handleCloseModal} /> */}
     </>
   );
 };

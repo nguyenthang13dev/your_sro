@@ -44,7 +44,9 @@ const ServerInfor2 = () => {
           background: "rgba(0, 0, 0, 0.6)",
           borderColor: "#ca8a04",
           borderWidth: 2,
-          minHeight: "98%",
+          // minHeight: "98%",
+          height: "86%",
+          overflowX: "auto",
         }}
       >
         <div
@@ -69,8 +71,9 @@ const ServerInfor2 = () => {
               dangerouslySetInnerHTML={{ __html: news.items[0]?.content ?? "" }}
               style={{
                 padding: 0,
-                color: "#f8fafc", // slate-50
+                color: "#rgb(250 204 21 / var(--tw-text-opacity, 1))", // slate-50
                 fontSize: "1rem",
+                height: "500px",
               }}
             />
           ) : (

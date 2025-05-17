@@ -114,7 +114,7 @@ const DetailTinTuc = () => {
               dangerouslySetInnerHTML={{ __html: news.content }}
               style={{
                 padding: 0,
-                color: "#f8fafc", // slate-50
+                color: "#rgb(250 204 21 / var(--tw-text-opacity, 1))", // slate-50
                 fontSize: "1rem",
               }}
             />
