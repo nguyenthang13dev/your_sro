@@ -14,6 +14,7 @@ import DetailTinTuc from "./DetailTinTuc";
 import ImageSelector from "./ImageSelector";
 import ListAccountRegister from "./ListAccountRegister";
 import RankingTable from "./rank-mini";
+import RankingTableIn from "./rankingame";
 declare global {
   interface Window {
     FB: any;
@@ -77,12 +78,12 @@ const GameServerNotice = () => {
       <div className="cha-main-layout-2 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-lg shadow-lg overflow-hidden bg-img-news">
         {/* Phần hình ảnh bên trái */}
         <div className="main-layout-2">
-          <Row gutter={8} className="mb-4">
+          <Row gutter={8} className="mb-4 ">
             <Col span={10} className="relative" style={{ height: "350px" }}>
               <ServerInfor2 />
             </Col>
             <Col span={10}>
-              <div className="w-full p-6 bg-gradient-to-b from-red-900 to-red-700 min-h300 bg-khung">
+              <div className="w-full p-6 bg-gradient-to-b from-red-900 to-red-700 min-h300 mh-300-rank bg-khung">
                 <div className="flex space-x-4 mb-4 border-b border-yellow-500">
                   {tabNames.map((tab) => (
                     <button
@@ -103,10 +104,10 @@ const GameServerNotice = () => {
             </Col>
 
             <Col span={4}>
-              <RankingTable />
+              <RankingTableIn />
             </Col>
           </Row>
-          <Row gutter={8} className="mb-4">
+          <Row gutter={8} className="mb-4 mh-600">
             <Col span={10}>
               {/* <Rankings /> */}
               <ImageSelector />
@@ -123,7 +124,7 @@ const GameServerNotice = () => {
               <ListAccountRegister />
             </Col>
 
-            <Col span={14}>
+            <Col span={10}>
               <div className="iframeWrapper">
                 <iframe
                   title="Facebook Page Plugin"

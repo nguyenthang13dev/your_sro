@@ -1,12 +1,6 @@
 "use client";
 
-import
-  {
-    WifiOutlined as WifiOffOutlined,
-    WifiOutlined,
-  } from "@ant-design/icons";
-import { Badge, Card, ConfigProvider, Divider, theme, Typography } from "antd";
-import { useState } from "react";
+import { Card, ConfigProvider, Divider, theme, Typography } from "antd";
 
 const { Title, Text } = Typography;
 
@@ -43,8 +37,8 @@ const ServerInfor = () => {
           background: "rgba(0, 0, 0, 0.6)",
           borderColor: "#ca8a04",
           borderWidth: 2,
-          width: 360,
-          fontSize: "16px",
+          fontSize: "14px",
+          height: "100%",
         }}
       >
         <div

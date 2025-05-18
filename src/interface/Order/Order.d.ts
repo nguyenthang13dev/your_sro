@@ -1,3 +1,5 @@
+import { SearchBase } from "../general";
+
 export interface tableOrderCreateVMDataType { 
     id? : string;
     total: number;
@@ -10,12 +12,15 @@ export interface tableOrderDataType {
     id? : string;
     total: number;
     name: string;
-    PaymentStatus?: string;
-    
+    createdDate?: Date;
+    createDateStr?: string;
+    statusStr?: string;
+    paymentStatus?: string;
+
 }
 
 
 export interface tableOrderSearchVMDataType extends SearchBase { 
-    id? : string;
-    name: string;
+    Id? : string;
+    Name?: string;
 }

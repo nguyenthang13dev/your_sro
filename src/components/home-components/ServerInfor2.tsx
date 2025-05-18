@@ -45,7 +45,7 @@ const ServerInfor2 = () => {
           borderColor: "#ca8a04",
           borderWidth: 2,
           // minHeight: "98%",
-          height: "86%",
+          height: "350px",
           overflowX: "auto",
         }}
       >

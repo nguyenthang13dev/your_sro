@@ -88,8 +88,8 @@ const ListAccountRegister: React.FC<ScrollingAccountsListProps> = ({
           background: "rgba(0, 0, 0, 0.6)",
           borderColor: "#ca8a04",
           borderWidth: 2,
-          height: "100%",
           overflow: "hidden",
+          maxHeight: "200px",
         }}
       >
         <Title level={4} style={{ color: "#fcd34d", margin: "0 0 16px 0", textAlign: "center" }}>

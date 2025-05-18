@@ -58,7 +58,14 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
   }
 
   const handleMapEdit = () => {
-    form.setFieldsValue(props.news)
+    form.setFieldsValue( {
+      ...props.news,
+      publishDate: dayjs(props.news?.publishDate),
+      content: props.news?.content,
+      type: props.news?.type,
+      published: props.news?.published,
+    } )
+    
   }
 
   const handleCancel = () => {

@@ -1,4 +1,7 @@
 import { authService } from "@/services/auth/auth.service";
+import { setLogout } from "@/store/auth/AuthSlice";
+import { useDispatch } from "@/store/hooks";
+import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -6,7 +9,7 @@ import { useEffect, useState } from "react";
 export function MainNavigation() {
   const [token, setToken] = useState<string | null>("");
   const [userInfo, setUserInfo] = useState<any>();
-
+  const dispatch = useDispatch();
   const navItems = [
     { name: "TRANG CHỦ", href: "/" },
     {
@@ -14,6 +17,7 @@ export function MainNavigation() {
       href: "https://drive.google.com/file/d/1Po1aAKCeAuwylm88dO0iX5R_khYjv3a4/view?pli=1",
     },
     { name: "Mua silk", href: "/payment" },
+    { name: "GiftCode", href: "/giftCode" },
     { name: "MINIGAME", href: "/minigame" },
     { name: "ZALO", href: "https://zalo.me/g/ybvunx631" },
     { name: "NHÓM FB", href: "https://www.facebook.com/share/1DPmy4eGsv" },
@@ -21,6 +25,13 @@ export function MainNavigation() {
     { name: "Đăng nhập", href: "/auth/login" },
   ];
 
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+
+    const handleSignOut = () => {
+      dispatch( setLogout() );
+       window.location.reload(); 
+    };
+  
   const handleGetUserInfo = async () => {
     try {
       const response = await authService.getInfo();
@@ -73,9 +84,37 @@ export function MainNavigation() {
                     </Link>
                   </li>
                 ))}
-              <li className="text-amber-500 py-2 text-lg md:text-base font-medium uppercase">
-                Xin chào, {userInfo?.userName}
-              </li>
+           <li
+            className="relative"
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+          >
+            <div className="text-amber-500 py-2 text-sm md:text-base font-medium uppercase flex items-center cursor-pointer hover:text-amber-300 transition-colors">
+              Xin chào, {userInfo?.userName}
+              <ChevronDown className="ml-1 h-4 w-4" />
+            </div>
+
+            {isDropdownOpen && (
+              <div className="absolute right-0 mt-1 w-48 rounded-md shadow-lg py-1 z-10 border bg-white border-gray-200">
+                <Link
+                  href="/dashboard"
+                  className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-amber-50 hover:text-amber-500"
+                >
+                  Trang quản trị
+                </Link>
+                    <li
+                      onClick={() =>
+                      {
+                        console.log(1);
+                        
+                       handleSignOut()
+                      }}  
+                  className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-amber-50 hover:text-amber-500"
+                >
+                  Đăng xuất
+                </li>
+              </div>
+            )}
+          </li>
             </>
           ) : (
             navItems.map((item) => (

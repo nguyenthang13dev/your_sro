@@ -13,13 +13,19 @@ const useQLHoaDon = () =>
     const dispatch = useDispatch();
     const loading = useSelector(state => state.general.isLoading) ;
     const [ lstOrders, setLstOrders ] = useState<tableOrderDataType[]>( [] );   
-    const [ searchData, setSearchData ] = useState<tableOrderSearchVMDataType>();   
+    const [ searchData, setSearchData ] = useState<tableOrderSearchVMDataType>( {
+        pageIndex: 1,
+        pageSize: 20,
+    });   
     const [ pageIndex, setPageIndex ] = useState<number>( 1 );
     const [pageSize, setPageSize] = useState<number>(20);
     const [ dataPage, setDataPage ] = useState<ResponsePageInfo>( );
     
     const [isPannelSearch, setIsPannelSearch] = useState<boolean>(false);
     
+    
+
+
     const handleGetData = useCallback( async ( searchData: tableOrderSearchVMDataType ) =>
     {
         dispatch( setIsLoading( true ) );

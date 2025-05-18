@@ -5,7 +5,7 @@ import { authService } from "@/services/auth/auth.service";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-export default function RankingTable() {
+export default function RankingTableIn() {
   const [rankings, setRankings] = useState<tableAppUserBXHDataType[]>([]);
   const handleGetBxhIngame = async () => {
     try {
@@ -23,9 +23,9 @@ export default function RankingTable() {
   // Sample ranking data
 
   return (
-    <div className="bg-red-950/60 border border-yellow-900/50 rounded-sm mh-600-rank">
+    <div className="bg-red-950/60 border border-yellow-900/50 rounded-sm mh-300-rank">
       <div className="bg-gradient-to-r from-yellow-900 to-red-900 py-2 px-4">
-        <h2 className="text-yellow-500 font-bold">BẢNG XẾP HẠNG MINIGAME</h2>
+        <h2 className="text-yellow-500 font-bold">BẢNG XẾP HẠNG INGAME</h2>
       </div>
 
       <div className="p-2">

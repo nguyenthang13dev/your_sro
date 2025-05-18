@@ -85,6 +85,13 @@ const PaymentPage = () => {
           alt="QR Code"
           className="border p-2 rounded"
         />
+         {/* <img
+          src={`https://qr.sepay.vn/img?acc=18445681&bank=ACB&amount=${order.total}&des=DH_${order.id}&download=true`}
+          width={200}
+          height={200}
+          alt="QR Code"
+          className="border p-2 rounded"
+        /> */}
       </div>
 
       <div className="grid grid-cols-2 gap-2 text-sm mb-4">

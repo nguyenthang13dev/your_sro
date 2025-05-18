@@ -39,6 +39,7 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import CreateOrUpdate from "./createOrUpdate";
 import classes from "./page.module.css";
+import QLNewDetail from "./QLNewDetail";
 
 
 const QLNews: React.FC = () => {
@@ -283,11 +284,16 @@ const QLNews: React.FC = () => {
         </div>
       </Flex>
       {/* {isPanelVisible && <Search onFinish={onFinishSearch} />} */}
-      {/* <QLModuleDetail
-        module={currentDetailModule}
+     
+     
+      <QLNewDetail
+        qlnews={currentDetailModule}
         isOpen={isOpenDetail}
-        onClose={handleCloseDetail}
-      /> */}
+        onClose={() =>
+        {
+          handleCloseDetail()
+        }}
+      />
       <Card style={{ padding: "0px" }} className={classes.customCardShadow}>
         <div className="table-responsive">
           <Table

@@ -4,7 +4,7 @@ import Flex from "@/components/shared-components/Flex";
 import AutoBreadcrumb from "@/components/util-compenents/Breadcrumb";
 import useQLHoaDon from "@/hooks/useQLHoaDon";
 import { tableOrderDataType } from "@/interface/Order/Order";
-import { CloseOutlined, PlusCircleOutlined, SearchOutlined } from "@ant-design/icons";
+import { CloseOutlined, SearchOutlined } from "@ant-design/icons";
 import { Button, Card, Pagination, Table } from "antd";
 import { TableProps } from "antd/lib";
 import { useEffect } from "react";
@@ -14,44 +14,42 @@ const QLHoaDon = () =>
     const { handleGetData, lstOrders,
         pageIndex,
         setPageIndex, setPageSize, loading, pageSize,
-        isPannelSearch, dataPage , setIsPannelSearch } = useQLHoaDon()
+        isPannelSearch, dataPage , setIsPannelSearch , searchData, setSearchData} = useQLHoaDon()
 
 
     const tableColumns: TableProps<tableOrderDataType>["columns"] = [
         {
             title: "Mã hóa đơn",
-            dataIndex: "id",
-            key: "id",
-            render: (recrod: tableOrderDataType) => <span>{recrod.name}</span>,
-        },
-        {
-            title: "Tên khách hàng",
-            dataIndex: "customerName",
-            key: "customerName",
+            dataIndex: "name",
+            key: "name",
+            render: (_: any, record: tableOrderDataType) => <span>{record.name}</span>,
         },
         {
             title: "Ngày tạo",
-            dataIndex: "createdDate",
-            key: "createdDate",
-            render: (recrod: tableOrderDataType) => <span>{recrod.name}</span>,
+            dataIndex: "createDateStr",
+            key: "createDateStr",
+            render: (_: any, record: tableOrderDataType) => <span>{record?.createDateStr}</span>,
         },
         {
             title: "Trạng thái",
-            dataIndex: "status",
-            key: "status",
+            dataIndex: "statusStr",
+            key: "statusStr",
+          render: (_: any,record: tableOrderDataType) => <span>{record?.statusStr}</span>,
         },
         {
             title: "Tổng tiền",
-            dataIndex: "totalPrice",
-            key: "totalPrice",
+            dataIndex: "total",
+            key: "total",
+      render: (_: any,record: tableOrderDataType) => <span>{record.total}</span>,
+
         }
     ]
 
 
     useEffect(() =>
     {
-        // handleGetData( searchData );
-    }, [pageIndex, pageSize, handleGetData])
+        handleGetData( searchData );
+    }, [searchData, handleGetData])
 
     return (
         <>
@@ -70,10 +68,8 @@ const QLHoaDon = () =>
                     >
                         {isPannelSearch ? "Ẩn tìm kiếm" : "Tìm kiếm"}
                     </Button>
-                </div>
-
-
-                <Button
+                    
+                    {/* <Button
                 onClick={() => {
                 //   handleShowModal();
                 }}
@@ -82,7 +78,11 @@ const QLHoaDon = () =>
                 size="small"
             >
                 Thêm mới
-            </Button>
+            </Button> */}
+                </div>
+
+
+              
             </Flex>
           <Card style={{ padding: "0px" }} className={classes.customCardShadow}>
         <div className="table-responsive">

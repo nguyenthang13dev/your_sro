@@ -1,20 +1,21 @@
 "use client";
 
+import { authService } from "@/services/auth/auth.service";
+import { setLogin } from "@/store/auth/AuthSlice";
+import { AppDispatch } from "@/store/store";
+import
+  {
+    EyeInvisibleOutlined,
+    EyeOutlined,
+    LockOutlined,
+    UserOutlined,
+  } from "@ant-design/icons";
+import { Button, ConfigProvider, Input, theme } from "antd";
+import { useRouter } from "next/navigation";
 import type React from "react";
 import { useEffect, useState } from "react";
-import { Input, Checkbox, Button, ConfigProvider, theme } from "antd";
-import {
-  EyeInvisibleOutlined,
-  EyeOutlined,
-  UserOutlined,
-  LockOutlined,
-} from "@ant-design/icons";
-import { useRouter } from "next/navigation";
-import { authService } from "@/services/auth/auth.service";
-import { toast } from "react-toastify";
-import { setLogin } from "@/store/auth/AuthSlice";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/store/store";
+import { toast } from "react-toastify";
 
 type LoginType = {
   username: string;
@@ -101,10 +102,10 @@ export function LoginForm() {
   }, []);
 
   return (
-    <>
+    <div className="">
       {token ? (
         <>
-          <Button
+          {/* <Button
             type="primary"
             onClick={() => router.push("/dashboard")}
             style={{
@@ -128,7 +129,7 @@ export function LoginForm() {
             }}
           >
             Xin chào, {userInfo?.userName}
-          </Button>
+          </Button> */}
         </>
       ) : (
         <ConfigProvider
@@ -250,7 +251,7 @@ export function LoginForm() {
           </div>
         </ConfigProvider>
       )}
-    </>
+    </div>
   );
 }
 

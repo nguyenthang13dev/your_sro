@@ -35,16 +35,16 @@ export default function Home() {
           {/* <div className="absolute position-zalo">
             <div
               style={{
-                minWidth: "120px",
-                maxWidth: "120px",
+                minWidth: "7.5rem",
+                maxWidth: "7.5rem",
                 textAlign: "center",
               }}
             >
               <p
                 style={{
-                  margin: "8px 0 0",
-                  fontSize: "13px",
-                  marginBottom: "5px",
+                  margin: ".5rem 0 0",
+                  fontSize: ".8125rem",
+                  marginBottom: ".3125rem",
                 }}
               >
                 Quét QR code để gia nhập cộng đồng
@@ -54,10 +54,10 @@ export default function Home() {
                 alt="Zalo"
                 width={100}
                 height={100}
-                style={{ display: "block", borderRadius: "5px" }} // Ensures image is centered and doesn't cause layout issues
+                style={{ display: "block", borderRadius: ".3125rem" }} // Ensures image is centered and doesn't cause layout issues
               />
 
-              <p style={{ margin: "8px 0 0", fontSize: "13px" }}>
+              <p style={{ margin: ".5rem 0 0", fontSize: ".8125rem" }}>
                 Vào nhóm nhận GIFTCODE khủng
               </p>
             </div>
@@ -89,37 +89,57 @@ export default function Home() {
           </Row> */}
           {/* <div className="absolute bottom-0 left-0 right-0 flex justify-center game-container"></div> */}
 
-          <Row
-            gutter={10}
-            className="absolute left-0 right-0 justify-end main-banner-thong-tin"
-          >
-            <Col span={8}></Col>
-            <Col span={16}>
-              <Row>
-                <Col span={2}></Col>
-                <Col className="server-info" span={6}>
-                  <ServerInfor />
-                </Col>
-                <Col span={10}>
-                  <div className="play-button-container">
-                    <Link href="/auth/login" className="">
-                      <div className="img-play-button flex justify-center items-center">
-                        <Image
-                          src="/img/taiNgay.png"
-                          alt="Zalo"
-                          width={300}
-                          height={300}
-                        />
-                      </div>
-                    </Link>
-                  </div>
-                </Col>
-                <Col span={4}>
-                  <LoginForm />
-                </Col>
-              </Row>
-            </Col>
-          </Row>
+          <div className="cha-main-layout-2 absolute bottom-0 py-10 left-0 right-0  text-white rounded-lg shadow-lg overflow-hidden">
+          <div className="main-layout-2">
+              <div className="">
+              <Row gutter={8} align="bottom" style={{ minHeight: '320px' }}>
+  <Col span={10} className="server-info" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+    <Row gutter={12} style={{ flex: 1 }}>
+      <Col span={6} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+        <div className="border-zalo">
+          <Image
+            src="/img/zalo.jpg"
+            alt="Zalo"
+            width={300}
+            height={300}
+            className="logo-game"
+          />
+          <p style={{ margin: '.5rem 0 0', fontSize: '.8125rem' }}>
+            Vào nhóm nhận GIFTCODE khủng
+          </p>
+        </div>
+      </Col>
+
+      <Col span={18} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+        <ServerInfor />
+      </Col>
+    </Row>
+  </Col>
+
+  <Col span={10} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+    <div className="play-button-container" style={{ width: '100%' }}>
+      <Link href="/auth/login" className="">
+        <div className="img-play-button flex justify-center items-center">
+          <Image
+            src="/img/taiNgay.png"
+            alt="Zalo"
+            width={300}
+            height={300}
+          />
+        </div>
+      </Link>
+    </div>
+  </Col>
+
+  <Col span={4} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+    <LoginForm />
+  </Col>
+</Row>
+
+           </div>
+
+          </div>
+          </div>
         </div>
 
         <div>
