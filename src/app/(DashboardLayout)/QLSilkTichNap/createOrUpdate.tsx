@@ -31,7 +31,9 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
     {
       if ( formData )
       {
-
+        formData.dsItem = formData.dsItem.map((item: string) => item.toLowerCase());
+        formData.rank = Number(formData.rank);
+        formData.description = formData.description;
       }
 
       if ( props.silktichnap )
@@ -77,12 +79,13 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
         ]);
       };
     
-    
-    
   const handleMapEdit = (propdt: tableSilkTichNapDataType) =>
   {
     form.setFieldsValue({
-      id: propdt.id,
+        id: propdt.id,
+        rank: propdt?.rank,
+        description: propdt?.description,
+        dsItem: propdt.dsItem?.split(",") ?? [],
     });
   };
 

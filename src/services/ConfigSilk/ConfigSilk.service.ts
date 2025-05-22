@@ -37,6 +37,10 @@ class ConfigSilkService
     }
   }
 
+
+
+  
+
   public async Delete(id: string): Promise<Response> {
     try {
       const response = await apiService.delete<Response>(

@@ -3,10 +3,12 @@ import Flex from "@/components/shared-components/Flex";
 import AutoBreadcrumb from "@/components/util-compenents/Breadcrumb";
 import useQLSikTichNap from "@/hooks/useQLSikTichNap";
 import { tableSilkTichNapDataType } from "@/interface/QLSilkTichNap/QLSilkTichNap";
+import { qlSilkTichNapService } from "@/services/SilkTichNap/SilkTichNap.service";
 import { DeleteOutlined, DownOutlined, EditOutlined, PlusCircleOutlined } from "@ant-design/icons";
 import { Button, Card, Dropdown, MenuProps, Pagination, Popconfirm, Space, Table } from "antd";
 import { TableProps } from "antd/lib";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import CreateOrUpdate from "./createOrUpdate";
 import classes from "./page.module.css";
 
@@ -29,13 +31,34 @@ const QLHoaDon = () =>
   } = useQLSikTichNap()
 
 
+  const [openPopconfirmId, setOpenPopconfirmId] = useState<string | null>(null);
 
 
-  const handleShowModal = (  ) =>
-  {
-    setIsOpenModal( true );
-  }
+ const handleShowModal = (isEdit?: boolean, module?: tableSilkTichNapDataType) => {
+    setIsOpenModal(true);
+    if (isEdit) {
+      setCurrentTichNap(module);
+    }
+  };
   
+
+
+   const handleDeleteModule = async (id: string) => {
+      try {
+        const response = await qlSilkTichNapService.Delete(id);
+  
+        if (response.status) {
+          toast.success("Xóa  thành công");
+          handleGetData(searchData);
+        } else {
+          toast.error("Xóa  thất bại");
+        }
+      } catch (error) {
+        toast.error("Có lỗi xảy ra: " + error);
+      }
+  };
+  
+
   const handleClose = () => {
     setIsOpenModal(false);
     setCurrentTichNap(null);
@@ -76,7 +99,7 @@ const QLHoaDon = () =>
                       key: "4",
                       icon: <EditOutlined />,
                       onClick: () => {
-                        // handleShowModal(true, record);
+                        handleShowModal(true, record);
                       },
                     },
                     {
@@ -84,7 +107,7 @@ const QLHoaDon = () =>
                       key: "5",
                       danger: true,
                       icon: <DeleteOutlined />,
-                      // onClick: () => setOpenPopconfirmId(record.id ?? ""),
+                      onClick: () => setOpenPopconfirmId(record.id ?? ""),
                     },
                     {
                       type: "divider",
@@ -105,17 +128,17 @@ const QLHoaDon = () =>
                         </Button>
                       </Dropdown>
                       <Popconfirm
-                        title="Xác nhận xóa"
-                        description="Bạn có muốn xóa cấu hình silk này?"
-                        okText="Xóa"
-                        cancelText="Hủy"
-                        // open={openPopconfirmId === record.id}
-                        onConfirm={() => {
-                          // handleDeleteModule(record.id || "");
-                          // setOpenPopconfirmId(null);
-                        }}
-                        // onCancel={() => setOpenPopconfirmId(null)}
-                      ></Popconfirm>
+                      title="Xác nhận xóa"
+                      description="Bạn có muốn xóa?"
+                      okText="Xóa"
+                      cancelText="Hủy"
+                      open={openPopconfirmId === record.id}
+                      onConfirm={() => {
+                        handleDeleteModule(record.id || "");
+                        setOpenPopconfirmId(null);
+                      }}
+                      onCancel={() => setOpenPopconfirmId(null)}
+                    ></Popconfirm>
                     </>
                   );
                 },

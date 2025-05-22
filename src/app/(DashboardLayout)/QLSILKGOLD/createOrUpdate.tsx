@@ -27,7 +27,7 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
          formData.SilkTotal = Number(formData.SilkTotal );
         formData.TotalMount = Number(formData.TotalMount );
         formData.SilkKM = Number( formData.SilkKM );
-                formData.isActive = true;
+         formData.isActive = true;
 
       }
 
