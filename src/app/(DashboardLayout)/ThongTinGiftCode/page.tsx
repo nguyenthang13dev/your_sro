@@ -1,18 +1,18 @@
-"use client"
+"use client";
 
-import Flex from "@/components/shared-components/Flex"
-import AutoBreadcrumb from "@/components/util-compenents/Breadcrumb"
-import { giftCodeService } from "@/services/GiftCode/giftCode.service"
-import { setIsLoading } from "@/store/general/GeneralSlice"
-import { useDispatch, useSelector } from "@/store/hooks"
-import { GiftOutlined } from "@ant-design/icons"
-import { Alert, Button, Card, Input, Space, Typography } from "antd"
-import { useState } from "react"
-import { toast } from "react-toastify"
+import Flex from "@/components/shared-components/Flex";
+import AutoBreadcrumb from "@/components/util-compenents/Breadcrumb";
+import { giftCodeService } from "@/services/GiftCode/giftCode.service";
+import { setIsLoading } from "@/store/general/GeneralSlice";
+import { useDispatch, useSelector } from "@/store/hooks";
+import { GiftOutlined } from "@ant-design/icons";
+import { Alert, Button, Card, Input, Space, Typography } from "antd";
+import { useState } from "react";
+import { toast } from "react-toastify";
 
 const { Title, Paragraph, Text } = Typography
 
-export default function GiftCodeInput() {
+const GiftCodeInput: React.FC = () =>  {
     const [ giftCode, setGiftCode ] = useState( "" )
     const [status, setStatus] = useState<"idle" | "success" | "error">("idle")
     const dispatch = useDispatch() 
@@ -123,3 +123,4 @@ export default function GiftCodeInput() {
     </Flex>
   )
 }
+export default GiftCodeInput;
