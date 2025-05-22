@@ -2,12 +2,15 @@
 
 import Flex from "@/components/shared-components/Flex";
 import AutoBreadcrumb from "@/components/util-compenents/Breadcrumb";
+import withAuthorization from "@/libs/authentication";
 import { giftCodeService } from "@/services/GiftCode/giftCode.service";
 import { setIsLoading } from "@/store/general/GeneralSlice";
-import { useDispatch, useSelector } from "@/store/hooks";
+import { useSelector } from "@/store/hooks";
+import { AppDispatch } from "@/store/store";
 import { GiftOutlined } from "@ant-design/icons";
 import { Alert, Button, Card, Input, Space, Typography } from "antd";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
 const { Title, Paragraph, Text } = Typography
@@ -15,9 +18,10 @@ const { Title, Paragraph, Text } = Typography
 const GiftCodeInput: React.FC = () =>  {
     const [ giftCode, setGiftCode ] = useState( "" )
     const [status, setStatus] = useState<"idle" | "success" | "error">("idle")
-    const dispatch = useDispatch() 
+    const dispatch = useDispatch<AppDispatch>()
     const loading = useSelector((state) => state.general.isLoading)
-      
+    const CurrentUser = useSelector((state) => state.auth.User)
+
     const handleSubmit = async () =>
     {
     if (!giftCode.trim()) {
@@ -27,7 +31,6 @@ const GiftCodeInput: React.FC = () =>  {
         dispatch( setIsLoading( true ) )
     try
     {
-            const CurrentUser = useSelector((state) => state.auth.User)
           const res = await giftCodeService.AddGiftCodeForPlayer({
             giftCode: giftCode,
             charNames: [CurrentUser?.name ?? ""]
@@ -123,4 +126,4 @@ const GiftCodeInput: React.FC = () =>  {
     </Flex>
   )
 }
-export default GiftCodeInput;
+export default withAuthorization(GiftCodeInput, '')
