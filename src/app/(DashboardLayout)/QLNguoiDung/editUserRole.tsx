@@ -1,27 +1,26 @@
 import { tableUserDataType } from "@/interface/auth/User";
-import {
-  Drawer,
-  Form,
-  FormProps,
-  Input,
-  Modal,
-  Select,
-  Typography,
-} from "antd";
-import React, { useEffect, useState } from "react";
-import dayjs from "dayjs";
-import { fetchDropdown } from "@/utils/fetchDropdown";
-import { DropdownOption } from "@/interface/general";
-import { roleService } from "@/services/role/role.service";
-import { toast } from "react-toastify";
-import { departmentService } from "@/services/department/department.service";
-import classes from "./page.module.css";
-import { userRoleService } from "@/services/userRole/userRole.service";
-import {
-  createEditType,
-  tableUserRoleVMData,
-} from "@/interface/userRole/userRole";
 import { Department } from "@/interface/department/department";
+import { DropdownOption } from "@/interface/general";
+import
+  {
+    createEditType
+  } from "@/interface/userRole/userRole";
+import { roleService } from "@/services/role/role.service";
+import { userRoleService } from "@/services/userRole/userRole.service";
+import { fetchDropdown } from "@/utils/fetchDropdown";
+import
+  {
+    Form,
+    FormProps,
+    Input,
+    Modal,
+    Select,
+    Typography
+  } from "antd";
+import dayjs from "dayjs";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import classes from "./page.module.css";
 dayjs.locale("vi");
 
 interface Props {
@@ -79,42 +78,8 @@ const EditUserRole: React.FC<Props> = (props: Props) => {
     ]);
   };
 
-  // const handleChangRole = async (departmentId: string) => {
-  //   try {
-  //     const response = await departmentService.getDropRolesInDepartment(
-  //       departmentId,
-  //       props.user?.id ?? ""
-  //     );
-  //     if (response.status) {
-  //       const formattedData: DropdownOption[] = response.data.map(
-  //         (item: any) => ({
-  //           label: item.text,
-  //           value: item.value,
-  //         })
-  //       );
-
-  //       form.setFieldsValue({ roleCode: formattedData });
-  //     } else {
-  //       toast.error(response.message);
-  //     }
-  //   } catch (error) {
-  //     toast.error("Có lỗi xảy ra: " + error);
-  //   }
-  // };
-
   const processDepartments = (departments: Department[], prefix = "") => {
     const optDrop: DropdownOption[] = [];
-
-    departments.forEach((dept) => {
-      optDrop.push({ text: `${prefix}${dept.name}`, value: dept.id });
-
-      if (dept.departmentChilds && dept.departmentChilds?.length > 0) {
-        optDrop.push(
-          ...processDepartments(dept.departmentChilds, prefix + " ── ")
-        );
-      }
-    });
-
     return optDrop;
   };
 
@@ -183,19 +148,6 @@ const EditUserRole: React.FC<Props> = (props: Props) => {
             Người dùng: <strong>{props.user?.name}</strong>
           </Typography.Text>
         </Form.Item>
-
-        {/* <Form.Item<createEditType>
-          label="Phòng ban"
-          name="deparmentId"
-          rules={[{ required: true, message: "Vui lòng nhập thông tin này!" }]}
-        >
-          <Select
-            placeholder="Chọn phòng ban"
-            options={setupRole}
-            fieldNames={{ label: "text", value: "value" }}
-            onChange={(value) => handleChangRole(value)}
-          />
-        </Form.Item> */}
         <Form.Item<createEditType>
           label="Chọn vai trò"
           name="roleCode"

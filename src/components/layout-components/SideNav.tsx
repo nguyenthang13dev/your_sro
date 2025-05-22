@@ -1,12 +1,13 @@
 "use client";
-import { Layout } from "antd";
-import {
-  TEMPLATE,
-  GRAY_SCALE,
-  SIDE_NAV_WIDTH,
-} from "@/constants/ThemeConstant";
-import { Scrollbars } from "react-custom-scrollbars-2";
+import
+  {
+    GRAY_SCALE,
+    SIDE_NAV_WIDTH,
+    TEMPLATE,
+  } from "@/constants/ThemeConstant";
 import { useSelector } from "@/store/hooks";
+import { Layout } from "antd";
+import { Scrollbars } from "react-custom-scrollbars-2";
 import MenuContent from "./MenuContent";
 const { Sider } = Layout;
 

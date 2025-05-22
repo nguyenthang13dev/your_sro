@@ -3,7 +3,7 @@ import { setIsMobile } from '@/store/customizer/CustomizerSlice'
 import { useDispatch, useSelector } from '@/store/hooks'
 import utils from '@/utils'
 import { MinusOutlined } from '@ant-design/icons'
-import { Grid, Image, Menu } from 'antd'
+import { Button, Grid, Image, Menu } from 'antd'
 import { MenuItemType } from 'antd/es/menu/interface'
 import Link from 'next/link'
 import React, { ReactNode, useMemo } from 'react'
@@ -156,20 +156,39 @@ const SideNavContent: React.FC<SideNavContentProps> = ({
   )
 
   return (
-    <Menu
-      mode="inline"
-      theme="light"
-      style={{ height: '100%', borderInlineEnd: 0 }}
-      defaultSelectedKeys={[routeInfo?.id || '']}
-      defaultOpenKeys={setDefaultOpen(routeInfo?.id)}
-      className={`left-menu ${hideGroupTitle ? 'hide-group-title' : ''}`}
-      items={menuItems}
-    />
+    <>
+      <Menu
+        mode="inline"
+        theme="light"
+        style={{ height: '100%', borderInlineEnd: 0 }}
+        defaultSelectedKeys={[routeInfo?.id || '']}
+        defaultOpenKeys={setDefaultOpen(routeInfo?.id)}
+        className={`left-menu ${hideGroupTitle ? 'hide-group-title' : ''}`}
+        items={menuItems}
+      />
+       <Link href="/" passHref legacyBehavior>
+      <Button
+        type="primary"
+        block
+        size="large"
+        style={{
+       
+          fontWeight: 'bold',
+        }}
+      >
+        Về trang chủ
+      </Button>
+</Link>
+    </>
   )
 }
 
 const MenuContent: React.FC = () => {
-  return <SideNavContent />
+  return <>
+    <SideNavContent />
+    
+   
+  </>
 }
 
 export default MenuContent

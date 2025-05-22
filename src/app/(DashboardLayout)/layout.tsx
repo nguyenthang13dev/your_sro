@@ -100,7 +100,7 @@ export default function RootLayout({
     return (
         <ConfigProvider locale={locale}>
             <Layout>
-                <ToastContainer />
+                <ToastContainer autoClose={3000} pauseOnFocusLoss />
                 <HeaderNav />
                 <SideNav />
                 <Layout style={getLayoutDirectionGutter()}>

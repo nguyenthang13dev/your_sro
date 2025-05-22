@@ -1,39 +1,43 @@
 'use client'
 
 import { ResponsePageInfo } from "@/interface/general";
-import { tableOrderDataType, tableOrderSearchVMDataType } from "@/interface/Order/Order";
-import { orderService } from "@/services/order/order.service";
+import { tableSilkTichNapDataType, tableSilkTichNapSearchType } from "@/interface/QLSilkTichNap/QLSilkTichNap";
+import { qlSilkTichNapService } from "@/services/SilkTichNap/SilkTichNap.service";
 import { setIsLoading } from "@/store/general/GeneralSlice";
 import { useSelector } from "@/store/hooks";
 import { useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-const useQLHoaDon = () =>
+const useQLSikTichNap = () =>
 {
     const dispatch = useDispatch();
     const loading = useSelector(state => state.general.isLoading) ;
-    const [ lstOrders, setLstOrders ] = useState<tableOrderDataType[]>( [] );   
-    const [ searchData, setSearchData ] = useState<tableOrderSearchVMDataType>( {
+    const [ lstSilkTichNap, setLstSilkTichNap ] = useState<tableSilkTichNapDataType[]>( [] );   
+    const [ searchData, setSearchData ] = useState<tableSilkTichNapSearchType>( {
         pageIndex: 1,
         pageSize: 20,
     });   
     const [ pageIndex, setPageIndex ] = useState<number>( 1 );
     const [pageSize, setPageSize] = useState<number>(20);
     const [ dataPage, setDataPage ] = useState<ResponsePageInfo>( );
-    
     const [isPannelSearch, setIsPannelSearch] = useState<boolean>(false);
-    
-    
+    const [ silktichNapSeleccted, setSilTichNapSelected ] = useState<tableSilkTichNapDataType>();
 
 
-    const handleGetData = useCallback( async ( searchData: tableOrderSearchVMDataType ) =>
+  const [currentTichNap, setCurrentTichNap] = useState<tableSilkTichNapDataType | null>();
+
+
+
+    //hiển thị các cread or update
+
+    const handleGetData = useCallback( async ( searchData: tableSilkTichNapSearchType ) =>
     {
         dispatch( setIsLoading( true ) );
         try {
-            const data = await orderService.GetDate( searchData );
+            const data = await qlSilkTichNapService.GetData(searchData );
             if ( data.status )
             {
-                setLstOrders( data.data.items );
+                setLstSilkTichNap( data.data.items );
                 setDataPage( {
                     pageIndex: data.data.pageIndex,
                     pageSize: data.data.pageSize,
@@ -50,23 +54,36 @@ const useQLHoaDon = () =>
     }, [searchData])
 
 
+
+    const handleSetSelected = ( record: tableSilkTichNapDataType ) =>
+    {
+        setSilTichNapSelected( record );
+    }
+
     return {
-        lstOrders,
+        
+        lstSilkTichNap,
         searchData,
         pageIndex,
         pageSize,
         isPannelSearch,
         loading, 
         dataPage,
+        silktichNapSeleccted,
+        currentTichNap, 
+
         setDataPage,
-        setLstOrders,
+        setLstSilkTichNap,
         handleGetData,
         setSearchData,
         setPageIndex,
         setPageSize,
-        setIsPannelSearch
+        setIsPannelSearch, 
+        setSilTichNapSelected,
+        handleSetSelected,
+        setCurrentTichNap,
 
     }
 }
 
-export default useQLHoaDon;
+export default useQLSikTichNap;

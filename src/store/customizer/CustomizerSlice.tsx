@@ -25,7 +25,7 @@ const initialState: StateType = {
   borderRadius: 7,
   isMobile: false,
   navType: NAV_TYPE_SIDE,
-  topNavColor: '#0e7a39',
+  topNavColor: '#407fee',
 };
 
 export const CustomizerSlice = createSlice({

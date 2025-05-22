@@ -15,8 +15,7 @@ import
     DownOutlined,
     EditOutlined,
     PlusCircleOutlined,
-    SearchOutlined,
-    VerticalAlignTopOutlined
+    SearchOutlined
   } from "@ant-design/icons";
 import
   {
@@ -32,7 +31,6 @@ import
     TableProps,
     Tag,
   } from "antd";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -123,7 +121,7 @@ const QLRole: React.FC = () => {
             </Dropdown>
             <Popconfirm
               title="Xác nhận xóa"
-              description="Bạn có muốn xóa vai trò này?"
+              description="Bạn có muốn xóa cấu hình silk này?"
               okText="Xóa"
               cancelText="Hủy"
               open={openPopconfirmId === record.id}
@@ -240,17 +238,7 @@ const QLRole: React.FC = () => {
           >
             {isPanelVisible ? "Ẩn tìm kiếm" : "Tìm kiếm"}
           </Button>
-          <Link href="/QLModule/Import">
-            <Button
-              color="pink"
-              variant="solid"
-              icon={<VerticalAlignTopOutlined />}
-              size="small"
-              className={`${classes.mgright5} ${classes.colorKetXuat}`}
-            >
-              Import
-            </Button>
-          </Link>
+          
 
           <Button
             onClick={() => {

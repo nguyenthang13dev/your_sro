@@ -1,6 +1,11 @@
-import { createEditType, tableConfigSilk } from "@/interface/ConfigSilk/ConfigSilk";
-import { configSilkService } from "@/services/ConfigSilk/ConfigSilk.service";
-import { Form, FormProps, Input, Modal } from "antd";
+import { DropdownOption } from "@/interface/general";
+import { createEditType, tableSilkTichNapDataType } from "@/interface/QLSilkTichNap/QLSilkTichNap";
+import { removeAccents } from "@/libs/CommonFunction";
+import { giftCodeItemService } from "@/services/GiftCodeItem/giftCodeItem.service";
+import { qlSilkTichNapService } from "@/services/SilkTichNap/SilkTichNap.service";
+import { fetchDropdown } from "@/utils/fetchDropdown";
+import { Form, FormProps, Input, Modal, Select } from "antd";
+import TextArea from "antd/es/input/TextArea";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -8,7 +13,7 @@ dayjs.locale("vi");
 
 interface Props {
   isOpen: boolean;
-  configSilk?: tableConfigSilk | null;
+  silktichnap?: tableSilkTichNapDataType | null;
   onClose: () => void; //function callback
   onSuccess: () => void;
 }
@@ -17,6 +22,8 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
   const [form] = Form.useForm();
   const [isOpen, setIsOpen] = useState<boolean>(props.isOpen);
 
+    // 
+  const [lstGiftCodeItem, setLstGiftCodeItem] = useState<DropdownOption[]>([]);
   const handleOnFinish: FormProps<createEditType>["onFinish"] = async (
     formData: createEditType
   ) => {
@@ -24,18 +31,14 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
     {
       if ( formData )
       {
-         formData.SilkTotal = Number(formData.SilkTotal );
-        formData.TotalMount = Number(formData.TotalMount );
-        formData.SilkKM = Number( formData.SilkKM );
-                formData.isActive = true;
 
       }
 
-      if ( props.configSilk )
+      if ( props.silktichnap )
       {
         //Eps kieu theo formdata
-        formData.id = props.configSilk.id;
-        const response = await configSilkService.Update(formData);
+        formData.id = props.silktichnap.id;
+        const response = await qlSilkTichNapService.Update(formData);
         if (response.status) {
           toast.success("Chỉnh sửa thành công");
           form.resetFields();
@@ -46,7 +49,8 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
         }
       } else
       {
-        const response = await configSilkService.Create(formData);
+                  
+        const response = await qlSilkTichNapService.Create(formData);
         if (response.status) {
           toast.success("Tạo thành công");
           form.resetFields();
@@ -62,14 +66,23 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
     }
   };
 
-  const handleMapEdit = (propdt: tableConfigSilk) =>
+    
+      const handleSetDropdown = async () => {
+        await Promise.all([
+          fetchDropdown(
+            lstGiftCodeItem,
+            () => giftCodeItemService.getDropDown(""),
+            setLstGiftCodeItem
+          ),
+        ]);
+      };
+    
+    
+    
+  const handleMapEdit = (propdt: tableSilkTichNapDataType) =>
   {
     form.setFieldsValue({
-      SilkTotal: Number(propdt.silkTotal),
-      TotalMount: propdt.totalMount,
-      SilkKM: propdt.silkKM,
       id: propdt.id,
-      isActive: propdt.isActive,
     });
   };
 
@@ -79,17 +92,19 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
     props.onClose();
   };
 
-  useEffect(() => {
-    setIsOpen(props.isOpen);
-    if ( props.configSilk )
+    useEffect( () =>
     {
-      handleMapEdit(props.configSilk);
+    handleSetDropdown();
+    setIsOpen(props.isOpen);
+    if ( props.silktichnap )
+    {
+      handleMapEdit(props.silktichnap);
     }
   }, [props.isOpen]);
 
   return (
     <Modal
-      title={props.configSilk != null ? "Chỉnh sửa cấu hình silk" : "Thêm mới cấu hình silk"}
+      title={props.silktichnap != null ? "Chỉnh sửa cấu hình silk tích nạp" : "Thêm mới cấu hình silk tích nạp"}
       open={isOpen}
       onOk={() => form.submit()}
       onCancel={handleCancel}
@@ -105,31 +120,46 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
         onFinish={handleOnFinish}
         autoComplete="off"
       >
-        {props.configSilk && (
+        {props.silktichnap && (
           <Form.Item<createEditType> name="id" hidden>
             <Input />
           </Form.Item>
         )}
         <Form.Item<createEditType>
-          label="Số lượng silk tối đa"
-          name="SilkTotal"
+                  label="Mốc tích nạp"
+                  name="rank"
           rules={[{ required: true, message: "Vui lòng nhập thông tin này!" }]}
         >
           <Input />
         </Form.Item>
         <Form.Item<createEditType>
-          label="Mệnh giá"
-          name="TotalMount"
+          label="Mô tả mốc tích nạp"
+          name="description"
           rules={[{ required: true, message: "Vui lòng nhập thông tin này!" }]}
         >
-          <Input />
+        <TextArea />
         </Form.Item>
         <Form.Item<createEditType>
-          label="Khuyến mại"
-          name="SilkKM"
+          label="Danh sách vật phẩm tặng kèm"
+          name="dsItem"
           rules={[{ required: true, message: "Vui lòng nhập thông tin này!" }]}
-        >
-          <Input />
+              >
+                  
+                   <Select
+            placeholder="Chọn vật phẩm"
+            options={lstGiftCodeItem.map((item) => ({
+              ...item,
+              value: item.value.toLowerCase(),
+            }))}
+            fieldNames={{ label: "label", value: "value" }}
+                      mode="multiple"
+                      allowClear
+                      showSearch
+                      filterOption={(input, option) =>
+                        removeAccents(option?.label ?? "").toLowerCase().includes(removeAccents(input).toLowerCase())
+                      }
+                  />
+                  
         </Form.Item>
       </Form>
     </Modal>

@@ -1,26 +1,25 @@
-import React, { useState } from "react";
-import { Dropdown, Avatar, MenuProps } from "antd";
-import { useDispatch } from "react-redux";
-import {
-  EditOutlined,
-  SettingOutlined,
-  LogoutOutlined,
-} from "@ant-design/icons";
-import NavItem from "./NavItem";
 import Flex from "@/components/shared-components/Flex";
-import styled from "@emotion/styled";
-import {
-  FONT_WEIGHT,
-  MEDIA_QUERIES,
-  SPACER,
-  FONT_SIZES,
-} from "@/constants/ThemeConstant";
-import { AppDispatch } from "@/store/store";
+import
+  {
+    FONT_SIZES,
+    FONT_WEIGHT,
+    MEDIA_QUERIES,
+    SPACER,
+  } from "@/constants/ThemeConstant";
 import { setLogout } from "@/store/auth/AuthSlice";
-import { useRouter } from "next/navigation";
 import { useSelector } from "@/store/hooks";
 import { resetMenuData } from "@/store/menu/MenuSlice";
-import ChangePass from "./ChangePass";
+import { AppDispatch } from "@/store/store";
+import
+  {
+    LogoutOutlined
+  } from "@ant-design/icons";
+import styled from "@emotion/styled";
+import { Avatar, Dropdown, MenuProps } from "antd";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import NavItem from "./NavItem";
 
 // Styled components
 const Icon = styled.div(() => ({
@@ -113,12 +112,6 @@ export const NavProfile: React.FC = () => {
     //     </div>
     //   ),
     // },
-    // {
-    //   key: "Account Setting",
-    //   label: (
-    //     <MenuItem path="/" label="Account Setting" icon={<SettingOutlined />} />
-    //   ),
-    // },
     {
       key: "Đăng xuất",
       label: <MenuItemSignOut label="Đăng xuất" />,
@@ -130,7 +123,7 @@ export const NavProfile: React.FC = () => {
       <Dropdown placement="bottomRight" menu={{ items }} trigger={["click"]}>
         <NavItem>
           <Profile>
-            <Avatar src={user?.anhDaiDien || "/img/avatars/thumb-12.jpg"} />
+            <Avatar src={user?.anhDaiDien || "/img/avatars/default_avatar.png"} />
             <UserInfo className="profile-text">
               <Name>{user?.name}</Name>
               <Title>{user?.tenDonVi_txt}</Title>

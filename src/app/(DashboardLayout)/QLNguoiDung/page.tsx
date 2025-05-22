@@ -119,13 +119,6 @@ const QLNguoiDung: React.FC = () => {
       },
     },
     {
-      title: "Phòng ban",
-      dataIndex: "departmentId",
-      render: (_: any, record: tableUserDataType) => (
-        <span>{record.department_txt}</span>
-      ),
-    },
-    {
       title: "Email",
       dataIndex: "email",
       render: (_: any, record: tableUserDataType) => (
