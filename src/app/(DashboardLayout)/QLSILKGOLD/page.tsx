@@ -144,7 +144,6 @@ const QLRole: React.FC = () => {
   const handleDeleteModule = async (id: string) => {
     try {
       const response = await configSilkService.Delete(id);
-
       if (response.status) {
         toast.success("Xóa vai trò thành công");
         handleGetListModule();
