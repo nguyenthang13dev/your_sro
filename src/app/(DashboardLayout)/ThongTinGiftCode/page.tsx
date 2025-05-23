@@ -17,9 +17,9 @@ const { Title, Paragraph, Text } = Typography
 const GiftCodeInput: React.FC = () =>  {
     const [ giftCode, setGiftCode ] = useState( "" )
     const [status, setStatus] = useState<"idle" | "success" | "error">("idle")
-    const dispatch = useDispatch<AppDispatch>()
+  const dispatch = useDispatch<AppDispatch>()
+  const [CurrentUser, setCurrentUser] = useState("");
     const loading = useSelector((state) => state.general.isLoading)
-    const CurrentUser = useSelector((state) => state.auth.User)
 
     const handleSubmit = async () =>
     {
@@ -33,7 +33,7 @@ const GiftCodeInput: React.FC = () =>  {
 
           const res = await giftCodeService.AddGiftCodeForPlayer({
             giftCode: giftCode,
-            charNames: [CurrentUser?.userName ?? ""]
+            charNames: [CurrentUser ?? ""]
           });
     
           if (res.status) {
@@ -82,6 +82,15 @@ const GiftCodeInput: React.FC = () =>  {
           </div>
 
           <div className="space-y-4">
+
+              <div className="space-y-4">
+            
+              <Input placeholder="Nhập tên nhân vật của bạn" onChange={( e ) =>
+              {
+                setCurrentUser( e.target.value );
+              }} />
+            </div>
+            
             <div>
               <Text strong>Nhập mã quà tặng:</Text>
               <Input
@@ -96,6 +105,9 @@ const GiftCodeInput: React.FC = () =>  {
                 maxLength={20}
               />
             </div>
+
+
+          
 
             {status === "success" && (
               <Alert

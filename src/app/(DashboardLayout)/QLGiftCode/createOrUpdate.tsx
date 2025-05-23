@@ -139,7 +139,7 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
           />
         </Form.Item>
 
-        {/* <Form.Item label={<strong>File icon vật phẩm</strong>}>
+       {/* <Form.Item label={<strong>File icon vật phẩm</strong>}>
           <UploadFiler
             maxFiles={1}
             fileList={fileList}
@@ -147,7 +147,7 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
             type="IconVP"
             setUploadedData={setUploadedData}
           />
-        </Form.Item> */}
+        </Form.Item>  */}
       </Form>
     </Modal>
   );
