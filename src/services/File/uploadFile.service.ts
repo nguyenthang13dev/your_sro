@@ -1,6 +1,6 @@
+import { Response } from '@/interface/general'
 import { TaiLieuDinhKem } from '@/interface/taiLieuDinhKem/taiLieuDinhKem'
 import { apiService } from '../index'
-import { Response } from '@/interface/general'
 const baseUrl = process.env.NEXT_PUBLIC_API_URL 
 class UploadFileService {
   public async deleteFile(
@@ -20,7 +20,7 @@ class UploadFileService {
   public async upload(form: FormData): Promise<Response<TaiLieuDinhKem[]>> {
     try {
       const response = await apiService.post<Response<TaiLieuDinhKem[]>>(
-        '/common/upload',
+        '/Common/upload',
         form
       )
       return response.data
@@ -31,7 +31,7 @@ class UploadFileService {
   
   public async getImage(filePath: string){
     try {
-      const response = await fetch(`${baseUrl}/common/${filePath}`)
+      const response = await fetch(`${baseUrl}/Common/${filePath}`)
       return response
     } catch (error) {
       throw error

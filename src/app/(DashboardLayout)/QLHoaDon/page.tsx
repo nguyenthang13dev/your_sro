@@ -23,6 +23,12 @@ const QLHoaDon = () =>
             dataIndex: "name",
             key: "name",
             render: (_: any, record: tableOrderDataType) => <span>{record.name}</span>,
+      },
+        {
+            title: "Khách hàng",
+            dataIndex: "customer",
+            key: "customer",
+          render: (_: any,record: tableOrderDataType) => <span>{record?.customer}</span>,
         },
         {
             title: "Ngày tạo",

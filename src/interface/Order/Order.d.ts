@@ -16,6 +16,7 @@ export interface tableOrderDataType {
     createDateStr?: string;
     statusStr?: string;
     paymentStatus?: string;
+    customer?: string;
 
 }
 

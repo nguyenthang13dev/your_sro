@@ -3,6 +3,7 @@ import
     createEditType,
     tableGiftCodeItem,
   } from "@/interface/GiftCodeItem/GiftCodeItem";
+import UploadFiler from "@/libs/UploadFilter";
 import { giftCodeItemService } from "@/services/GiftCodeItem/giftCodeItem.service";
 import
   {
@@ -35,23 +36,32 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
     formData: createEditType
   ) => {
     try {
-      if (props.tableGiftCode) {
+      if ( props.tableGiftCode )
+      {
+        formData.icon = uploadedData.join(',');
         const response = await giftCodeItemService.Update(formData);
         if (response.status) {
           toast.success("Chỉnh sửa thao tác thành công");
           form.resetFields();
           props.onSuccess();
           props.onClose();
+
+          setFileList([])
+
         } else {
           toast.error(response.message);
         }
-      } else {
+      } else
+      {
+        formData.icon = uploadedData.join(',');
         const response = await giftCodeItemService.Create(formData);
         if (response.status) {
-          toast.success("Tạo thao tác thành công");
+          toast.success("Tạo thành công");
           form.resetFields();
           props.onSuccess();
           props.onClose();
+
+          setFileList([])
         } else {
           toast.error(response.message);
         }
@@ -61,7 +71,9 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
     }
   };
 
-  const handleMapEdit = () => {
+  const handleMapEdit = () =>
+  {
+    //log lại
     form.setFieldsValue(props.tableGiftCode);
   };
 
@@ -139,7 +151,7 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
           />
         </Form.Item>
 
-       {/* <Form.Item label={<strong>File icon vật phẩm</strong>}>
+       <Form.Item label={<strong>File icon vật phẩm</strong>}>
           <UploadFiler
             maxFiles={1}
             fileList={fileList}
@@ -147,7 +159,7 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
             type="IconVP"
             setUploadedData={setUploadedData}
           />
-        </Form.Item>  */}
+        </Form.Item> 
       </Form>
     </Modal>
   );
