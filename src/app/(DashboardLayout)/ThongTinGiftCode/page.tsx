@@ -1,5 +1,4 @@
 "use client";
-
 import Flex from "@/components/shared-components/Flex";
 import AutoBreadcrumb from "@/components/util-compenents/Breadcrumb";
 import withAuthorization from "@/libs/authentication";
@@ -31,9 +30,10 @@ const GiftCodeInput: React.FC = () =>  {
         dispatch( setIsLoading( true ) )
     try
     {
+
           const res = await giftCodeService.AddGiftCodeForPlayer({
             giftCode: giftCode,
-            charNames: [CurrentUser?.name ?? ""]
+            charNames: [CurrentUser?.userName ?? ""]
           });
     
           if (res.status) {
@@ -42,7 +42,11 @@ const GiftCodeInput: React.FC = () =>  {
             toast.error("Nhập giftcode thất bại.");
           }
         } catch (err) {
-          toast.error("Lỗi khi gán giftcode.");
+         toast.error( "Lỗi khi gán giftcode." );
+      
+    } finally
+    {
+        dispatch( setIsLoading( false ) )
         }
     
   }

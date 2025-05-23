@@ -25,6 +25,7 @@ export interface UserType {
   anhDaiDien?: string | null;
   tenDonVi_txt?: string | null;
   menuData?: MenuDataType[] | null;
+  userName?: string | null
 }
 
 export interface LoginResponseType {
