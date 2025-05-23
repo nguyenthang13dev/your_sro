@@ -10,6 +10,7 @@ export interface tableGiftCodeItem {
   codeItem: string;
   nameItem: string;
   quanlity: number;
+  icon?: string;
 }
 
 export interface searchGiftCodeItem extends SearchBase {

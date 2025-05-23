@@ -3,6 +3,7 @@ import
     createEditType,
     tableGiftCodeItem,
   } from "@/interface/GiftCodeItem/GiftCodeItem";
+import UploadFiler from "@/libs/UploadFilter";
 import { giftCodeItemService } from "@/services/GiftCodeItem/giftCodeItem.service";
 import
   {
@@ -29,6 +30,7 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
   const [form] = Form.useForm();
   const [isOpen, setIsOpen] = useState<boolean>(props.isOpen);
   const [fileList, setFileList] = useState<UploadFile[]>([]);
+  const [uploadedData, setUploadedData] = useState<string[]>([]) 
 
   const handleOnFinish: FormProps<createEditType>["onFinish"] = async (
     formData: createEditType
@@ -135,6 +137,16 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
             style={{ width: "100%" }}
             defaultValue={0}
             min={0}
+          />
+        </Form.Item>
+
+        <Form.Item label={<strong>File icon vật phẩm</strong>}>
+          <UploadFiler
+            maxFiles={1}
+            fileList={fileList}
+            setFileList={setFileList}
+            type="IconVP"
+            setUploadedData={setUploadedData}
           />
         </Form.Item>
       </Form>

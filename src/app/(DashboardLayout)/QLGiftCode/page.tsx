@@ -94,6 +94,13 @@ const QLGiftCode: React.FC = () => {
       ),
     },
     {
+      title: "Hình ảnh",
+      dataIndex: "icon",
+      render: (_: any, record: tableGiftCodeItem) => (
+        <span>{`${process.env.NEXT_PUBLIC_STATIC_FILE_BASE_URL}${record.icon}`}</span>
+      ),
+    },
+    {
       title: "Thao tác",
       dataIndex: "actions",
       fixed: "right",

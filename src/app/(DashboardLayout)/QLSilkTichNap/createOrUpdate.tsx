@@ -31,7 +31,7 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
     {
       if ( formData )
       {
-        formData.dsItem = formData.dsItem.map((item: string) => item.toLowerCase());
+        formData.dsItem = formData?.dsItem?.map((item: string) => item.toLowerCase());
         formData.rank = Number(formData.rank);
         formData.description = formData.description;
       }

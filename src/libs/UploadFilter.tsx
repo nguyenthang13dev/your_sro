@@ -3,7 +3,8 @@ import { uploadFileService } from "@/services/File/uploadFile.service";
 import { PlusOutlined, UploadOutlined } from "@ant-design/icons";
 import { Button, Modal, Upload, UploadFile, UploadProps } from "antd";
 import { UploadListType, UploadType } from "antd/es/upload/interface";
-import { useState, forwardRef, useImperativeHandle } from "react";
+import { forwardRef, useImperativeHandle, useState } from "react";
+import "./uploadFiler.css";
 const validFileTypes = [
     "image/png",
     "image/jpeg",
@@ -21,7 +22,6 @@ type FileUploaderProps = {
     listType?: UploadListType; //kiểu danh sách hiển thị: text hoặc hình ảnh
     handleSuccess?: (taiLieus: TaiLieuDinhKem[]) => void;
 };
-import "./uploadFiler.css";
 
 const getBase64 = (file: File): Promise<string> => {
     return new Promise((resolve, reject) => {
