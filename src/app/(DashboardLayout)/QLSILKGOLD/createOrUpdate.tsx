@@ -1,5 +1,4 @@
 import { createEditType, tableConfigSilk } from "@/interface/ConfigSilk/ConfigSilk";
-import UploadFiler from "@/libs/UploadFilter";
 import { configSilkService } from "@/services/ConfigSilk/ConfigSilk.service";
 import { Form, FormProps, Input, Modal } from "antd";
 import dayjs from "dayjs";
@@ -133,13 +132,7 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
           <Input />
         </Form.Item>
 
-         <Form.Item<createEditType>
-          label="Khuyến mại (%)"
-          name="SilkKM"
-          rules={[{ required: true, message: "Vui lòng nhập thông tin này!" }]}
-        >
-          <UploadFiler maxFiles={1} />
-        </Form.Item>
+        
       </Form>
     </Modal>
   );
