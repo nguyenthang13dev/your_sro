@@ -174,6 +174,15 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
           <InputNumber min={0}  />
         </Form.Item>
 
+
+            <Form.Item<createEditType>
+          label="Level (Dưới level này được sử dụng gift) - không nhập mặc định cho tất cả"
+          name={"LevelUsed"}
+        >
+          <InputNumber min={0}  />
+        </Form.Item>
+
+
           <Form.Item<createEditType>
           label="Thời gian hết hạn"
           name="dueDate"
