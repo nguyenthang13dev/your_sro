@@ -256,11 +256,10 @@ const [selectedGiftCode, setSelectedGiftCode] = useState<tableGiftCode | null>(n
         giftCode: selectedGiftCode.code,
         charNames: userList
       });
-
       if (res.status) {
         toast.success("Gán giftcode thành công!");
       } else {
-        toast.error("Gán giftcode thất bại.");
+        toast.error("Gán giftcode thất bại." + res?.message);
       }
     } catch (err) {
       toast.error("Lỗi khi gán giftcode.");

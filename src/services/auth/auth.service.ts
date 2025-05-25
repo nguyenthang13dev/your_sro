@@ -1,9 +1,11 @@
-import {
-  LoginType,
-  UserType,
-  createChangePassViewModel,
-  createEditType,
-} from "@/interface/auth/User";
+import
+  {
+    LoginType,
+    UserType,
+    createChangePassViewModel,
+    createEditType,
+    tableUpdateCurrentSilkDataType,
+  } from "@/interface/auth/User";
 import { Response } from "@/interface/general";
 import { apiService } from "../index";
 
@@ -65,6 +67,28 @@ class AuthService {
       const response = await apiService.post<Response>(
         "/Account/Register",
         formData
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  public async UpdateCurrentSilk(formData?: tableUpdateCurrentSilkDataType): Promise<Response> {
+    try {
+      const response = await apiService.post<Response>(
+        "/Account/UpdateCurrentSilk",
+        formData
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+  public async GetSilkCurrent(username: string): Promise<Response> {
+    try {
+      const response = await apiService.get<Response>(
+        `/Account/GetSilkCurrent?username=${username}`,
       );
       return response.data;
     } catch (error) {

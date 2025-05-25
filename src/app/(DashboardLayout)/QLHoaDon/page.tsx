@@ -111,7 +111,15 @@ const QLHoaDon = () =>
           pageSize={pageSize}
           defaultCurrent={1}
           onChange={(e) => {
-            setPageIndex(e);
+            setPageIndex( e );
+            setSearchData(pre =>
+            {
+              return {
+                ...pre,
+                pageIndex: e
+              }
+              }
+            )
           }}
           onShowSizeChange={(current, pageSize) => {
             setPageIndex(current);

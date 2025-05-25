@@ -14,7 +14,6 @@ import { userService } from "@/services/user/user.service";
 import { setIsLoading } from "@/store/general/GeneralSlice";
 import { useSelector } from "@/store/hooks";
 import { AppDispatch } from "@/store/store";
-import formatDate from "@/utils/formatDate";
 import
   {
     CloseOutlined,
@@ -54,6 +53,7 @@ import EditUserGroupRole from "./editUserGroupRole";
 import EditUserRole from "./editUserRole";
 import classes from "./page.module.css";
 import Search from "./search";
+import UpdateCurrentSilk from "./UpdateCurrentSilk";
 
 const QLNguoiDung: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -83,6 +83,10 @@ const QLNguoiDung: React.FC = () => {
     useState<boolean>(false);
   const [dropGroupRole, setDropGroupRole] = useState<DropdownOption[]>([]);
   const [openPopconfirmId, setOpenPopconfirmId] = useState<string | null>(null);
+
+
+  const [ openUpdateSilk, setOpenUpdateSilk ] = useState<boolean>(false);
+
 
   const tableColumns: TableProps<tableUserDataType>["columns"] = [
     {
@@ -134,23 +138,6 @@ const QLNguoiDung: React.FC = () => {
       ),
     },
     {
-      title: "Ngày sinh",
-      dataIndex: "ngaySinh",
-      align: "center",
-      render: (_: any, record: tableUserDataType) => (
-        <span>
-          {record.ngaySinh ? formatDate(new Date(record.ngaySinh), true) : ""}
-        </span>
-      ),
-    },
-    {
-      title: "Giới tính",
-      dataIndex: "gioiTinh",
-      render: (_: any, record: tableUserDataType) => (
-        <span>{record.gioiTinh_txt}</span>
-      ),
-    },
-    {
       title: "Địa chỉ",
       dataIndex: "diaChi",
       render: (_: any, record: tableUserDataType) => (
@@ -178,6 +165,14 @@ const QLNguoiDung: React.FC = () => {
             icon: <EditOutlined />,
             onClick: () => {
               handleShowModal(true, record);
+            },
+          },
+          {
+            label: "Chỉnh sửa silk",
+            key: "silkedit",
+            icon: <EditOutlined />,
+            onClick: () => {
+              handleShowModalUpdateSilk(record);
             },
           },
           {
@@ -361,12 +356,23 @@ const QLNguoiDung: React.FC = () => {
     }
   };
 
+
+  const handleShowModalUpdateSilk = ( user?: tableUserDataType ) =>
+  {
+    setCurrentUser(user);
+    setOpenUpdateSilk(true);
+
+  };
+
   const handleClose = () => {
     setIsOpenModal(false);
   };
 
   const handleCloseDetail = () => {
     setIsOpenDetail(false);
+  };
+  const handleCloseUpdate = () => {
+    setOpenUpdateSilk(false)
   };
 
   const getDepartmentDropdown = async () => {
@@ -448,7 +454,7 @@ const QLNguoiDung: React.FC = () => {
         onClose={handleCloseDetail}
       />
       <EditUserRole
-        user={currentDetailUser}
+          user={currentDetailUser}
         isOpen={isOpenEditUserRole}
         onClose={() => setIsOpenEditUserRole(false)}
         onSuccess={hanleCreateEditSuccess}
@@ -465,6 +471,14 @@ const QLNguoiDung: React.FC = () => {
         dropGroupRoles={dropGroupRole}
         setDropGroupRoles={setDropGroupRole}
       />
+
+      
+      <UpdateCurrentSilk
+        isOpen={openUpdateSilk}
+        user={currentUser}
+        onClose={handleCloseUpdate}
+      />
+
       <Card style={{ padding: "0px" }} className={classes.customCardShadow}>
         <div className="table-responsive">
           <Table

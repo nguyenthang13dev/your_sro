@@ -17,7 +17,7 @@ export function MainNavigation() {
       href: "https://drive.google.com/file/d/1Po1aAKCeAuwylm88dO0iX5R_khYjv3a4/view?pli=1",
     },
     { name: "Mua silk", href: "/payment" },
-    { name: "GiftCode", href: "/giftCode" },
+    { name: "GiftCode", href: "/ThongTinGiftCode" },
     { name: "MINIGAME", href: "/minigame" },
     { name: "ZALO", href: "https://zalo.me/g/ybvunx631" },
     { name: "NHÓM FB", href: "https://www.facebook.com/share/1DPmy4eGsv" },

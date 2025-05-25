@@ -6,6 +6,7 @@ export interface createEditType {
   maxCountUsed: number;
   dueDate?: Date;
   description?: string;
+  LevelUsed: number;
 }
 
 
@@ -24,7 +25,8 @@ export interface tableGiftCode {
   dueDate?: Date;
   description?: string;
   dueDateStr?: string;
-    countUsed: number;
+  countUsed: number;
+  levelUsed: number;
 }
 
 export interface searchGiftCode extends SearchBase {

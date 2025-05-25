@@ -125,3 +125,8 @@ export interface createChangePassViewModel {
   newPass2: string;
   reNewPass2: string;
 }
+
+export interface tableUpdateCurrentSilkDataType { 
+  userName: string;
+  silk?: number;
+}
