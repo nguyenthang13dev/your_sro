@@ -1,6 +1,7 @@
 import { Response, ResponsePageList } from "@/interface/general";
 
 import { createEditType, tableSilkTichNapSearchType } from "@/interface/QLSilkTichNap/QLSilkTichNap";
+import { AddItemModelTichNap } from "@/interface/ticnap/tichnap";
 import { apiService } from "..";
 
 class SilkTichNapService {
@@ -9,6 +10,27 @@ class SilkTichNapService {
       const response = await apiService.post<Response>(
         "/SilkTichNap/Create",
         formData
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+  public async AddItemForReach(formData: AddItemModelTichNap): Promise<Response> {
+    try {
+      const response = await apiService.post<Response>(
+        "/SilkTichNap/AddItemForReach",
+        formData
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+  public async GetRank(): Promise<Response> {
+    try {
+      const response = await apiService.get<Response>(
+        "/SilkTichNap/GetRank",
       );
       return response.data;
     } catch (error) {

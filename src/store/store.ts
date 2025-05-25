@@ -22,7 +22,7 @@ export const store = configureStore({
   reducer: {
     counter: counterReducer,
     customizer: persistReducer<any>(persistConfig, CustomizerReducer),
-    auth: authReducer,
+    auth: persistReducer<any>(persistConfig,authReducer) ,
     general: generalReducer,
     menu: menuReducer,
     tinTuc: tinTucReducer,

@@ -125,8 +125,7 @@ export const NavProfile: React.FC = () => {
           <Profile>
             <Avatar src={user?.anhDaiDien || "/img/avatars/default_avatar.png"} />
             <UserInfo className="profile-text">
-              <Name>{user?.name}</Name>
-              <Title>{user?.tenDonVi_txt}</Title>
+              <Name>{user?.userName}</Name>
             </UserInfo>
           </Profile>
         </NavItem>

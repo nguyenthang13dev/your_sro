@@ -39,6 +39,16 @@ class OrderService
           throw error
         }
    }
+     public async GetTotalMoney(formData: string): Promise<Response> {
+        try {
+          const response = await apiService.get<Response>(
+            `/Order/GetTotalMoney?username=${formData}`,
+          )
+          return response.data
+        } catch (error) {
+          throw error
+        }
+   }
 }
 
 export const orderService = new OrderService();
