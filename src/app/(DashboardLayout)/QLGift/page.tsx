@@ -90,11 +90,17 @@ const [selectedGiftCode, setSelectedGiftCode] = useState<tableGiftCode | null>(n
       dataIndex: "countUsed",
       render: (_: any, record: tableGiftCode) => <span>{record.countUsed}</span>,
     },
+        {
+      title: "Level được sử dụng",
+      dataIndex: "levelUsed",
+      render: (_: any, record: tableGiftCode) =>   <span>{record.levelUsed}</span>
+    },
      {
       title: "Thời gian kết thúc",
       dataIndex: "dueDateStr",
       render: (_: any, record: tableGiftCode) =>   <span>{record.dueDateStr}</span>
     },
+ 
     {
       title: "Các gift item",
       dataIndex: "giftCodeItems_txt",

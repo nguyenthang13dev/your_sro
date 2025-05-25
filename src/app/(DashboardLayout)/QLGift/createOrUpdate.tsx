@@ -18,9 +18,15 @@ import
     Select
   } from "antd";
 import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+
 dayjs.locale("vi");
+dayjs.extend(utc);
+dayjs.extend( timezone );
+
 
 interface Props {
   isOpen: boolean;
@@ -66,7 +72,6 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
 
   const handleMapEdit = () => {
     form.setFieldsValue(props.tableGiftCode);
-    console.log(props.tableGiftCode);
 
     form.setFieldsValue({
       giftCodeItems: Array.isArray(props.tableGiftCode?.giftCodeItems_Data)
@@ -75,10 +80,11 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
     } );
     
 
-    form.setFieldsValue({
+    form.setFieldsValue( {
       dueDate: dayjs( props.tableGiftCode?.dueDate ),
       maxCountUsed: props.tableGiftCode?.maxCountUsed,
       description: props.tableGiftCode?.description,
+      LevelUsed: props.tableGiftCode?.levelUsed,
     });
   };
 
