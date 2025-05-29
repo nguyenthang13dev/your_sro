@@ -35,11 +35,10 @@ const GiftCodeInput: React.FC = () =>  {
             giftCode: giftCode,
             charNames: [CurrentUser ?? ""]
           });
-    
           if (res.status) {
             toast.success("Nhập giftcode thành công!");
           } else {
-            toast.error("Nhập giftcode thất bại.");
+            toast.error(res.message ?? "Thất bại");
           }
         } catch (err) {
          toast.error( "Lỗi khi gán giftcode." );

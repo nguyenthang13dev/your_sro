@@ -1,13 +1,9 @@
 "use client";
 import Flex from "@/components/shared-components/Flex";
 import AutoBreadcrumb from "@/components/util-compenents/Breadcrumb";
-import DropdownOption, { ResponsePageInfo } from "@/interface/general";
-import
-  {
-    searchGiftCode,
-    tableGiftCode
-  } from "@/interface/GiftCode/GiftCode";
-import { giftCodeService } from "@/services/GiftCode/giftCode.service";
+import { ResponsePageInfo } from "@/interface/general";
+import { searchWebShopSearchVM, tableWebShopDataType } from "@/interface/WebShop/WebShop";
+import { qlWebShopeService } from "@/services/WebShop/WebShop.service";
 import { setIsLoading } from "@/store/general/GeneralSlice";
 import { useSelector } from "@/store/hooks";
 import { AppDispatch } from "@/store/store";
@@ -18,7 +14,7 @@ import
     DownOutlined,
     EditOutlined,
     PlusCircleOutlined,
-    SearchOutlined,
+    SearchOutlined
   } from "@ant-design/icons";
 import
   {
@@ -37,33 +33,33 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import AssignGiftModal from "./AssignGiftModal";
 import CreateOrUpdate from "./createOrUpdate";
 import QLModuleDetail from "./detail";
 import classes from "./page.module.css";
 import Search from "./search";
 
-const QLGift: React.FC = () => {
+const QLWebShop: React.FC = () => {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
-  const [listModule, setListModule] = useState<tableGiftCode[]>([]);
+  const [listModule, setListModule] = useState<tableWebShopDataType[]>([]);
   const [dataPage, setDataPage] = useState<ResponsePageInfo>();
   const [pageSize, setPageSize] = useState<number>(20);
   const [pageIndex, setPageIndex] = useState<number>(1);
   const [isPanelVisible, setIsPanelVisible] = useState<boolean>(false);
-  const [searchValues, setSearchValues] = useState<searchGiftCode | null>(null);
-  const [dropVaiTros, setDropVaiTros] = useState<DropdownOption[]>([]);
+  const [searchValues, setSearchValues] = useState<searchWebShopSearchVM | null>(
+    null
+  );
   const loading = useSelector((state) => state.general.isLoading);
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
-  const [currentModule, setCurrentModule] = useState<tableGiftCode | null>();
+  const [tableGiftCode, setTableGiftCode] =
+    useState<tableWebShopDataType | null>(null);
   const [currentDetailModule, setCurrentDetailModule] =
-    useState<tableGiftCode>();
+    useState<tableWebShopDataType>();
   const [isOpenDetail, setIsOpenDetail] = useState<boolean>(false);
   const [openPopconfirmId, setOpenPopconfirmId] = useState<string | null>(null);
-const [isAssignModalOpen, setIsAssignModalOpen] = useState<boolean>(false);
-const [selectedGiftCode, setSelectedGiftCode] = useState<tableGiftCode | null>(null);
-  const tableColumns: TableProps<tableGiftCode>["columns"] = [
+
+  const tableColumns: TableProps<tableWebShopDataType>["columns"] = [
     {
       title: "STT",
       dataIndex: "index",
@@ -71,47 +67,31 @@ const [selectedGiftCode, setSelectedGiftCode] = useState<tableGiftCode | null>(n
       render: (_: any, __: any, index: number) => index + 1,
     },
     {
-      title: "Tên gift",
-      dataIndex: "name",
-      render: (_: any, record: tableGiftCode) => <span>{record.code}</span>,
+      title: "Tên set",
+      dataIndex: "nameSet",
+      render: (_: any, record: tableWebShopDataType) => (
+        <span>{record.nameSet}</span>
+      ),
     },
     {
-      title: "Mã gift",
-      dataIndex: "code",
-      render: (_: any, record: tableGiftCode) => <span>{record.code}</span>,
-    },
-     {
-      title: "Số lượt sử dụng tối đa",
-      dataIndex: "maxCountUsed",
-      render: (_: any, record: tableGiftCode) => <span>{record.maxCountUsed}</span>,
-    },
-     {
-      title: "Số lượt đã sử dụng",
-      dataIndex: "countUsed",
-      render: (_: any, record: tableGiftCode) => <span>{record.countUsed}</span>,
-    },
-        {
-      title: "Level được sử dụng",
-      dataIndex: "levelUsed",
-      render: (_: any, record: tableGiftCode) =>   <span>{record.levelUsed}</span>
-    },
-     {
-      title: "Thời gian kết thúc",
-      dataIndex: "dueDateStr",
-      render: (_: any, record: tableGiftCode) =>   <span>{record.dueDateStr}</span>
-    },
-    {
-      title: "Các gift item",
+      title: "Danh sách vật phẩm",
       dataIndex: "giftCodeItems_txt",
-      render: (_: any, record: tableGiftCode) => (
+      render: (_: any, record: tableWebShopDataType) => (
         <span>{record.giftCodeItems_txt}</span>
+      ),
+    },
+    {
+      title: "Giá tiền",
+      dataIndex: "giaTien",
+      render: (_: any, record: tableWebShopDataType) => (
+        <span>{record.giaTien}</span>
       ),
     },
     {
       title: "Thao tác",
       dataIndex: "actions",
       fixed: "right",
-      render: (_: any, record: tableGiftCode) => {
+      render: (_: any, record: tableWebShopDataType) => {
         const items: MenuProps["items"] = [
           {
             label: "Chỉnh sửa",
@@ -123,15 +103,6 @@ const [selectedGiftCode, setSelectedGiftCode] = useState<tableGiftCode | null>(n
           },
           {
             type: "divider",
-          },
-           {
-            label: "Gán giftcode tự động",
-          key: "2",
-          icon: <PlusCircleOutlined />,
-          onClick: () => {
-            setSelectedGiftCode(record);
-            setIsAssignModalOpen(true);
-          },
           },
           {
             label: "Xóa",
@@ -157,7 +128,7 @@ const [selectedGiftCode, setSelectedGiftCode] = useState<tableGiftCode | null>(n
             </Dropdown>
             <Popconfirm
               title="Xác nhận xóa"
-              description="Bạn có muốn xóa gift này?"
+              description="Bạn có muốn xóa vật phẩm này?"
               okText="Xóa"
               cancelText="Hủy"
               open={openPopconfirmId === record.id}
@@ -172,22 +143,20 @@ const [selectedGiftCode, setSelectedGiftCode] = useState<tableGiftCode | null>(n
       },
     },
   ];
-
   const hanleCreateEditSuccess = () => {
     handleGetListModule();
   };
-
   const handleDeleteModule = async (id: string) => {
     try {
-      const response = await giftCodeService.Delete(id);
+      const response = await qlWebShopeService.Delete(id);
       if (response.status) {
-        toast.success("Xóa  gift code thành công");
+        toast.success("Xóa thành công");
         handleGetListModule();
       } else {
-        toast.error("Xóa gift code thất bại");
+        toast.error("Xóa thất bại");
       }
     } catch (error) {
-      toast.error("Xóa gift code thất bại");
+      toast.error("Xóa thất bại");
     }
   };
 
@@ -195,7 +164,7 @@ const [selectedGiftCode, setSelectedGiftCode] = useState<tableGiftCode | null>(n
     setIsPanelVisible(!isPanelVisible);
   };
 
-  const onFinishSearch: FormProps<searchGiftCode>["onFinish"] = async (
+  const onFinishSearch: FormProps<searchWebShopSearchVM>["onFinish"] = async (
     values
   ) => {
     try {
@@ -207,7 +176,7 @@ const [selectedGiftCode, setSelectedGiftCode] = useState<tableGiftCode | null>(n
   };
 
   const handleGetListModule = useCallback(
-    async (searchDataOverride?: searchGiftCode) => {
+    async (searchDataOverride?: searchWebShopSearchVM) => {
       dispatch(setIsLoading(true));
       try {
         const searchData = searchDataOverride || {
@@ -215,7 +184,7 @@ const [selectedGiftCode, setSelectedGiftCode] = useState<tableGiftCode | null>(n
           pageSize,
           ...(searchValues || {}),
         };
-        const response = await giftCodeService.getDataByPage(searchData);
+        const response = await qlWebShopeService.getDataByPage(searchData);
 
         if (response != null && response.data != null) {
           const data = response.data;
@@ -236,59 +205,28 @@ const [selectedGiftCode, setSelectedGiftCode] = useState<tableGiftCode | null>(n
     [pageIndex, pageSize]
   );
 
-  const handleShowModal = (isEdit?: boolean, module?: tableGiftCode) => {
+  const handleShowModal = (isEdit?: boolean, module?: tableWebShopDataType) => {
     setIsOpenModal(true);
     if (isEdit) {
-      setCurrentModule(module);
+      setTableGiftCode(module ?? null);
     }
   };
 
   const handleClose = () => {
     setIsOpenModal(false);
-    setCurrentModule(null);
+    setTableGiftCode(null);
   };
 
   const handleCloseDetail = () => {
     setIsOpenDetail(false);
   };
 
-
-
-  const handleAssign = async (userList: string[]) => {
-    if (!selectedGiftCode) return;
-    try {
-      const res = await giftCodeService.AddGiftCodeForPlayer({
-        giftCode: selectedGiftCode.code,
-        charNames: userList
-      });
-      if (res.status) {
-        toast.success("Gán giftcode thành công!");
-      } else {
-        toast.error("Gán giftcode thất bại." + res?.message);
-      }
-    } catch (err) {
-      toast.error("Lỗi khi gán giftcode.");
-    }
-  }
-
-
-
-
-  
   useEffect(() => {
     handleGetListModule();
   }, [handleGetListModule]);
 
   return (
     <>
-      
-  <AssignGiftModal
-  open={isAssignModalOpen}
-  onClose={() => setIsAssignModalOpen(false)}
-  onAssign={handleAssign}
-  giftCodeName={selectedGiftCode?.code || ""}
-/>
-
       <Flex
         alignItems="center"
         justifyContent="space-between"
@@ -331,7 +269,7 @@ const [selectedGiftCode, setSelectedGiftCode] = useState<tableGiftCode | null>(n
             isOpen={isOpenModal}
             onSuccess={hanleCreateEditSuccess}
             onClose={handleClose}
-            tableGiftCode={currentModule}
+            tableQLWebShop={tableGiftCode}
           />
         </div>
       </Flex>
@@ -376,4 +314,4 @@ const [selectedGiftCode, setSelectedGiftCode] = useState<tableGiftCode | null>(n
   );
 };
 
-export default QLGift;
+export default QLWebShop;
