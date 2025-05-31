@@ -8,7 +8,7 @@ export interface createEditType {
   description?: string;
   LevelUsed: number;
 }
-
+  
 
 export interface tableAddItemModelDataType { 
     giftCode: string;

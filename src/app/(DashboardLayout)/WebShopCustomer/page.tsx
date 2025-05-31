@@ -1,40 +1,84 @@
 "use client"
 
+import { createOrEdit } from "@/interface/OrderVp/OrderVp"
 import { searchWebShopSearchVM, tableWebShopDataType } from "@/interface/WebShop/WebShop"
+import { orderVpService } from "@/services/OrderVp/OrderVp.service"
 import { qlWebShopeService } from "@/services/WebShop/WebShop.service"
 import { setIsLoading } from "@/store/general/GeneralSlice"
+import { useSelector } from "@/store/hooks"
 import { AppDispatch } from "@/store/store"
 import
-    {
-        CrownOutlined,
-        GiftOutlined,
-        InfoCircleOutlined,
-        ShoppingCartOutlined
-    } from "@ant-design/icons"
-import { Badge, Button, Card, Col, Modal, Popover, Rate, Row, Space, Spin, Tag, Tooltip, Typography } from "antd"
+  {
+    CrownOutlined,
+    GiftOutlined,
+    InfoCircleOutlined,
+    ShoppingCartOutlined
+  } from "@ant-design/icons"
+import { Badge, Button, Card, Col, Input, Popover, Rate, Row, Space, Spin, Tag, Tooltip, Typography } from "antd"
 import { useCallback, useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
+import { toast } from "react-toastify"
+import OrderCustomer from "./OrderVpCustomer"
 
 const { Title, Text, Paragraph } = Typography
 
+interface CreateOrderVp
+{
+  setId: string,
+  amount: number,
+  username: string,
+}
+
+
 function ItemSetsShop()
 {
-     
-
-    const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch<AppDispatch>();
   const [loadingSet, setLoadingSet] = useState<string | null>(null)
+  const [ itemSets, setDsItems ] = useState<tableWebShopDataType[]>([]);
+  
+  const [ orDerVp, setOrderVp ] = useState<createOrEdit>();
+  const [ selectedSet, setSelectedSet ] = useState<tableWebShopDataType | null>( null );
+  const [ showQR, setShowQR ] = useState( false );
+  const [ charname, setCharName ] = useState( "");
+  const userInfor = useSelector( state => state.auth.User );
 
-     const [ itemSets, setDsItems ] = useState<tableWebShopDataType[]>([]);
-     const [selectedSet, setSelectedSet] = useState<tableWebShopDataType | null>(null);
-    const [ showQR, setShowQR ] = useState( false );
-    
+ const handleAddOrder = async ( values: createOrEdit ) =>
+    {
+        try {
+            const response = await orderVpService.Create(values);
+            if ( response.status) {
+                return response.data;
+            } else
+            {
+                return false;
+            }
+        } catch (error) {
+            return false;            
+        }
+    }
+    const handleBuyNow = async (values: CreateOrderVp) => {
+      const selected = itemSets.find((set) => set.id === values.setId);
+      
+       // Tạo 1 order theo giá trị 
+      const orderVP: createOrEdit = {
+        name: values.username,
+        idWebShop: values.setId,
+        total: values.amount,
+        paymentStatus: "Unpaid",
+        id: ""
+      }
 
-    const handleBuyNow = (setId: string) => {
-  const selected = itemSets.find((set) => set.id === setId);
-  if (selected) {
-    setSelectedSet(selected);
-    setShowQR(true); // Show QR screen/modal
-  }
+              
+      const res = await handleAddOrder(orderVP)
+      if ( res )
+      {
+        orderVP.id = res?.id;
+        setOrderVp(orderVP); 
+        if (selected) {
+          setSelectedSet( selected );
+        }
+      }
+
     };
     
       const handleGetListModule = useCallback(
@@ -109,6 +153,12 @@ function ItemSetsShop()
     </div>
   )
 
+  useEffect(() => {
+    if (selectedSet && orDerVp) {
+      setShowQR(true);
+    }
+  }, [selectedSet, orDerVp]);
+
     
     useEffect( () =>
     {
@@ -126,6 +176,20 @@ function ItemSetsShop()
             Khám phá các bộ sưu tập vật phẩm độc đáo với sức mạnh phi thường. Nâng cấp nhân vật của bạn ngay hôm nay!
           </Paragraph>
         </div>
+
+        <Col md={6} className="my-4">
+          
+          <label htmlFor="">Tên nhân vật 
+
+            <Tag color="red">*</Tag>
+          </label>
+          <Input placeholder="Nhập tên nhân vật" name="charName"
+            onChange={( e ) =>
+            {
+              setCharName(e.target.value)
+            }}
+          />
+        </Col>
 
         {/* Items Grid */}
         <Row gutter={[24, 24]}>
@@ -166,7 +230,20 @@ function ItemSetsShop()
                         type="primary"
                         size="large"
                         icon={loadingSet === set.id ? <Spin size="small" /> : <ShoppingCartOutlined />}
-                        onClick={() => handleBuyNow(set.id ?? "")}
+                        onClick={() =>
+                        {
+                          if ( charname === "" )
+                          {
+                            toast.error( "Yêu cầu nhập tên nhân vật!" );
+                            return;
+                          }
+                          handleBuyNow( {
+                            setId: set.id ?? "",
+                            amount: set.giaTien,
+                            username: charname ?? ""
+                          } )
+                        }
+                        }
                         loading={loadingSet === set.id}
                         className=" bg-gradient-to-r from-purple-600 to-blue-600 border-none hover:from-purple-700 hover:to-blue-700"
                       >
@@ -226,39 +303,16 @@ function ItemSetsShop()
       
           </div>
           
-
-
-
-          <Modal
-  title="Quét mã QR để thanh toán"
-  open={showQR}
-  onCancel={() => setShowQR(false)}
-  footer={[
-    <Button key="cancel" onClick={() => setShowQR(false)}>
-      Hủy
-    </Button>,
-    <Button
-      key="confirm"
-      type="primary"
-      onClick={() => {
-        alert(`Thanh toán thành công cho bộ "${selectedSet?.nameSet}"`);
-        setShowQR(false);
-      }}
-    >
-      Xác nhận đã thanh toán
-    </Button>,
-  ]}
->
-  <div className="flex flex-col items-center gap-4">
-    <img
-      src="https://api.qrserver.com/v1/create-qr-code/?data=thanh-toan-cho-set&size=200x200"
-      alt="QR Code"
-    />
-    <Text className="text-center">
-      Vui lòng quét mã QR để thanh toán bộ <strong>{selectedSet?.nameSet}</strong>
-    </Text>
-  </div>
-</Modal>
+      {
+        (orDerVp && showQR) && 
+         <OrderCustomer open={showQR} tableSet={selectedSet} onClose={() =>
+        {
+           setShowQR(false);
+    setOrderVp(undefined);
+    setSelectedSet(null);
+          }} record={orDerVp} />
+     }
+     
     </div>
   )
 }
