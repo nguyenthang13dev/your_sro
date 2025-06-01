@@ -156,6 +156,24 @@ const CreateOrUpdate: React.FC<Props> = (props: Props) => {
           <Input />
         </Form.Item>
 
+        
+        <Form.Item<createEditType>
+          name="giftCodeItems"
+          label="Danh sách vật phẩm đi kềm"
+          // initialValue={props.moduleId}
+          // rules={[{ required: true, message: "Vui lòng nhập thông tin này!" }]}
+        >
+          <Select
+            placeholder="Chọn vật phẩm"
+            options={lstGiftCodeItem.map((item) => ({
+              ...item,
+              value: item.value.toLowerCase(),
+            }))}
+            fieldNames={{ label: "label", value: "value" }}
+            mode="multiple"
+          />
+        </Form.Item>
+        
           <Form.Item<createEditType>
           label="Số lượng tối đa sử dụng"
           name="maxCountUsed"

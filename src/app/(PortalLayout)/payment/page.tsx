@@ -53,8 +53,6 @@ export default function GameTopupForm() {
 
     const handleSubmit = async ( values: any ) =>
     {
-         console.log("order", form.getFieldsValue()) ;
-
         const ResponseCheck = await handleCheckAccount( values.username );
         if ( !ResponseCheck ) {
             toast.error("Tài khoản không tồn tại hoặc không hợp lệ!" );
