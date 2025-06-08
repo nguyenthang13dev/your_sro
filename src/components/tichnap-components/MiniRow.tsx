@@ -1,6 +1,5 @@
 import { MilestoneRowProps } from "@/interface/ticnap/tichnap";
 
-
 const MilestoneRow = ({ id, price, items, onClaim, claimed, available }: MilestoneRowProps) => {
   return (
     <div className="flex w-full mb-2 relative">
@@ -10,25 +9,22 @@ const MilestoneRow = ({ id, price, items, onClaim, claimed, available }: Milesto
       </div>
 
       {/* Items grid */}
-      <div className="flex-1 bg-[#d9b38c] border-2 border-[#8b5a2b] border-l-0 flex">
+      <div className="flex-1 bg-[#d9b38c] border-2 border-[#8b5a2b] border-l-0 flex flex-wrap p-1 gap-2">
         {items.map((item) => (
           <div
             key={item.key}
-            className="w-[60px] h-[60px] border-2 border-[#8b5a2b] m-1 bg-[#333] flex items-center justify-center relative group"
+            className="w-[70px] h-[90px] bg-[#333] border-2 border-[#8b5a2b] flex flex-col items-center justify-center text-white text-[10px] text-center p-1"
           >
             {item.image && (
               <img
                 src={`${process.env.NEXT_PUBLIC_STATIC_FILE_BASE_URL}${item.image}` || "/img/"}
                 alt={item.name}
-                width={50}
-                height={50}
-                className="object-contain"
+                width={60}
+                height={60}
+                className="object-contain mb-1"
               />
             )}
-            <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-200"></div>
-            <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-0 text-white text-xs text-center translate-y-full group-hover:translate-y-0 group-hover:bg-opacity-70 transition-all duration-200 overflow-hidden">
-              {item.name}
-            </div>
+            <span>{item.name}</span>
           </div>
         ))}
       </div>
@@ -58,7 +54,7 @@ const MilestoneRow = ({ id, price, items, onClaim, claimed, available }: Milesto
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
 export default MilestoneRow;
